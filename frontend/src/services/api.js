@@ -1,7 +1,20 @@
 import axios from 'axios';
 
+const rawBaseUrl = import.meta.env.VITE_API_URL || '';
+export const API_HOST = rawBaseUrl.replace(/\/+$/, '');
+const API_BASE_URL = API_HOST ? `${API_HOST}/api/v1` : '/api/v1';
+
+export const getMediaUrl = (pathOrUrl) => {
+  if (!pathOrUrl) return '';
+  if (pathOrUrl.startsWith('http://') || pathOrUrl.startsWith('https://')) {
+    return pathOrUrl;
+  }
+  const cleanPath = pathOrUrl.startsWith('/') ? pathOrUrl.substring(1) : pathOrUrl;
+  return API_HOST ? `${API_HOST}/${cleanPath}` : `/${cleanPath}`;
+};
+
 const api = axios.create({
-  baseURL: '/api/v1',
+  baseURL: API_BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },

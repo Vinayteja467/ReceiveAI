@@ -114,3 +114,40 @@ The data models and API contracts are structured to support future AI vision and
 - `EvidenceItem.confidence_score` and `tags` support AI defect detection.
 - `InspectionItem.defect_category` is mapped to standardized computer vision classification taxonomies.
 - Real REST endpoints and Pydantic schemas allow seamless model inference pipelines to be mounted directly.
+
+---
+
+## Cloud Deployment Guide (100% Free Tier)
+
+ReceiveAI is pre-configured with Blueprint and SPA routing for instant deployment on cloud providers.
+
+### Option 1: 1-Click Deployment on Render (Frontend + Backend)
+The included `render.yaml` automatically links the FastAPI backend and React frontend:
+1. Log in to [Render](https://render.com) using your GitHub account.
+2. Click **New +** $\rightarrow$ **Blueprint**.
+3. Select your repository: `https://github.com/Vinayteja467/ReceiveAI`.
+4. Click **Apply**.
+5. Render will automatically:
+   - Build and launch the FastAPI Web Service (`backend/requirements.txt` $\rightarrow$ `uvicorn app.main:app`).
+   - Build and launch the React Static Site (`frontend` $\rightarrow$ `npm run build`).
+   - Automatically configure `VITE_API_URL` between them.
+
+---
+
+### Option 2: Render (Backend) + Vercel (Frontend)
+#### 1. Deploy Backend on Render:
+1. On Render, click **New +** $\rightarrow$ **Web Service**.
+2. Select `https://github.com/Vinayteja467/ReceiveAI`.
+3. Set **Root Directory** to `backend`.
+4. Set **Build Command** to: `pip install -r requirements.txt`.
+5. Set **Start Command** to: `uvicorn app.main:app --host 0.0.0.0 --port $PORT`.
+6. Click **Deploy Web Service** and copy your backend URL (e.g. `https://receiveai-backend.onrender.com`).
+
+#### 2. Deploy Frontend on Vercel:
+1. Log in to [Vercel](https://vercel.com) and click **Add New...** $\rightarrow$ **Project**.
+2. Import `https://github.com/Vinayteja467/ReceiveAI`.
+3. Set **Root Directory** to `frontend`.
+4. Under **Environment Variables**, add:
+   - `VITE_API_URL` = your Render backend URL (e.g. `https://receiveai-backend.onrender.com`).
+5. Click **Deploy**. Vercel will build and provide your live application URL.
+
