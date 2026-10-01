@@ -118,10 +118,10 @@ export default function ProductsPage() {
             <button
               key={cat}
               onClick={() => setCategoryFilter(cat)}
-              className={`px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-colors ${
+              className={`px-3.5 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all ${
                 categoryFilter === cat
-                  ? 'bg-indigo-600 text-white shadow-2xs'
-                  : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-50'
+                  ? 'bg-gradient-to-r from-orange-500 to-red-600 text-white shadow-[0_0_12px_rgba(255,87,34,0.35)]'
+                  : 'bg-white/[0.04] border border-white/[0.08] text-neutral-400 hover:text-white hover:bg-white/[0.08]'
               }`}
             >
               {cat}
@@ -131,19 +131,19 @@ export default function ProductsPage() {
 
         <div className="flex items-center gap-3 w-full sm:w-auto">
           <div className="relative flex-1 sm:w-64">
-            <Search className="w-4 h-4 text-slate-400 absolute left-3 top-2.5" />
+            <Search className="w-4 h-4 text-neutral-500 absolute left-3 top-2.5" />
             <input
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search SKU, name, or variant..."
-              className="w-full pl-9 pr-3 py-1.5 text-xs bg-white border border-slate-200 rounded-lg focus:ring-2 focus:ring-indigo-500"
+              className="w-full pl-9 pr-3 py-1.5 text-xs bg-[#121217] border border-white/[0.1] text-white placeholder-neutral-500 focus:border-orange-500 rounded-xl focus:outline-none transition-colors"
             />
           </div>
 
           <button
             onClick={() => setShowAddModal(true)}
-            className="px-3.5 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-xs font-semibold flex items-center gap-1.5 shadow-xs whitespace-nowrap"
+            className="px-4 py-2 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white rounded-xl text-xs font-bold flex items-center gap-1.5 shadow-[0_0_15px_rgba(255,87,34,0.35)] whitespace-nowrap transition-all"
           >
             <Plus className="w-3.5 h-3.5" />
             <span>Add Product</span>
@@ -154,11 +154,11 @@ export default function ProductsPage() {
       {/* Products Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {loading ? (
-          <div className="col-span-full p-8 text-center text-slate-400 bg-white rounded-xl border border-slate-200 animate-pulse">
+          <div className="col-span-full p-8 text-center text-neutral-400 bg-[#0e0e13]/85 backdrop-blur-xl rounded-2xl border border-white/[0.08] animate-pulse">
             Loading products catalog...
           </div>
         ) : filtered.length === 0 ? (
-          <div className="col-span-full p-8 text-center text-slate-400 bg-white rounded-xl border border-slate-200">
+          <div className="col-span-full p-8 text-center text-neutral-400 bg-[#0e0e13]/85 backdrop-blur-xl rounded-2xl border border-white/[0.08]">
             No products found matching criteria.
           </div>
         ) : (
@@ -166,11 +166,11 @@ export default function ProductsPage() {
             <div 
               key={product.id} 
               onClick={() => setSelectedProduct(product)}
-              className="bg-white border border-slate-200/90 rounded-xl overflow-hidden shadow-xs hover:border-indigo-300 hover:shadow-md transition-all cursor-pointer flex flex-col justify-between group"
+              className="bg-[#0e0e13]/85 backdrop-blur-xl border border-white/[0.08] rounded-2xl overflow-hidden shadow-2xl hover:border-orange-500/40 hover:shadow-[0_0_25px_rgba(255,87,34,0.12)] transition-all cursor-pointer flex flex-col justify-between group"
             >
               <div>
                 {/* Visual Thumbnail & Badge */}
-                <div className="h-40 bg-slate-100 relative overflow-hidden flex items-center justify-center border-b border-slate-100">
+                <div className="h-40 bg-black/40 relative overflow-hidden flex items-center justify-center border-b border-white/[0.06]">
                   {product.reference_image ? (
                     <img
                       src={product.reference_image}
@@ -178,21 +178,21 @@ export default function ProductsPage() {
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                       onError={(e) => {
                         e.target.style.display = 'none';
-                        e.target.parentElement.innerHTML = '<div class="text-slate-400 text-center"><svg class="w-8 h-8 mx-auto" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/></svg></div>';
+                        e.target.parentElement.innerHTML = '<div class="text-neutral-600 text-center"><svg class="w-8 h-8 mx-auto" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/></svg></div>';
                       }}
                     />
                   ) : (
-                    <Package className="w-10 h-10 text-slate-400" />
+                    <Package className="w-10 h-10 text-neutral-600" />
                   )}
 
                   <div className="absolute top-2.5 left-2.5">
-                    <span className="font-mono text-[11px] font-bold text-slate-900 bg-white/95 backdrop-blur-xs border border-slate-200/80 px-2 py-0.5 rounded shadow-2xs">
+                    <span className="font-mono text-[11px] font-bold text-white bg-black/80 backdrop-blur-md border border-white/[0.12] px-2.5 py-0.5 rounded-full shadow-lg">
                       {product.sku}
                     </span>
                   </div>
 
                   <div className="absolute top-2.5 right-2.5">
-                    <span className="text-[10px] font-bold text-indigo-700 bg-indigo-50/95 backdrop-blur-xs border border-indigo-200/80 px-2 py-0.5 rounded shadow-2xs">
+                    <span className="text-[10px] font-bold text-orange-400 bg-orange-500/15 backdrop-blur-md border border-orange-500/30 px-2.5 py-0.5 rounded-full shadow-lg">
                       {product.units_per_carton || 12}/ctn
                     </span>
                   </div>
@@ -200,27 +200,27 @@ export default function ProductsPage() {
 
                 {/* Content */}
                 <div className="p-4 space-y-2">
-                  <div className="flex items-center justify-between gap-1 text-[11px] text-slate-500">
+                  <div className="flex items-center justify-between gap-1 text-[11px] text-neutral-400">
                     <span className="truncate">{product.category}</span>
-                    <span className="font-semibold text-blue-600 bg-blue-50 px-1.5 py-0.2 rounded border border-blue-100">
+                    <span className="font-semibold text-orange-300 bg-orange-500/10 px-2 py-0.5 rounded border border-orange-500/20">
                       {product.variant || 'Standard'}
                     </span>
                   </div>
 
-                  <h4 className="font-bold text-slate-900 text-sm leading-snug group-hover:text-indigo-600 transition-colors">
+                  <h4 className="font-bold text-white text-sm leading-snug group-hover:text-orange-400 transition-colors">
                     {product.name}
                   </h4>
 
-                  <p className="text-xs text-slate-500 line-clamp-2">
+                  <p className="text-xs text-neutral-400 line-clamp-2">
                     {product.description}
                   </p>
 
                   {/* Packaging & Weight */}
-                  <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-600">
-                    <span className="flex items-center gap-1 font-mono text-slate-700">
-                      <Barcode className="w-3.5 h-3.5 text-slate-400" /> {product.barcode || 'No barcode'}
+                  <div className="pt-2 border-t border-white/[0.06] flex items-center justify-between text-[11px] text-neutral-400">
+                    <span className="flex items-center gap-1 font-mono text-neutral-300">
+                      <Barcode className="w-3.5 h-3.5 text-neutral-500" /> {product.barcode || 'No barcode'}
                     </span>
-                    <span className="font-medium text-slate-700">
+                    <span className="font-medium text-neutral-300">
                       {product.weight_kg} kg
                     </span>
                   </div>
@@ -228,11 +228,11 @@ export default function ProductsPage() {
               </div>
 
               {/* Card Footer */}
-              <div className="px-4 py-2.5 bg-slate-50/80 border-t border-slate-100 flex items-center justify-between text-[11px]">
-                <span className="text-slate-500">
-                  AQL Sample: <strong className="text-slate-800">{product.sampling_rate_pct}%</strong>
+              <div className="px-4 py-2.5 bg-black/30 border-t border-white/[0.06] flex items-center justify-between text-[11px]">
+                <span className="text-neutral-400">
+                  AQL Sample: <strong className="text-neutral-200">{product.sampling_rate_pct}%</strong>
                 </span>
-                <span className="font-semibold text-indigo-600 flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
+                <span className="font-semibold text-orange-400 flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
                   View Details &rarr;
                 </span>
               </div>
@@ -259,121 +259,121 @@ export default function ProductsPage() {
         <form onSubmit={handleCreateProduct} className="space-y-4 text-xs">
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="font-semibold text-slate-700 block mb-1">SKU Identifier</label>
+              <label className="font-semibold text-neutral-300 block mb-1.5">SKU Identifier</label>
               <input
                 required
                 placeholder="e.g. BLUE-BOTTLE-001"
                 value={newProduct.sku}
                 onChange={e => setNewProduct({...newProduct, sku: e.target.value})}
-                className="w-full border border-slate-300 rounded p-2"
+                className="w-full border border-white/[0.1] rounded-xl p-2.5 bg-[#121217] text-white placeholder-neutral-500 focus:border-orange-500 focus:outline-none transition-colors"
               />
             </div>
             <div>
-              <label className="font-semibold text-slate-700 block mb-1">Variant / Color</label>
+              <label className="font-semibold text-neutral-300 block mb-1.5">Variant / Color</label>
               <input
                 required
                 placeholder="e.g. Blue, Matte Black, 32oz"
                 value={newProduct.variant}
                 onChange={e => setNewProduct({...newProduct, variant: e.target.value})}
-                className="w-full border border-slate-300 rounded p-2"
+                className="w-full border border-white/[0.1] rounded-xl p-2.5 bg-[#121217] text-white placeholder-neutral-500 focus:border-orange-500 focus:outline-none transition-colors"
               />
             </div>
           </div>
 
           <div>
-            <label className="font-semibold text-slate-700 block mb-1">Product Name</label>
+            <label className="font-semibold text-neutral-300 block mb-1.5">Product Name</label>
             <input
               required
               placeholder="e.g. Premium Water Bottle"
               value={newProduct.name}
               onChange={e => setNewProduct({...newProduct, name: e.target.value})}
-              className="w-full border border-slate-300 rounded p-2"
+              className="w-full border border-white/[0.1] rounded-xl p-2.5 bg-[#121217] text-white placeholder-neutral-500 focus:border-orange-500 focus:outline-none transition-colors"
             />
           </div>
 
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="font-semibold text-slate-700 block mb-1">Category</label>
+              <label className="font-semibold text-neutral-300 block mb-1.5">Category</label>
               <select
                 value={newProduct.category}
                 onChange={e => setNewProduct({...newProduct, category: e.target.value})}
-                className="w-full border border-slate-300 rounded p-2 bg-white"
+                className="w-full border border-white/[0.1] rounded-xl p-2.5 bg-[#121217] text-white focus:border-orange-500 focus:outline-none transition-colors"
               >
-                <option>Beverageware & Hydration</option>
-                <option>Industrial Electronics</option>
-                <option>Biomedical / Cold Chain</option>
-                <option>Automotive Hardware</option>
-                <option>Consumer Goods</option>
+                <option className="bg-[#121217] text-white">Beverageware & Hydration</option>
+                <option className="bg-[#121217] text-white">Industrial Electronics</option>
+                <option className="bg-[#121217] text-white">Biomedical / Cold Chain</option>
+                <option className="bg-[#121217] text-white">Automotive Hardware</option>
+                <option className="bg-[#121217] text-white">Consumer Goods</option>
               </select>
             </div>
             <div>
-              <label className="font-semibold text-slate-700 block mb-1">Units per Carton</label>
+              <label className="font-semibold text-neutral-300 block mb-1.5">Units per Carton</label>
               <input
                 type="number"
                 min="1"
                 required
                 value={newProduct.units_per_carton}
                 onChange={e => setNewProduct({...newProduct, units_per_carton: parseInt(e.target.value, 10) || 12})}
-                className="w-full border border-slate-300 rounded p-2 font-bold text-indigo-700"
+                className="w-full border border-orange-500/30 rounded-xl p-2.5 bg-orange-500/10 font-bold text-orange-400 text-center focus:border-orange-500 focus:outline-none transition-colors"
               />
             </div>
           </div>
 
           <div>
-            <label className="font-semibold text-slate-700 block mb-1">
+            <label className="font-semibold text-neutral-300 block mb-1.5">
               Required Components (Checklist items separated by comma)
             </label>
             <input
               placeholder="e.g. Stainless Steel Insulated Cap, Silicone Seal Ring, Carabiner Clip"
               value={newProduct.required_components}
               onChange={e => setNewProduct({...newProduct, required_components: e.target.value})}
-              className="w-full border border-slate-300 rounded p-2"
+              className="w-full border border-white/[0.1] rounded-xl p-2.5 bg-[#121217] text-white placeholder-neutral-500 focus:border-orange-500 focus:outline-none transition-colors"
             />
           </div>
 
           <div>
-            <label className="font-semibold text-slate-700 block mb-1">Reference Image URL</label>
+            <label className="font-semibold text-neutral-300 block mb-1.5">Reference Image URL</label>
             <input
               placeholder="https://example.com/images/blue-bottle.jpg"
               value={newProduct.reference_image}
               onChange={e => setNewProduct({...newProduct, reference_image: e.target.value})}
-              className="w-full border border-slate-300 rounded p-2"
+              className="w-full border border-white/[0.1] rounded-xl p-2.5 bg-[#121217] text-white placeholder-neutral-500 focus:border-orange-500 focus:outline-none transition-colors"
             />
           </div>
 
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="font-semibold text-slate-700 block mb-1">Barcode (UPC / EAN)</label>
+              <label className="font-semibold text-neutral-300 block mb-1.5">Barcode (UPC / EAN)</label>
               <input
                 placeholder="0810024810924"
                 value={newProduct.barcode}
                 onChange={e => setNewProduct({...newProduct, barcode: e.target.value})}
-                className="w-full border border-slate-300 rounded p-2"
+                className="w-full border border-white/[0.1] rounded-xl p-2.5 bg-[#121217] text-white font-mono placeholder-neutral-500 focus:border-orange-500 focus:outline-none transition-colors"
               />
             </div>
             <div>
-              <label className="font-semibold text-slate-700 block mb-1">Weight (kg)</label>
+              <label className="font-semibold text-neutral-300 block mb-1.5">Weight (kg)</label>
               <input
                 type="number"
                 step="0.01"
                 value={newProduct.weight_kg}
                 onChange={e => setNewProduct({...newProduct, weight_kg: parseFloat(e.target.value) || 0.5})}
-                className="w-full border border-slate-300 rounded p-2"
+                className="w-full border border-white/[0.1] rounded-xl p-2.5 bg-[#121217] text-white placeholder-neutral-500 focus:border-orange-500 focus:outline-none transition-colors"
               />
             </div>
           </div>
 
-          <div className="flex justify-end gap-2 pt-3 border-t">
+          <div className="flex justify-end gap-3 pt-3 border-t border-white/[0.08]">
             <button
               type="button"
               onClick={() => setShowAddModal(false)}
-              className="px-4 py-2 border rounded-lg text-slate-600 hover:bg-slate-50"
+              className="px-4 py-2 border border-white/[0.08] rounded-xl text-neutral-300 hover:text-white hover:bg-white/[0.08] transition-all"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-lg shadow-xs"
+              className="px-5 py-2.5 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold rounded-xl shadow-[0_0_15px_rgba(255,87,34,0.35)] transition-all"
             >
               Save Product SKU
             </button>

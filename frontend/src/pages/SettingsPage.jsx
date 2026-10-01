@@ -56,8 +56,8 @@ export default function SettingsPage() {
   return (
     <div className="max-w-4xl mx-auto space-y-6">
       {savedSuccess && (
-        <div className="p-4 bg-emerald-50 border border-emerald-200 rounded-lg text-emerald-800 text-xs font-semibold flex items-center gap-2">
-          <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+        <div className="p-4 bg-emerald-500/10 border border-emerald-500/30 rounded-xl text-emerald-300 text-xs font-semibold flex items-center gap-2">
+          <CheckCircle2 className="w-4 h-4 text-emerald-400" />
           <span>Warehouse inspection thresholds and dock configuration updated successfully.</span>
         </div>
       )}
@@ -67,27 +67,27 @@ export default function SettingsPage() {
         <Card title="Facility & Inbound Dock Allocation" subtitle="Operational cross-dock parameters">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
             <div>
-              <label className="font-semibold text-slate-700 block mb-1">Facility Identifier Code</label>
+              <label className="font-semibold text-neutral-300 block mb-1.5">Facility Identifier Code</label>
               <input
                 type="text"
                 value={config.facility_code}
                 onChange={e => setConfig({...config, facility_code: e.target.value})}
-                className="w-full border border-slate-300 rounded-lg p-2.5 bg-white text-slate-800"
+                className="w-full border border-white/[0.1] rounded-xl p-2.5 bg-[#121217] text-white focus:border-orange-500 focus:outline-none transition-colors"
               />
-              <span className="text-[11px] text-slate-500 mt-1 block">Assigned logistics node ID</span>
+              <span className="text-[11px] text-neutral-400 mt-1 block">Assigned logistics node ID</span>
             </div>
 
             <div>
-              <label className="font-semibold text-slate-700 block mb-1">Active Receiving Dock Bays</label>
+              <label className="font-semibold text-neutral-300 block mb-1.5">Active Receiving Dock Bays</label>
               <input
                 type="number"
                 min="1"
                 max="32"
                 value={config.dock_doors_total}
                 onChange={e => setConfig({...config, dock_doors_total: parseInt(e.target.value, 10) || 8})}
-                className="w-full border border-slate-300 rounded-lg p-2.5 bg-white text-slate-800"
+                className="w-full border border-white/[0.1] rounded-xl p-2.5 bg-[#121217] text-white focus:border-orange-500 focus:outline-none transition-colors"
               />
-              <span className="text-[11px] text-slate-500 mt-1 block">Inbound trailer bays monitored in real-time</span>
+              <span className="text-[11px] text-neutral-400 mt-1 block">Inbound trailer bays monitored in real-time</span>
             </div>
           </div>
         </Card>
@@ -96,7 +96,7 @@ export default function SettingsPage() {
         <Card title="AQL Inspection & Tolerance Controls" subtitle="Sampling thresholds for inbound goods inspection">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
             <div>
-              <label className="font-semibold text-slate-700 block mb-1">Default AQL Sampling Rate (%)</label>
+              <label className="font-semibold text-neutral-300 block mb-1.5">Default AQL Sampling Rate (%)</label>
               <input
                 type="number"
                 step="0.5"
@@ -104,13 +104,13 @@ export default function SettingsPage() {
                 max="100"
                 value={config.default_sampling_pct}
                 onChange={e => setConfig({...config, default_sampling_pct: parseFloat(e.target.value) || 10.0})}
-                className="w-full border border-slate-300 rounded-lg p-2.5 bg-white text-slate-800"
+                className="w-full border border-white/[0.1] rounded-xl p-2.5 bg-[#121217] text-white focus:border-orange-500 focus:outline-none transition-colors"
               />
-              <span className="text-[11px] text-slate-500 mt-1 block">Default percentage of units drawn per line item</span>
+              <span className="text-[11px] text-neutral-400 mt-1 block">Default percentage of units drawn per line item</span>
             </div>
 
             <div>
-              <label className="font-semibold text-slate-700 block mb-1">Cold Chain Temp Variance Tolerance (±°C)</label>
+              <label className="font-semibold text-neutral-300 block mb-1.5">Cold Chain Temp Variance Tolerance (±°C)</label>
               <input
                 type="number"
                 step="0.1"
@@ -118,23 +118,23 @@ export default function SettingsPage() {
                 max="5.0"
                 value={config.temperature_variance_tolerance_c}
                 onChange={e => setConfig({...config, temperature_variance_tolerance_c: parseFloat(e.target.value) || 2.0})}
-                className="w-full border border-slate-300 rounded-lg p-2.5 bg-white text-slate-800"
+                className="w-full border border-white/[0.1] rounded-xl p-2.5 bg-[#121217] text-white focus:border-orange-500 focus:outline-none transition-colors"
               />
-              <span className="text-[11px] text-slate-500 mt-1 block">Allowable variance from target storage range</span>
+              <span className="text-[11px] text-neutral-400 mt-1 block">Allowable variance from target storage range</span>
             </div>
           </div>
 
-          <div className="border-t border-slate-100 pt-4 mt-4 space-y-3">
+          <div className="border-t border-white/[0.08] pt-4 mt-4 space-y-3">
             <label className="flex items-center gap-3 cursor-pointer">
               <input
                 type="checkbox"
                 checked={config.auto_quarantine_damaged}
                 onChange={e => setConfig({...config, auto_quarantine_damaged: e.target.checked})}
-                className="w-4 h-4 rounded text-indigo-600"
+                className="w-4 h-4 rounded border border-white/[0.2] bg-[#121217] text-orange-500 focus:ring-orange-500 accent-orange-500"
               />
               <div>
-                <span className="text-xs font-semibold text-slate-800 block">Auto-Quarantine On Severe Carton Damage</span>
-                <span className="text-[11px] text-slate-500">Automatically place shipment in hold status if critical packaging crush is found</span>
+                <span className="text-xs font-semibold text-white block">Auto-Quarantine On Severe Carton Damage</span>
+                <span className="text-[11px] text-neutral-400">Automatically place shipment in hold status if critical packaging crush is found</span>
               </div>
             </label>
 
@@ -143,11 +143,11 @@ export default function SettingsPage() {
                 type="checkbox"
                 checked={config.strict_barcode_check}
                 onChange={e => setConfig({...config, strict_barcode_check: e.target.checked})}
-                className="w-4 h-4 rounded text-indigo-600"
+                className="w-4 h-4 rounded border border-white/[0.2] bg-[#121217] text-orange-500 focus:ring-orange-500 accent-orange-500"
               />
               <div>
-                <span className="text-xs font-semibold text-slate-800 block">Strict Barcode Scan Verification</span>
-                <span className="text-[11px] text-slate-500">Require exact 1D/2D barcode match before allowing line item acceptance</span>
+                <span className="text-xs font-semibold text-white block">Strict Barcode Scan Verification</span>
+                <span className="text-[11px] text-neutral-400">Require exact 1D/2D barcode match before allowing line item acceptance</span>
               </div>
             </label>
 
@@ -156,11 +156,11 @@ export default function SettingsPage() {
                 type="checkbox"
                 checked={config.require_seal_photo}
                 onChange={e => setConfig({...config, require_seal_photo: e.target.checked})}
-                className="w-4 h-4 rounded text-indigo-600"
+                className="w-4 h-4 rounded border border-white/[0.2] bg-[#121217] text-orange-500 focus:ring-orange-500 accent-orange-500"
               />
               <div>
-                <span className="text-xs font-semibold text-slate-800 block">Mandatory Trailer Seal Photographic Proof</span>
-                <span className="text-[11px] text-slate-500">Require photo proof of intact bolt seal before opening trailer doors</span>
+                <span className="text-xs font-semibold text-white block">Mandatory Trailer Seal Photographic Proof</span>
+                <span className="text-[11px] text-neutral-400">Require photo proof of intact bolt seal before opening trailer doors</span>
               </div>
             </label>
           </div>
@@ -169,7 +169,7 @@ export default function SettingsPage() {
         <div className="flex justify-end">
           <button
             type="submit"
-            className="inline-flex items-center gap-2 px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-xs font-bold shadow-xs transition-colors"
+            className="inline-flex items-center gap-2 px-6 py-2.5 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white rounded-xl text-xs font-bold shadow-[0_0_15px_rgba(255,87,34,0.35)] transition-all"
           >
             <Save className="w-4 h-4" />
             <span>Save Configuration</span>

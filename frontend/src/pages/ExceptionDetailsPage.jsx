@@ -183,7 +183,7 @@ export default function ExceptionDetailsPage({ exceptionId, onBack, setActiveTab
 
   if (loading) {
     return (
-      <div className="max-w-6xl mx-auto py-12 text-center text-slate-500 animate-pulse text-xs">
+      <div className="max-w-6xl mx-auto py-12 text-center text-neutral-500 animate-pulse text-xs">
         Loading exception record & supporting evidence...
       </div>
     );
@@ -191,15 +191,15 @@ export default function ExceptionDetailsPage({ exceptionId, onBack, setActiveTab
 
   if (error || !exception) {
     return (
-      <div className="max-w-4xl mx-auto p-6 bg-white border border-rose-200 rounded-xl space-y-4">
-        <div className="flex items-center gap-3 text-rose-700">
+      <div className="max-w-4xl mx-auto p-6 bg-[#0e0e13]/85 backdrop-blur-xl border border-rose-500/30 rounded-2xl space-y-4 shadow-2xl">
+        <div className="flex items-center gap-3 text-rose-400">
           <AlertCircle className="w-6 h-6" />
-          <h3 className="font-bold text-base">Error Loading Exception Record</h3>
+          <h3 className="font-bold text-base text-white">Error Loading Exception Record</h3>
         </div>
-        <p className="text-xs text-slate-600">{error || "Record not found."}</p>
+        <p className="text-xs text-neutral-300">{error || "Record not found."}</p>
         <button
           onClick={onBack}
-          className="px-4 py-2 bg-indigo-600 text-white text-xs font-semibold rounded-lg hover:bg-indigo-700"
+          className="px-4 py-2 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white text-xs font-semibold rounded-xl shadow-lg transition-all"
         >
           &larr; Back to Exceptions
         </button>
@@ -212,13 +212,13 @@ export default function ExceptionDetailsPage({ exceptionId, onBack, setActiveTab
   const confidencePct = Math.round((exception.confidence || 0.94) * 100);
 
   return (
-    <div className="space-y-6 max-w-7xl mx-auto">
+    <div className="space-y-6 max-w-7xl mx-auto text-neutral-200">
       {/* Top Header & Breadcrumb Navigation */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <button
           type="button"
           onClick={onBack}
-          className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-600 hover:text-slate-900 transition-colors w-fit"
+          className="inline-flex items-center gap-1.5 text-xs font-semibold text-neutral-400 hover:text-white transition-colors w-fit"
         >
           <ArrowLeft className="w-4 h-4" /> Back to Exceptions List
         </button>
@@ -229,9 +229,9 @@ export default function ExceptionDetailsPage({ exceptionId, onBack, setActiveTab
           <button
             type="button"
             onClick={handleReviewEvidence}
-            className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-white border border-slate-300 text-slate-700 hover:bg-slate-50 text-xs font-bold rounded-lg shadow-2xs transition-colors"
+            className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-white/[0.04] border border-white/[0.1] text-neutral-200 hover:text-white hover:bg-white/[0.08] text-xs font-bold rounded-xl shadow-sm transition-all"
           >
-            <Eye className="w-3.5 h-3.5 text-indigo-600" />
+            <Eye className="w-3.5 h-3.5 text-orange-400" />
             <span>Review Evidence</span>
           </button>
 
@@ -240,9 +240,9 @@ export default function ExceptionDetailsPage({ exceptionId, onBack, setActiveTab
             type="button"
             onClick={() => setRequestEvidenceModal(true)}
             disabled={isResolved}
-            className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-amber-50 border border-amber-300 text-amber-900 hover:bg-amber-100 text-xs font-bold rounded-lg shadow-2xs transition-colors disabled:opacity-50"
+            className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-amber-500/15 border border-amber-500/30 text-amber-300 hover:bg-amber-500/25 text-xs font-bold rounded-xl shadow-sm transition-all disabled:opacity-50"
           >
-            <Camera className="w-3.5 h-3.5 text-amber-700" />
+            <Camera className="w-3.5 h-3.5 text-amber-400" />
             <span>Request More Evidence</span>
           </button>
 
@@ -251,9 +251,9 @@ export default function ExceptionDetailsPage({ exceptionId, onBack, setActiveTab
             type="button"
             onClick={() => setManualReviewModal(true)}
             disabled={isResolved}
-            className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-indigo-50 border border-indigo-200 text-indigo-900 hover:bg-indigo-100 text-xs font-bold rounded-lg shadow-2xs transition-colors disabled:opacity-50"
+            className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-orange-500/15 border border-orange-500/30 text-orange-300 hover:bg-orange-500/25 text-xs font-bold rounded-xl shadow-sm transition-all disabled:opacity-50"
           >
-            <UserCheck className="w-3.5 h-3.5 text-indigo-700" />
+            <UserCheck className="w-3.5 h-3.5 text-orange-400" />
             <span>Mark for Manual Review</span>
           </button>
 
@@ -262,7 +262,7 @@ export default function ExceptionDetailsPage({ exceptionId, onBack, setActiveTab
             type="button"
             onClick={() => setResolveModal(true)}
             disabled={isResolved}
-            className="inline-flex items-center gap-1.5 px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-lg shadow-2xs transition-colors disabled:opacity-50"
+            className="inline-flex items-center gap-1.5 px-4 py-2 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white text-xs font-bold rounded-xl shadow-[0_0_12px_rgba(16,185,129,0.3)] transition-all disabled:opacity-50"
           >
             <CheckCircle2 className="w-3.5 h-3.5" />
             <span>{isResolved ? 'Exception Resolved' : 'Resolve Exception'}</span>
@@ -272,8 +272,8 @@ export default function ExceptionDetailsPage({ exceptionId, onBack, setActiveTab
 
       {/* Notification Banner */}
       {notification && (
-        <div className={`p-3 rounded-lg border text-xs font-medium flex items-center justify-between gap-3 ${
-          notification.type === 'success' ? 'bg-emerald-50 border-emerald-200 text-emerald-900' : 'bg-rose-50 border-rose-200 text-rose-900'
+        <div className={`p-3 rounded-xl border text-xs font-medium flex items-center justify-between gap-3 backdrop-blur-xl ${
+          notification.type === 'success' ? 'bg-emerald-500/15 border-emerald-500/30 text-emerald-300' : 'bg-rose-500/15 border-rose-500/30 text-rose-300'
         }`}>
           <span>{notification.text}</span>
           <button onClick={() => setNotification(null)} className="opacity-60 hover:opacity-100">&times;</button>
@@ -281,24 +281,24 @@ export default function ExceptionDetailsPage({ exceptionId, onBack, setActiveTab
       )}
 
       {/* Exception Identity Banner */}
-      <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-2xs">
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-slate-100 pb-4">
+      <div className="bg-[#0e0e13]/85 backdrop-blur-xl border border-white/[0.08] rounded-2xl p-5 shadow-2xl">
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-white/[0.08] pb-4">
           <div className="flex items-center gap-3.5">
-            <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 ${
-              exception.severity === 'CRITICAL' ? 'bg-rose-600 text-white' :
-              exception.severity === 'HIGH' ? 'bg-rose-500 text-white' : 'bg-amber-500 text-white'
+            <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 shadow-lg ${
+              exception.severity === 'CRITICAL' ? 'bg-rose-600 text-white shadow-rose-600/30' :
+              exception.severity === 'HIGH' ? 'bg-rose-500 text-white shadow-rose-500/30' : 'bg-amber-500 text-white shadow-amber-500/30'
             }`}>
               <IssueIcon className="w-6 h-6" />
             </div>
             <div>
               <div className="flex items-center gap-2 flex-wrap">
-                <span className="font-mono text-sm font-bold text-slate-900">{exception.exception_number}</span>
-                <span className="px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-wider bg-rose-100 text-rose-800 border border-rose-200">
+                <span className="font-mono text-sm font-bold text-white">{exception.exception_number}</span>
+                <span className="px-2 py-0.5 rounded-lg text-[10px] font-black uppercase tracking-wider bg-rose-500/20 text-rose-300 border border-rose-500/40">
                   {exception.severity} SEVERITY
                 </span>
                 <Badge status={exception.status} size="xs" />
               </div>
-              <h1 className="text-xl font-bold text-slate-900 mt-1">
+              <h1 className="text-xl font-extrabold text-white mt-1">
                 {exception.issue}
               </h1>
             </div>
@@ -306,21 +306,21 @@ export default function ExceptionDetailsPage({ exceptionId, onBack, setActiveTab
 
           <div className="flex items-center gap-4 text-xs shrink-0 flex-wrap">
             <div>
-              <span className="text-[11px] text-slate-400 block">Logged At</span>
-              <span className="font-semibold text-slate-700">
+              <span className="text-[11px] text-neutral-400 block">Logged At</span>
+              <span className="font-semibold text-neutral-200">
                 {new Date(exception.created_at).toLocaleString()}
               </span>
             </div>
             <div>
-              <span className="text-[11px] text-slate-400 block">Current Assignee</span>
-              <span className="font-semibold text-slate-700">{exception.assigned_to}</span>
+              <span className="text-[11px] text-neutral-400 block">Current Assignee</span>
+              <span className="font-semibold text-neutral-200">{exception.assigned_to}</span>
             </div>
           </div>
         </div>
 
         {/* Discrepancy Statement Callout */}
         <div className="pt-4">
-          <p className="text-xs text-slate-700 leading-relaxed font-medium">
+          <p className="text-xs text-neutral-300 leading-relaxed font-medium">
             {exception.discrepancy_details}
           </p>
         </div>
@@ -335,61 +335,61 @@ export default function ExceptionDetailsPage({ exceptionId, onBack, setActiveTab
           {/* Expected vs Observed Value Comparison Matrix */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {/* Expected Value Card */}
-            <div className="p-4 rounded-xl border border-emerald-200 bg-emerald-50/40 shadow-2xs space-y-1">
-              <span className="text-[11px] font-bold text-emerald-800 uppercase tracking-wider flex items-center gap-1.5">
-                <FileCheck2 className="w-4 h-4 text-emerald-600" /> Expected Value (PO Manifest)
+            <div className="p-4 rounded-2xl border border-emerald-500/30 bg-emerald-500/10 shadow-lg space-y-1">
+              <span className="text-[11px] font-bold text-emerald-300 uppercase tracking-wider flex items-center gap-1.5">
+                <FileCheck2 className="w-4 h-4 text-emerald-400" /> Expected Value (PO Manifest)
               </span>
-              <p className="text-base font-bold text-emerald-950 pt-1">
+              <p className="text-base font-extrabold text-white pt-1">
                 {exception.expected_value || 'Compliant with PO Specification'}
               </p>
-              <p className="text-[11px] text-emerald-700">Designated inbound purchase order tolerance</p>
+              <p className="text-[11px] text-emerald-300/80">Designated inbound purchase order tolerance</p>
             </div>
 
             {/* Observed Value Card */}
-            <div className="p-4 rounded-xl border border-rose-200 bg-rose-50/40 shadow-2xs space-y-1">
-              <span className="text-[11px] font-bold text-rose-800 uppercase tracking-wider flex items-center gap-1.5">
-                <AlertTriangle className="w-4 h-4 text-rose-600" /> Observed Value (Physical Evidence)
+            <div className="p-4 rounded-2xl border border-rose-500/30 bg-rose-500/10 shadow-lg space-y-1">
+              <span className="text-[11px] font-bold text-rose-300 uppercase tracking-wider flex items-center gap-1.5">
+                <AlertTriangle className="w-4 h-4 text-rose-400" /> Observed Value (Physical Evidence)
               </span>
-              <p className="text-base font-bold text-rose-950 pt-1">
+              <p className="text-base font-extrabold text-white pt-1">
                 {exception.actual_value || 'Discrepancy Detected'}
               </p>
-              <p className="text-[11px] text-rose-700">Physically counted / verified on receiving dock</p>
+              <p className="text-[11px] text-rose-300/80">Physically counted / verified on receiving dock</p>
             </div>
           </div>
 
           {/* AI Confidence Meter */}
-          <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-2xs space-y-2">
+          <div className="bg-[#0e0e13]/85 backdrop-blur-xl border border-white/[0.08] rounded-2xl p-4 shadow-xl space-y-2">
             <div className="flex items-center justify-between text-xs">
-              <span className="font-bold text-slate-700 flex items-center gap-1.5">
-                <Sparkles className="w-4 h-4 text-indigo-600" /> AI Detection Confidence
+              <span className="font-bold text-white flex items-center gap-1.5">
+                <Sparkles className="w-4 h-4 text-orange-400" /> AI Detection Confidence
               </span>
-              <span className="font-bold text-slate-900 text-sm">{confidencePct}%</span>
+              <span className="font-extrabold text-white text-sm">{confidencePct}%</span>
             </div>
-            <div className="w-full bg-slate-100 rounded-full h-2 overflow-hidden">
+            <div className="w-full bg-white/[0.08] rounded-full h-2 overflow-hidden">
               <div 
                 className={`h-full rounded-full transition-all duration-500 ${
-                  confidencePct >= 90 ? 'bg-indigo-600' : 'bg-amber-500'
+                  confidencePct >= 90 ? 'bg-gradient-to-r from-orange-500 to-red-500' : 'bg-amber-500'
                 }`}
                 style={{ width: `${confidencePct}%` }}
               ></div>
             </div>
-            <p className="text-[11px] text-slate-500">
+            <p className="text-[11px] text-neutral-400">
               Evaluated across multimodal receiving photographs, OCR barcodes, and PO specs. Zero-guessing threshold satisfied.
             </p>
           </div>
 
           {/* Inspection Information Card */}
           <Card title="Inspection Information" subtitle="Associated receiving audit and trailer manifest">
-            <div className="grid grid-cols-2 gap-3.5 text-xs">
+            <div className="grid grid-cols-2 gap-3.5 text-xs text-neutral-200">
               <div>
-                <span className="text-[11px] text-slate-400 block mb-0.5">Inspection ID</span>
+                <span className="text-[11px] text-neutral-400 block mb-0.5">Inspection ID</span>
                 <button
                   type="button"
                   onClick={() => {
                     if (setSelectedInspectionId) setSelectedInspectionId(exception.inspection_id);
                     if (setActiveTab) setActiveTab('inspection-results');
                   }}
-                  className="font-mono font-bold text-indigo-600 hover:text-indigo-800 flex items-center gap-1"
+                  className="font-mono font-bold text-orange-400 hover:text-orange-300 flex items-center gap-1 transition-colors"
                 >
                   <span>{exception.inspection_number}</span>
                   <ExternalLink className="w-3 h-3" />
@@ -397,14 +397,14 @@ export default function ExceptionDetailsPage({ exceptionId, onBack, setActiveTab
               </div>
 
               <div>
-                <span className="text-[11px] text-slate-400 block mb-0.5">Purchase Order</span>
+                <span className="text-[11px] text-neutral-400 block mb-0.5">Purchase Order</span>
                 <button
                   type="button"
                   onClick={() => {
                     if (setSelectedPoId) setSelectedPoId(exception.po_id);
                     if (setActiveTab) setActiveTab('purchase-order-details');
                   }}
-                  className="font-mono font-bold text-indigo-600 hover:text-indigo-800 flex items-center gap-1"
+                  className="font-mono font-bold text-orange-400 hover:text-orange-300 flex items-center gap-1 transition-colors"
                 >
                   <span>{exception.po_number}</span>
                   <ExternalLink className="w-3 h-3" />
@@ -412,36 +412,36 @@ export default function ExceptionDetailsPage({ exceptionId, onBack, setActiveTab
               </div>
 
               <div>
-                <span className="text-[11px] text-slate-400 block mb-0.5">Supplier / Vendor</span>
-                <span className="font-semibold text-slate-800">{exception.vendor_name}</span>
+                <span className="text-[11px] text-neutral-400 block mb-0.5">Supplier / Vendor</span>
+                <span className="font-semibold text-white">{exception.vendor_name}</span>
               </div>
 
               <div>
-                <span className="text-[11px] text-slate-400 block mb-0.5">SKU / Item</span>
-                <span className="font-mono font-bold text-slate-800">{exception.sku || 'N/A'}</span>
+                <span className="text-[11px] text-neutral-400 block mb-0.5">SKU / Item</span>
+                <span className="font-mono font-bold text-white">{exception.sku || 'N/A'}</span>
               </div>
 
               <div>
-                <span className="text-[11px] text-slate-400 block mb-0.5">Dock Door</span>
-                <span className="font-semibold text-slate-700">
+                <span className="text-[11px] text-neutral-400 block mb-0.5">Dock Door</span>
+                <span className="font-semibold text-neutral-200">
                   {exception.inspection_info?.dock_door || exception.po_info?.assigned_dock || 'Dock Door 01'}
                 </span>
               </div>
 
               <div>
-                <span className="text-[11px] text-slate-400 block mb-0.5">Receiving Inspector</span>
-                <span className="font-semibold text-slate-700">
+                <span className="text-[11px] text-neutral-400 block mb-0.5">Receiving Inspector</span>
+                <span className="font-semibold text-neutral-200">
                   {exception.inspection_info?.inspector_name || 'QA Receiving Team'}
                 </span>
               </div>
             </div>
 
             {exception.resolution_notes && (
-              <div className="mt-4 pt-3 border-t border-slate-100">
-                <span className="text-[11px] font-bold text-slate-700 block mb-1">
+              <div className="mt-4 pt-3 border-t border-white/[0.08]">
+                <span className="text-[11px] font-bold text-white block mb-1">
                   Activity History & Resolution Notes
                 </span>
-                <pre className="text-[11px] text-slate-600 bg-slate-50 p-2.5 rounded-lg whitespace-pre-wrap font-sans border border-slate-200">
+                <pre className="text-[11px] text-neutral-300 bg-white/[0.02] p-2.5 rounded-xl whitespace-pre-wrap font-sans border border-white/[0.06]">
                   {exception.resolution_notes}
                 </pre>
               </div>
@@ -451,23 +451,23 @@ export default function ExceptionDetailsPage({ exceptionId, onBack, setActiveTab
 
         {/* RIGHT COLUMN: Supporting Evidence & High-Res Photographs */}
         <div className="lg:col-span-6 space-y-4" id="evidence-photo-viewer">
-          <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-2xs space-y-3">
+          <div className="bg-[#0e0e13]/85 backdrop-blur-xl border border-white/[0.08] rounded-2xl p-4 shadow-2xl space-y-3">
             <div className="flex items-center justify-between">
               <div>
-                <h3 className="font-bold text-slate-900 text-xs uppercase tracking-wider flex items-center gap-1.5">
-                  <Camera className="w-4 h-4 text-indigo-600" /> Supporting Evidence Photographs
+                <h3 className="font-bold text-white text-xs uppercase tracking-wider flex items-center gap-1.5">
+                  <Camera className="w-4 h-4 text-orange-400" /> Supporting Evidence Photographs
                 </h3>
-                <p className="text-[11px] text-slate-500">
+                <p className="text-[11px] text-neutral-400">
                   Visual proof captured during receiving inspection
                 </p>
               </div>
 
               {/* Zoom Controls */}
-              <div className="flex items-center gap-1 bg-slate-100 p-1 rounded-lg">
+              <div className="flex items-center gap-1 bg-white/[0.04] border border-white/[0.08] p-1 rounded-xl">
                 <button
                   type="button"
                   onClick={() => setZoomLevel(prev => Math.min(prev + 0.25, 2.5))}
-                  className="p-1 text-slate-600 hover:text-slate-900 rounded"
+                  className="p-1 text-neutral-400 hover:text-white rounded"
                   title="Zoom In"
                 >
                   <ZoomIn className="w-3.5 h-3.5" />
@@ -475,7 +475,7 @@ export default function ExceptionDetailsPage({ exceptionId, onBack, setActiveTab
                 <button
                   type="button"
                   onClick={() => setZoomLevel(prev => Math.max(prev - 0.25, 1))}
-                  className="p-1 text-slate-600 hover:text-slate-900 rounded"
+                  className="p-1 text-neutral-400 hover:text-white rounded"
                   title="Zoom Out"
                 >
                   <ZoomOut className="w-3.5 h-3.5" />
@@ -483,7 +483,7 @@ export default function ExceptionDetailsPage({ exceptionId, onBack, setActiveTab
                 <button
                   type="button"
                   onClick={() => setZoomLevel(1)}
-                  className="p-1 text-slate-600 hover:text-slate-900 rounded"
+                  className="p-1 text-neutral-400 hover:text-white rounded"
                   title="Reset Zoom"
                 >
                   <RotateCcw className="w-3.5 h-3.5" />
@@ -491,7 +491,7 @@ export default function ExceptionDetailsPage({ exceptionId, onBack, setActiveTab
                 <button
                   type="button"
                   onClick={() => setLightboxOpen(true)}
-                  className="p-1 text-slate-600 hover:text-slate-900 rounded"
+                  className="p-1 text-neutral-400 hover:text-white rounded"
                   title="Fullscreen"
                 >
                   <Maximize2 className="w-3.5 h-3.5" />
@@ -500,7 +500,7 @@ export default function ExceptionDetailsPage({ exceptionId, onBack, setActiveTab
             </div>
 
             {/* Main Active Photo Canvas */}
-            <div className="relative aspect-4/3 bg-slate-950 rounded-xl overflow-hidden flex items-center justify-center border border-slate-800">
+            <div className="relative aspect-4/3 bg-black/60 rounded-xl overflow-hidden flex items-center justify-center border border-white/[0.08]">
               {activePhoto ? (
                 <img
                   src={activePhoto.file_path}
@@ -509,7 +509,7 @@ export default function ExceptionDetailsPage({ exceptionId, onBack, setActiveTab
                   style={{ transform: `scale(${zoomLevel})` }}
                 />
               ) : (
-                <div className="text-center text-slate-500 text-xs">
+                <div className="text-center text-neutral-500 text-xs">
                   <Camera className="w-8 h-8 mx-auto mb-2 opacity-50" />
                   <span>No photographic proof attached</span>
                 </div>
@@ -518,7 +518,7 @@ export default function ExceptionDetailsPage({ exceptionId, onBack, setActiveTab
               {/* Overlay Tags */}
               {activePhoto && (
                 <div className="absolute top-3 left-3 flex items-center gap-2">
-                  <span className="px-2.5 py-1 rounded bg-black/70 backdrop-blur-xs text-white text-[10px] font-bold shadow-xs">
+                  <span className="px-2.5 py-1 rounded bg-black/80 backdrop-blur-xs text-white text-[10px] font-bold shadow-xs border border-white/20">
                     {activePhoto.category || 'RECEIVING PROOF'}
                   </span>
                   <span className="px-2 py-1 rounded bg-rose-600/90 text-white text-[10px] font-bold shadow-xs flex items-center gap-1">
@@ -529,11 +529,11 @@ export default function ExceptionDetailsPage({ exceptionId, onBack, setActiveTab
             </div>
 
             {/* Supporting Evidence Citation Callout */}
-            <div className="p-3 bg-amber-50 border border-amber-200 rounded-lg space-y-1">
-              <span className="text-[10px] font-black uppercase tracking-wider text-amber-900 block">
+            <div className="p-3 bg-amber-500/10 border border-amber-500/30 rounded-xl space-y-1">
+              <span className="text-[10px] font-black uppercase tracking-wider text-amber-300 block">
                 Visual Evidence Citation
               </span>
-              <p className="text-xs font-semibold text-amber-950 italic">
+              <p className="text-xs font-semibold text-amber-200 italic">
                 &ldquo;{exception.evidence_citation || activePhoto?.caption || exception.discrepancy_details}&rdquo;
               </p>
             </div>
@@ -541,7 +541,7 @@ export default function ExceptionDetailsPage({ exceptionId, onBack, setActiveTab
             {/* Photo Reel / Filmstrip */}
             {exception.photographs && exception.photographs.length > 1 && (
               <div className="space-y-1.5 pt-2">
-                <span className="text-[11px] font-bold text-slate-600">Attached Photo Gallery ({exception.photographs.length})</span>
+                <span className="text-[11px] font-bold text-neutral-300">Attached Photo Gallery ({exception.photographs.length})</span>
                 <div className="flex gap-2 overflow-x-auto pb-1">
                   {exception.photographs.map(ph => (
                     <button
@@ -551,8 +551,8 @@ export default function ExceptionDetailsPage({ exceptionId, onBack, setActiveTab
                         setActivePhoto(ph);
                         setZoomLevel(1);
                       }}
-                      className={`relative w-20 h-16 rounded-lg overflow-hidden shrink-0 border-2 transition-all ${
-                        activePhoto?.id === ph.id ? 'border-indigo-600 ring-2 ring-indigo-300' : 'border-slate-200 hover:border-slate-400'
+                      className={`relative w-20 h-16 rounded-xl overflow-hidden shrink-0 border-2 transition-all ${
+                        activePhoto?.id === ph.id ? 'border-orange-500 ring-2 ring-orange-500/30' : 'border-white/[0.08] hover:border-white/30'
                       }`}
                     >
                       <img src={ph.file_path} alt={ph.file_name} className="w-full h-full object-cover" />
@@ -574,49 +574,49 @@ export default function ExceptionDetailsPage({ exceptionId, onBack, setActiveTab
         onClose={() => setRequestEvidenceModal(false)}
         title="Request Secondary Photographic Evidence"
       >
-        <form onSubmit={submitRequestMoreEvidence} className="space-y-4 text-xs">
-          <p className="text-slate-600">
-            Dispatch a receiving dock work-order requesting secondary photographic proof to corroborate exception <span className="font-mono font-bold text-slate-800">{exception.exception_number}</span>.
+        <form onSubmit={submitRequestMoreEvidence} className="space-y-4 text-xs text-neutral-200">
+          <p className="text-neutral-300">
+            Dispatch a receiving dock work-order requesting secondary photographic proof to corroborate exception <span className="font-mono font-bold text-orange-400">{exception.exception_number}</span>.
           </p>
 
           <div>
-            <label className="font-semibold text-slate-700 block mb-1">Required Evidence Category</label>
+            <label className="font-bold text-neutral-300 block mb-1.5">Required Evidence Category</label>
             <select
               value={evidenceRequestType}
               onChange={(e) => setEvidenceRequestType(e.target.value)}
-              className="w-full border border-slate-300 rounded-lg p-2.5 bg-white text-slate-800"
+              className="w-full border border-white/[0.1] rounded-xl p-2.5 bg-[#121217] text-white focus:border-orange-500 focus:outline-none font-medium"
             >
-              <option value="Photograph of unboxed sample units">Photograph of unboxed sample units (Bench count)</option>
-              <option value="Macro photograph of carton barcode label">Macro photograph of carton barcode label (1D/2D UPC)</option>
-              <option value="Pallet corner compression inspection">Pallet corner compression inspection (Structural damage)</option>
-              <option value="Close-up of internal BOM sub-components">Close-up of internal BOM sub-components (Gasket/Seals)</option>
-              <option value="Trailer door floor moisture reading photo">Trailer door floor moisture reading photo</option>
+              <option value="Photograph of unboxed sample units" className="bg-[#121217]">Photograph of unboxed sample units (Bench count)</option>
+              <option value="Macro photograph of carton barcode label" className="bg-[#121217]">Macro photograph of carton barcode label (1D/2D UPC)</option>
+              <option value="Pallet corner compression inspection" className="bg-[#121217]">Pallet corner compression inspection (Structural damage)</option>
+              <option value="Close-up of internal BOM sub-components" className="bg-[#121217]">Close-up of internal BOM sub-components (Gasket/Seals)</option>
+              <option value="Trailer door floor moisture reading photo" className="bg-[#121217]">Trailer door floor moisture reading photo</option>
             </select>
           </div>
 
           <div>
-            <label className="font-semibold text-slate-700 block mb-1">Instructions for Dock Operator</label>
+            <label className="font-bold text-neutral-300 block mb-1.5">Instructions for Dock Operator</label>
             <textarea
               rows={3}
               value={evidenceRequestNotes}
               onChange={(e) => setEvidenceRequestNotes(e.target.value)}
               placeholder="e.g., Please break pallet stretch wrap and take an overhead bench photo of all 24 units unboxed."
-              className="w-full border border-slate-300 rounded-lg p-2.5 text-xs text-slate-800"
+              className="w-full border border-white/[0.1] rounded-xl p-2.5 text-xs text-white bg-[#121217] placeholder-neutral-500 focus:border-orange-500 focus:outline-none"
             ></textarea>
           </div>
 
-          <div className="flex justify-end gap-2 pt-3 border-t border-slate-100">
+          <div className="flex justify-end gap-2 pt-3 border-t border-white/[0.08]">
             <button
               type="button"
               onClick={() => setRequestEvidenceModal(false)}
-              className="px-4 py-2 border border-slate-300 text-slate-700 rounded-lg font-semibold hover:bg-slate-50"
+              className="px-4 py-2 border border-white/[0.1] text-neutral-300 hover:text-white rounded-xl font-semibold hover:bg-white/[0.06] transition-all"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={actionLoading}
-              className="px-5 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-lg font-bold transition-colors disabled:opacity-50"
+              className="px-5 py-2 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white rounded-xl font-bold transition-all shadow-[0_0_12px_rgba(255,87,34,0.3)] disabled:opacity-50"
             >
               {actionLoading ? 'Dispatching...' : 'Dispatch Evidence Request'}
             </button>
@@ -630,61 +630,61 @@ export default function ExceptionDetailsPage({ exceptionId, onBack, setActiveTab
         onClose={() => setManualReviewModal(false)}
         title="Mark Exception for Senior Manual Review"
       >
-        <form onSubmit={submitMarkManualReview} className="space-y-4 text-xs">
-          <p className="text-slate-600">
+        <form onSubmit={submitMarkManualReview} className="space-y-4 text-xs text-neutral-200">
+          <p className="text-neutral-300">
             Escalate this exception to Senior QA Management for physical inspection sign-off and vendor non-conformance review.
           </p>
 
           <div>
-            <label className="font-semibold text-slate-700 block mb-1">Assign Senior QA Reviewer</label>
+            <label className="font-bold text-neutral-300 block mb-1.5">Assign Senior QA Reviewer</label>
             <select
               value={reviewerName}
               onChange={(e) => setReviewerName(e.target.value)}
-              className="w-full border border-slate-300 rounded-lg p-2.5 bg-white text-slate-800"
+              className="w-full border border-white/[0.1] rounded-xl p-2.5 bg-[#121217] text-white focus:border-orange-500 focus:outline-none font-medium"
             >
-              <option value="Marcus Vance - QA Lead">Marcus Vance - QA Lead</option>
-              <option value="Elena Rostova - Cold QA Lead">Elena Rostova - Cold QA Lead</option>
-              <option value="Sarah Jenkins - Inbound Operations Manager">Sarah Jenkins - Inbound Operations Manager</option>
-              <option value="David Lin - Supply Chain Director">David Lin - Supply Chain Director</option>
+              <option value="Marcus Vance - QA Lead" className="bg-[#121217]">Marcus Vance - QA Lead</option>
+              <option value="Elena Rostova - Cold QA Lead" className="bg-[#121217]">Elena Rostova - Cold QA Lead</option>
+              <option value="Sarah Jenkins - Inbound Operations Manager" className="bg-[#121217]">Sarah Jenkins - Inbound Operations Manager</option>
+              <option value="David Lin - Supply Chain Director" className="bg-[#121217]">David Lin - Supply Chain Director</option>
             </select>
           </div>
 
           <div>
-            <label className="font-semibold text-slate-700 block mb-1">Priority Level</label>
+            <label className="font-bold text-neutral-300 block mb-1.5">Priority Level</label>
             <select
               value={reviewPriority}
               onChange={(e) => setReviewPriority(e.target.value)}
-              className="w-full border border-slate-300 rounded-lg p-2.5 bg-white text-slate-800"
+              className="w-full border border-white/[0.1] rounded-xl p-2.5 bg-[#121217] text-white focus:border-orange-500 focus:outline-none font-medium"
             >
-              <option value="HIGH">High Priority</option>
-              <option value="CRITICAL">Critical / Line-Stop Priority</option>
-              <option value="MEDIUM">Medium Priority</option>
+              <option value="HIGH" className="bg-[#121217]">High Priority</option>
+              <option value="CRITICAL" className="bg-[#121217]">Critical / Line-Stop Priority</option>
+              <option value="MEDIUM" className="bg-[#121217]">Medium Priority</option>
             </select>
           </div>
 
           <div>
-            <label className="font-semibold text-slate-700 block mb-1">Review Notes & Escalation Reason</label>
+            <label className="font-bold text-neutral-300 block mb-1.5">Review Notes & Escalation Reason</label>
             <textarea
               rows={3}
               value={reviewNotes}
               onChange={(e) => setReviewNotes(e.target.value)}
               placeholder="e.g., Flagged for physical count recount before initiating vendor dispute."
-              className="w-full border border-slate-300 rounded-lg p-2.5 text-xs text-slate-800"
+              className="w-full border border-white/[0.1] rounded-xl p-2.5 text-xs text-white bg-[#121217] placeholder-neutral-500 focus:border-orange-500 focus:outline-none"
             ></textarea>
           </div>
 
-          <div className="flex justify-end gap-2 pt-3 border-t border-slate-100">
+          <div className="flex justify-end gap-2 pt-3 border-t border-white/[0.08]">
             <button
               type="button"
               onClick={() => setManualReviewModal(false)}
-              className="px-4 py-2 border border-slate-300 text-slate-700 rounded-lg font-semibold hover:bg-slate-50"
+              className="px-4 py-2 border border-white/[0.1] text-neutral-300 hover:text-white rounded-xl font-semibold hover:bg-white/[0.06] transition-all"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={actionLoading}
-              className="px-5 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-bold transition-colors disabled:opacity-50"
+              className="px-5 py-2 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white rounded-xl font-bold transition-all shadow-[0_0_12px_rgba(255,87,34,0.3)] disabled:opacity-50"
             >
               {actionLoading ? 'Assigning...' : 'Confirm Manual Review'}
             </button>
@@ -698,49 +698,49 @@ export default function ExceptionDetailsPage({ exceptionId, onBack, setActiveTab
         onClose={() => setResolveModal(false)}
         title="Resolve Receiving Exception"
       >
-        <form onSubmit={submitResolveException} className="space-y-4 text-xs">
-          <p className="text-slate-600">
-            Designate the final commercial or operational disposition for exception <span className="font-mono font-bold text-slate-800">{exception.exception_number}</span>.
+        <form onSubmit={submitResolveException} className="space-y-4 text-xs text-neutral-200">
+          <p className="text-neutral-300">
+            Designate the final commercial or operational disposition for exception <span className="font-mono font-bold text-orange-400">{exception.exception_number}</span>.
           </p>
 
           <div>
-            <label className="font-semibold text-slate-700 block mb-1">Resolution Disposition Method</label>
+            <label className="font-bold text-neutral-300 block mb-1.5">Resolution Disposition Method</label>
             <select
               value={resolutionType}
               onChange={(e) => setResolutionType(e.target.value)}
-              className="w-full border border-slate-300 rounded-lg p-2.5 bg-white text-slate-800 font-semibold"
+              className="w-full border border-white/[0.1] rounded-xl p-2.5 bg-[#121217] text-white focus:border-orange-500 focus:outline-none font-semibold"
             >
-              <option value="SUPPLIER_CREDIT">Supplier Credit Memo Issued (Shortage / Damage compensated)</option>
-              <option value="RTV_RETURN_TO_VENDOR">Return to Vendor (RTV) — Shipment rejected back to carrier</option>
-              <option value="ACCEPTED_WITH_WAIVER">Accepted with Concession / Deviation Waiver (Engineering approved)</option>
-              <option value="SCRAPPED_DAMAGED">Scrapped in Receiving QA Bay — Certificate of destruction issued</option>
+              <option value="SUPPLIER_CREDIT" className="bg-[#121217]">Supplier Credit Memo Issued (Shortage / Damage compensated)</option>
+              <option value="RTV_RETURN_TO_VENDOR" className="bg-[#121217]">Return to Vendor (RTV) — Shipment rejected back to carrier</option>
+              <option value="ACCEPTED_WITH_WAIVER" className="bg-[#121217]">Accepted with Concession / Deviation Waiver (Engineering approved)</option>
+              <option value="SCRAPPED_DAMAGED" className="bg-[#121217]">Scrapped in Receiving QA Bay — Certificate of destruction issued</option>
             </select>
           </div>
 
           <div>
-            <label className="font-semibold text-slate-700 block mb-1">Resolution Summary & Documentation *</label>
+            <label className="font-bold text-neutral-300 block mb-1.5">Resolution Summary & Documentation *</label>
             <textarea
               rows={3}
               required
               value={resolutionNotes}
               onChange={(e) => setResolutionNotes(e.target.value)}
               placeholder="e.g., Supplier agreed to issue credit memo #CM-9014 for 4 missing units. Balance approved for inventory putaway."
-              className="w-full border border-slate-300 rounded-lg p-2.5 text-xs text-slate-800"
+              className="w-full border border-white/[0.1] rounded-xl p-2.5 text-xs text-white bg-[#121217] placeholder-neutral-500 focus:border-orange-500 focus:outline-none"
             ></textarea>
           </div>
 
-          <div className="flex justify-end gap-2 pt-3 border-t border-slate-100">
+          <div className="flex justify-end gap-2 pt-3 border-t border-white/[0.08]">
             <button
               type="button"
               onClick={() => setResolveModal(false)}
-              className="px-4 py-2 border border-slate-300 text-slate-700 rounded-lg font-semibold hover:bg-slate-50"
+              className="px-4 py-2 border border-white/[0.1] text-neutral-300 hover:text-white rounded-xl font-semibold hover:bg-white/[0.06] transition-all"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={actionLoading}
-              className="px-5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg font-bold transition-colors disabled:opacity-50"
+              className="px-5 py-2 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white rounded-xl font-bold transition-all shadow-[0_0_12px_rgba(16,185,129,0.3)] disabled:opacity-50"
             >
               {actionLoading ? 'Finalizing...' : 'Resolve Exception & Close'}
             </button>

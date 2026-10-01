@@ -74,12 +74,12 @@ export default function DashboardPage({ setActiveTab, setSelectedInspectionId, o
       <div className="space-y-6 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 animate-pulse">
           {[1, 2, 3, 4, 5].map(i => (
-            <div key={i} className="h-28 bg-slate-200/60 rounded-xl"></div>
+            <div key={i} className="h-28 bg-white/[0.04] border border-white/[0.06] rounded-2xl"></div>
           ))}
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 animate-pulse">
-          <div className="lg:col-span-7 h-72 bg-slate-200/60 rounded-xl"></div>
-          <div className="lg:col-span-5 h-72 bg-slate-200/60 rounded-xl"></div>
+          <div className="lg:col-span-7 h-72 bg-white/[0.04] border border-white/[0.06] rounded-2xl"></div>
+          <div className="lg:col-span-5 h-72 bg-white/[0.04] border border-white/[0.06] rounded-2xl"></div>
         </div>
       </div>
     );
@@ -87,13 +87,13 @@ export default function DashboardPage({ setActiveTab, setSelectedInspectionId, o
 
   if (error || !data) {
     return (
-      <div className="p-8 text-center bg-white rounded-xl border border-rose-200 text-rose-700 max-w-2xl mx-auto space-y-3">
-        <AlertTriangle className="w-8 h-8 mx-auto text-rose-500" />
-        <h3 className="font-bold text-base">Receiving Telemetry Unavailable</h3>
-        <p className="text-xs text-slate-600">{error || "Failed to load dashboard metrics."}</p>
+      <div className="p-8 text-center bg-[#0e0e13]/85 backdrop-blur-xl rounded-2xl border border-rose-500/30 text-rose-300 max-w-2xl mx-auto space-y-3 shadow-2xl">
+        <AlertTriangle className="w-8 h-8 mx-auto text-rose-400" />
+        <h3 className="font-bold text-base text-white">Receiving Telemetry Unavailable</h3>
+        <p className="text-xs text-neutral-400">{error || "Failed to load dashboard metrics."}</p>
         <button 
           onClick={loadDashboard}
-          className="px-4 py-2 text-xs font-semibold bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors shadow-2xs"
+          className="px-5 py-2.5 text-xs font-bold bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white rounded-xl shadow-[0_0_15px_rgba(255,87,34,0.35)] transition-all"
         >
           Retry Connection
         </button>

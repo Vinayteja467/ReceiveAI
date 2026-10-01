@@ -248,7 +248,7 @@ export default function CreatePurchaseOrderPage({ onBack, onPoCreated }) {
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
         <button
           onClick={onBack}
-          className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-600 hover:text-slate-900 bg-white border border-slate-200 px-3 py-1.5 rounded-lg shadow-2xs transition-colors"
+          className="inline-flex items-center gap-1.5 text-xs font-semibold text-neutral-300 hover:text-white bg-white/[0.04] border border-white/[0.08] hover:bg-white/[0.08] px-3.5 py-1.5 rounded-xl shadow-sm transition-all"
         >
           <ArrowLeft className="w-4 h-4" /> Back to Orders
         </button>
@@ -257,15 +257,15 @@ export default function CreatePurchaseOrderPage({ onBack, onPoCreated }) {
         <button
           type="button"
           onClick={loadDemoExamplePO}
-          className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-indigo-50 border border-indigo-200 text-indigo-700 hover:bg-indigo-100 rounded-lg text-xs font-bold shadow-2xs transition-colors"
+          className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-amber-500/15 border border-amber-500/30 text-amber-300 hover:bg-amber-500/25 rounded-xl text-xs font-bold shadow-[0_0_12px_rgba(245,158,11,0.2)] transition-all"
         >
-          <Sparkles className="w-4 h-4 text-indigo-600" />
+          <Sparkles className="w-4 h-4 text-amber-400" />
           <span>Load Example Demo PO (PO-2026-00124)</span>
         </button>
       </div>
 
       {error && (
-        <div className="p-4 bg-rose-50 border border-rose-200 rounded-lg text-rose-700 text-xs font-medium flex items-center gap-2">
+        <div className="p-4 bg-rose-500/10 border border-rose-500/30 rounded-xl text-rose-300 text-xs font-medium flex items-center gap-2">
           <AlertTriangle className="w-4 h-4 shrink-0" />
           <span>{error}</span>
         </div>
@@ -277,25 +277,25 @@ export default function CreatePurchaseOrderPage({ onBack, onPoCreated }) {
           <div className="space-y-4 text-xs">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="font-semibold text-slate-700 block mb-1">Purchase Order Number</label>
+                <label className="font-semibold text-neutral-300 block mb-1.5">Purchase Order Number</label>
                 <input
                   required
                   value={poNumber}
                   onChange={e => setPoNumber(e.target.value)}
                   placeholder="e.g. PO-2026-00124"
-                  className="w-full border border-slate-300 rounded-lg p-2.5 font-mono font-bold text-slate-900 bg-white"
+                  className="w-full border border-white/[0.1] rounded-xl p-2.5 font-mono font-bold text-white bg-[#121217] focus:border-orange-500 focus:outline-none transition-colors"
                 />
               </div>
 
               <div>
-                <label className="font-semibold text-slate-700 block mb-1">Supplier Entity</label>
+                <label className="font-semibold text-neutral-300 block mb-1.5">Supplier Entity</label>
                 <select
                   value={selectedSupplierId}
                   onChange={e => handleSupplierChange(e.target.value)}
-                  className="w-full border border-slate-300 rounded-lg p-2.5 bg-white font-medium text-slate-800"
+                  className="w-full border border-white/[0.1] rounded-xl p-2.5 bg-[#121217] font-medium text-white focus:border-orange-500 focus:outline-none transition-colors"
                 >
                   {suppliers.map(s => (
-                    <option key={s.id} value={s.id}>
+                    <option key={s.id} value={s.id} className="bg-[#121217] text-white">
                       {s.name} ({s.contact_name || 'Rep'})
                     </option>
                   ))}
@@ -305,60 +305,60 @@ export default function CreatePurchaseOrderPage({ onBack, onPoCreated }) {
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div>
-                <label className="font-semibold text-slate-700 block mb-1">Carrier Fleet</label>
+                <label className="font-semibold text-neutral-300 block mb-1.5">Carrier Fleet</label>
                 <input
                   value={carrier}
                   onChange={e => setCarrier(e.target.value)}
-                  className="w-full border border-slate-300 rounded-lg p-2.5 bg-white"
+                  className="w-full border border-white/[0.1] rounded-xl p-2.5 bg-[#121217] text-white focus:border-orange-500 focus:outline-none transition-colors"
                 />
               </div>
 
               <div>
-                <label className="font-semibold text-slate-700 block mb-1">Tracking Number</label>
+                <label className="font-semibold text-neutral-300 block mb-1.5">Tracking Number</label>
                 <input
                   value={trackingNumber}
                   onChange={e => setTrackingNumber(e.target.value)}
-                  className="w-full border border-slate-300 rounded-lg p-2.5 font-mono bg-white"
+                  className="w-full border border-white/[0.1] rounded-xl p-2.5 font-mono bg-[#121217] text-white focus:border-orange-500 focus:outline-none transition-colors"
                 />
               </div>
 
               <div>
-                <label className="font-semibold text-slate-700 block mb-1">Assigned Dock Door</label>
+                <label className="font-semibold text-neutral-300 block mb-1.5">Assigned Dock Door</label>
                 <select
                   value={dockDoor}
                   onChange={e => setDockDoor(e.target.value)}
-                  className="w-full border border-slate-300 rounded-lg p-2.5 bg-white"
+                  className="w-full border border-white/[0.1] rounded-xl p-2.5 bg-[#121217] text-white focus:border-orange-500 focus:outline-none transition-colors"
                 >
-                  <option>Dock Door 01 (Cold Dock)</option>
-                  <option>Dock Door 02</option>
-                  <option>Dock Door 03</option>
-                  <option>Dock Door 04</option>
-                  <option>Dock Door 05</option>
-                  <option>Dock Door 06</option>
-                  <option>Dock Door 07</option>
-                  <option>Dock Door 08 (HazMat)</option>
+                  <option className="bg-[#121217] text-white">Dock Door 01 (Cold Dock)</option>
+                  <option className="bg-[#121217] text-white">Dock Door 02</option>
+                  <option className="bg-[#121217] text-white">Dock Door 03</option>
+                  <option className="bg-[#121217] text-white">Dock Door 04</option>
+                  <option className="bg-[#121217] text-white">Dock Door 05</option>
+                  <option className="bg-[#121217] text-white">Dock Door 06</option>
+                  <option className="bg-[#121217] text-white">Dock Door 07</option>
+                  <option className="bg-[#121217] text-white">Dock Door 08 (HazMat)</option>
                 </select>
               </div>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="font-semibold text-slate-700 block mb-1">Order Placement Date</label>
+                <label className="font-semibold text-neutral-300 block mb-1.5">Order Placement Date</label>
                 <input
                   type="date"
                   value={orderDate}
                   onChange={e => setOrderDate(e.target.value)}
-                  className="w-full border border-slate-300 rounded-lg p-2 bg-white"
+                  className="w-full border border-white/[0.1] rounded-xl p-2.5 bg-[#121217] text-white focus:border-orange-500 focus:outline-none transition-colors"
                 />
               </div>
 
               <div>
-                <label className="font-semibold text-slate-700 block mb-1">Expected Delivery Date</label>
+                <label className="font-semibold text-neutral-300 block mb-1.5">Expected Delivery Date</label>
                 <input
                   type="date"
                   value={expectedDelivery}
                   onChange={e => setExpectedDelivery(e.target.value)}
-                  className="w-full border border-slate-300 rounded-lg p-2 bg-white"
+                  className="w-full border border-white/[0.1] rounded-xl p-2.5 bg-[#121217] text-white focus:border-orange-500 focus:outline-none transition-colors"
                 />
               </div>
             </div>
@@ -373,7 +373,7 @@ export default function CreatePurchaseOrderPage({ onBack, onPoCreated }) {
             <button
               type="button"
               onClick={addLineItem}
-              className="inline-flex items-center gap-1 text-xs font-semibold text-indigo-600 hover:text-indigo-800 bg-indigo-50 hover:bg-indigo-100 px-3 py-1.5 rounded-lg transition-colors"
+              className="inline-flex items-center gap-1.5 text-xs font-bold text-orange-400 hover:text-orange-300 bg-orange-500/10 hover:bg-orange-500/20 border border-orange-500/20 px-3 py-1.5 rounded-xl transition-all"
             >
               <Plus className="w-3.5 h-3.5" />
               <span>Add Line Item</span>
@@ -384,15 +384,15 @@ export default function CreatePurchaseOrderPage({ onBack, onPoCreated }) {
             {lineItems.map((item, index) => (
               <div 
                 key={index}
-                className="p-4 bg-slate-50 border border-slate-200 rounded-xl space-y-3 relative group"
+                className="p-4 bg-white/[0.02] border border-white/[0.06] rounded-xl space-y-3 relative group"
               >
-                <div className="flex items-center justify-between border-b border-slate-200/80 pb-2">
-                  <span className="font-bold text-slate-700">Line Item #{index + 1}</span>
+                <div className="flex items-center justify-between border-b border-white/[0.06] pb-2">
+                  <span className="font-bold text-white">Line Item #{index + 1}</span>
                   {lineItems.length > 1 && (
                     <button
                       type="button"
                       onClick={() => removeLineItem(index)}
-                      className="p-1 text-rose-500 hover:bg-rose-50 rounded transition-colors"
+                      className="p-1 text-rose-400 hover:bg-rose-500/20 rounded-lg transition-colors"
                     >
                       <Trash2 className="w-4 h-4" />
                     </button>
@@ -401,14 +401,14 @@ export default function CreatePurchaseOrderPage({ onBack, onPoCreated }) {
 
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                   <div>
-                    <label className="font-semibold text-slate-700 block mb-1">Product SKU</label>
+                    <label className="font-semibold text-neutral-300 block mb-1.5">Product SKU</label>
                     <select
                       value={item.sku}
                       onChange={e => handleProductSelect(index, e.target.value)}
-                      className="w-full border border-slate-300 rounded-lg p-2 bg-white font-mono font-bold text-slate-800"
+                      className="w-full border border-white/[0.1] rounded-xl p-2.5 bg-[#121217] font-mono font-bold text-white focus:border-orange-500 focus:outline-none transition-colors"
                     >
                       {productsCatalog.map(p => (
-                        <option key={p.id} value={p.sku}>
+                        <option key={p.id} value={p.sku} className="bg-[#121217] text-white">
                           {p.sku} — {p.name}
                         </option>
                       ))}
@@ -416,7 +416,7 @@ export default function CreatePurchaseOrderPage({ onBack, onPoCreated }) {
                   </div>
 
                   <div>
-                    <label className="font-semibold text-slate-700 block mb-1">Product Name</label>
+                    <label className="font-semibold text-neutral-300 block mb-1.5">Product Name</label>
                     <input
                       value={item.item_name}
                       onChange={e => {
@@ -424,12 +424,12 @@ export default function CreatePurchaseOrderPage({ onBack, onPoCreated }) {
                         copy[index].item_name = e.target.value;
                         setLineItems(copy);
                       }}
-                      className="w-full border border-slate-300 rounded-lg p-2 bg-white"
+                      className="w-full border border-white/[0.1] rounded-xl p-2.5 bg-[#121217] text-white focus:border-orange-500 focus:outline-none transition-colors"
                     />
                   </div>
 
                   <div>
-                    <label className="font-semibold text-slate-700 block mb-1">Expected Variant</label>
+                    <label className="font-semibold text-neutral-300 block mb-1.5">Expected Variant</label>
                     <input
                       value={item.expected_variant}
                       onChange={e => {
@@ -438,7 +438,7 @@ export default function CreatePurchaseOrderPage({ onBack, onPoCreated }) {
                         setLineItems(copy);
                       }}
                       placeholder="e.g. Blue"
-                      className="w-full border border-slate-300 rounded-lg p-2 bg-white font-semibold text-blue-700"
+                      className="w-full border border-white/[0.1] rounded-xl p-2.5 bg-[#121217] font-semibold text-orange-300 focus:border-orange-500 focus:outline-none transition-colors"
                     />
                   </div>
                 </div>
@@ -446,7 +446,7 @@ export default function CreatePurchaseOrderPage({ onBack, onPoCreated }) {
                 {/* Carton & Quantity Calculation Row */}
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
                   <div>
-                    <label className="font-semibold text-slate-700 block mb-1">Units per Carton</label>
+                    <label className="font-semibold text-neutral-300 block mb-1.5">Units per Carton</label>
                     <input
                       type="number"
                       min="1"
@@ -458,37 +458,37 @@ export default function CreatePurchaseOrderPage({ onBack, onPoCreated }) {
                         copy[index].expected_carton_count = Math.ceil(copy[index].expected_qty / units);
                         setLineItems(copy);
                       }}
-                      className="w-full border border-slate-300 rounded-lg p-2 bg-white text-center font-bold text-slate-900"
+                      className="w-full border border-white/[0.1] rounded-xl p-2.5 bg-[#121217] text-center font-bold text-white focus:border-orange-500 focus:outline-none transition-colors"
                     />
-                    <span className="text-[10px] text-slate-500 block text-center mt-0.5">Master pack</span>
+                    <span className="text-[10px] text-neutral-400 block text-center mt-1">Master pack</span>
                   </div>
 
                   <div>
-                    <label className="font-semibold text-slate-700 block mb-1">Expected Cartons</label>
+                    <label className="font-semibold text-neutral-300 block mb-1.5">Expected Cartons</label>
                     <input
                       type="number"
                       min="1"
                       value={item.expected_carton_count}
                       onChange={e => handleCartonCountChange(index, e.target.value)}
-                      className="w-full border border-indigo-300 rounded-lg p-2 bg-indigo-50/50 text-center font-bold text-indigo-700"
+                      className="w-full border border-orange-500/30 rounded-xl p-2.5 bg-orange-500/10 text-center font-bold text-orange-400 focus:border-orange-500 focus:outline-none transition-colors"
                     />
-                    <span className="text-[10px] text-slate-500 block text-center mt-0.5">Auto-calculated</span>
+                    <span className="text-[10px] text-neutral-400 block text-center mt-1">Auto-calculated</span>
                   </div>
 
                   <div>
-                    <label className="font-semibold text-slate-700 block mb-1">Expected Units (Total)</label>
+                    <label className="font-semibold text-neutral-300 block mb-1.5">Expected Units (Total)</label>
                     <input
                       type="number"
                       min="1"
                       value={item.expected_qty}
                       onChange={e => handleQtyChange(index, e.target.value)}
-                      className="w-full border border-emerald-300 rounded-lg p-2 bg-emerald-50/50 text-center font-bold text-emerald-800"
+                      className="w-full border border-emerald-500/30 rounded-xl p-2.5 bg-emerald-500/10 text-center font-bold text-emerald-400 focus:border-emerald-500 focus:outline-none transition-colors"
                     />
-                    <span className="text-[10px] text-slate-500 block text-center mt-0.5">Total unit count</span>
+                    <span className="text-[10px] text-neutral-400 block text-center mt-1">Total unit count</span>
                   </div>
 
                   <div>
-                    <label className="font-semibold text-slate-700 block mb-1">Unit Price ($)</label>
+                    <label className="font-semibold text-neutral-300 block mb-1.5">Unit Price ($)</label>
                     <input
                       type="number"
                       step="0.01"
@@ -498,28 +498,28 @@ export default function CreatePurchaseOrderPage({ onBack, onPoCreated }) {
                         copy[index].unit_price = parseFloat(e.target.value) || 0;
                         setLineItems(copy);
                       }}
-                      className="w-full border border-slate-300 rounded-lg p-2 bg-white text-center font-medium text-slate-800"
+                      className="w-full border border-white/[0.1] rounded-xl p-2.5 bg-[#121217] text-center font-medium text-neutral-200 focus:border-orange-500 focus:outline-none transition-colors"
                     />
-                    <span className="text-[10px] text-slate-500 block text-center mt-0.5">Cost basis</span>
+                    <span className="text-[10px] text-neutral-400 block text-center mt-1">Cost basis</span>
                   </div>
                 </div>
               </div>
             ))}
 
             {/* Total Summary Footer */}
-            <div className="p-4 bg-indigo-50/60 border border-indigo-100 rounded-xl flex items-center justify-between">
+            <div className="p-4 bg-white/[0.03] border border-white/[0.08] rounded-xl flex items-center justify-between">
               <div>
-                <span className="font-bold text-slate-900 block text-xs">Total Manifest Expected Volume</span>
-                <span className="text-[11px] text-slate-600">{lineItems.length} unique line items scheduled</span>
+                <span className="font-bold text-white block text-xs">Total Manifest Expected Volume</span>
+                <span className="text-[11px] text-neutral-400">{lineItems.length} unique line items scheduled</span>
               </div>
               <div className="flex items-center gap-6">
                 <div className="text-right">
-                  <span className="text-[11px] text-slate-500 block">Total Cartons</span>
-                  <span className="font-bold text-indigo-700 text-sm">{totalCalculatedCartons} cartons</span>
+                  <span className="text-[11px] text-neutral-400 block">Total Cartons</span>
+                  <span className="font-bold text-orange-400 text-sm">{totalCalculatedCartons} cartons</span>
                 </div>
                 <div className="text-right">
-                  <span className="text-[11px] text-slate-500 block">Total Units</span>
-                  <span className="font-bold text-emerald-700 text-sm">{totalCalculatedUnits} units</span>
+                  <span className="text-[11px] text-neutral-400 block">Total Units</span>
+                  <span className="font-bold text-emerald-400 text-sm">{totalCalculatedUnits} units</span>
                 </div>
               </div>
             </div>
@@ -533,7 +533,7 @@ export default function CreatePurchaseOrderPage({ onBack, onPoCreated }) {
             value={notes}
             onChange={e => setNotes(e.target.value)}
             placeholder="Special receiving guidelines, trailer seal requirements, cross-dock bay directions..."
-            className="w-full text-xs border border-slate-300 rounded-lg p-3 bg-white"
+            className="w-full text-xs border border-white/[0.1] rounded-xl p-3 bg-[#121217] text-white placeholder-neutral-500 focus:border-orange-500 focus:outline-none transition-colors"
           />
         </Card>
 
@@ -541,14 +541,14 @@ export default function CreatePurchaseOrderPage({ onBack, onPoCreated }) {
           <button
             type="button"
             onClick={onBack}
-            className="px-4 py-2 border border-slate-300 rounded-lg text-slate-700 hover:bg-slate-50 text-xs font-semibold"
+            className="px-4 py-2 border border-white/[0.08] rounded-xl text-neutral-300 hover:text-white hover:bg-white/[0.08] text-xs font-semibold transition-all"
           >
             Cancel
           </button>
           <button
             type="submit"
             disabled={submitting}
-            className="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-lg text-xs shadow-xs transition-colors disabled:opacity-50"
+            className="px-6 py-2.5 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold rounded-xl text-xs shadow-[0_0_15px_rgba(255,87,34,0.35)] transition-all disabled:opacity-50"
           >
             {submitting ? 'Generating Purchase Order...' : 'Create Purchase Order'}
           </button>

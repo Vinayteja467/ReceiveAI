@@ -44,21 +44,21 @@ export default function DemoScenariosModal({
     switch (decision) {
       case 'ACCEPTED':
         return (
-          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-black bg-emerald-100 text-emerald-800 border border-emerald-300">
-            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" /> ACCEPTED
+          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-black bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">
+            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" /> ACCEPTED
           </span>
         );
       case 'EXCEPTION':
         return (
-          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-black bg-rose-100 text-rose-800 border border-rose-300">
-            <XCircle className="w-3.5 h-3.5 text-rose-600" /> EXCEPTION
+          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-black bg-rose-500/15 text-rose-300 border border-rose-500/30">
+            <XCircle className="w-3.5 h-3.5 text-rose-400" /> EXCEPTION
           </span>
         );
       case 'UNCERTAIN':
       default:
         return (
-          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-black bg-amber-100 text-amber-800 border border-amber-300">
-            <HelpCircle className="w-3.5 h-3.5 text-amber-600" /> UNCERTAIN
+          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-black bg-amber-500/15 text-amber-300 border border-amber-500/30">
+            <HelpCircle className="w-3.5 h-3.5 text-amber-400" /> UNCERTAIN
           </span>
         );
     }
@@ -72,29 +72,29 @@ export default function DemoScenariosModal({
       subtitle="Select any scenario to demonstrate automated AI receiving evaluation, discrepancy detection, and strict zero-guessing enforcement"
       maxWidth="max-w-5xl"
     >
-      <div className="space-y-5 text-xs">
+      <div className="space-y-5 text-xs text-neutral-200">
         {/* Banner with Hackathon Context */}
-        <div className="p-3.5 bg-gradient-to-r from-indigo-900 via-indigo-800 to-slate-900 rounded-xl text-white flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-xs">
+        <div className="p-3.5 bg-gradient-to-r from-orange-950/40 via-neutral-900 to-black rounded-2xl text-white flex flex-col sm:flex-row sm:items-center justify-between gap-3 border border-orange-500/20 shadow-lg backdrop-blur-xl">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-lg bg-indigo-500/30 border border-indigo-400/30 flex items-center justify-center shrink-0">
-              <Sparkles className="w-5 h-5 text-indigo-300" />
+            <div className="w-9 h-9 rounded-xl bg-orange-500/20 border border-orange-500/30 flex items-center justify-center shrink-0">
+              <Sparkles className="w-5 h-5 text-orange-400" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <span className="font-bold text-sm">10 Prescribed Test Scenarios</span>
-                <span className="px-2 py-0.2 bg-emerald-400 text-emerald-950 font-black text-[10px] rounded uppercase">
+                <span className="font-bold text-sm text-white">10 Prescribed Test Scenarios</span>
+                <span className="px-2 py-0.5 bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-black text-[10px] rounded-lg uppercase tracking-wider">
                   Judge Demonstration Mode
                 </span>
               </div>
-              <p className="text-[11px] text-indigo-200 mt-0.5">
+              <p className="text-[11px] text-neutral-400 mt-0.5">
                 Every scenario pairs PO parameters + product BOM + actual warehouse photographs with zero simulated claims.
               </p>
             </div>
           </div>
 
           <div className="text-right shrink-0">
-            <span className="text-[10px] text-indigo-300 block uppercase font-semibold">Strict Protocol</span>
-            <span className="font-mono font-bold text-emerald-300 text-xs">PASS / FAIL / UNCERTAIN</span>
+            <span className="text-[10px] text-neutral-400 block uppercase font-semibold">Strict Protocol</span>
+            <span className="font-mono font-bold text-emerald-400 text-xs">PASS / FAIL / UNCERTAIN</span>
           </div>
         </div>
 
@@ -105,15 +105,15 @@ export default function DemoScenariosModal({
               key={tab.id}
               type="button"
               onClick={() => setActiveFilter(tab.id)}
-              className={`px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-colors flex items-center gap-1.5 ${
+              className={`px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all flex items-center gap-1.5 ${
                 activeFilter === tab.id
-                  ? 'bg-indigo-600 text-white shadow-2xs'
-                  : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                  ? 'bg-gradient-to-r from-orange-500 to-red-600 text-white shadow-[0_0_12px_rgba(255,87,34,0.35)]'
+                  : 'bg-white/[0.04] text-neutral-400 hover:bg-white/[0.08] hover:text-white border border-white/[0.06]'
               }`}
             >
               <span>{tab.label}</span>
               <span className={`px-1.5 py-0.2 rounded-full text-[10px] font-bold ${
-                activeFilter === tab.id ? 'bg-indigo-700 text-white' : 'bg-slate-200 text-slate-700'
+                activeFilter === tab.id ? 'bg-white/20 text-white' : 'bg-white/[0.08] text-neutral-400'
               }`}>
                 {tab.count}
               </span>
@@ -129,26 +129,26 @@ export default function DemoScenariosModal({
             return (
               <div
                 key={sc.id}
-                className={`p-4 rounded-xl border transition-all space-y-3 bg-white ${
+                className={`p-4 rounded-2xl border transition-all space-y-3 bg-[#0e0e13]/85 backdrop-blur-xl shadow-lg ${
                   isAmbiguous 
-                    ? 'border-amber-300 ring-2 ring-amber-400/20 bg-amber-50/20' 
-                    : 'border-slate-200 hover:border-indigo-300 hover:shadow-xs'
+                    ? 'border-amber-500/40 ring-1 ring-amber-500/20 bg-amber-500/[0.05]' 
+                    : 'border-white/[0.08] hover:border-orange-500/40'
                 }`}
               >
                 {/* Header: Title & Decision Badge */}
                 <div className="flex items-start justify-between gap-2">
-                  <div className="flex items-center gap-2">
-                    <span className="w-6 h-6 rounded-full bg-slate-900 text-white font-bold text-xs flex items-center justify-center shrink-0">
+                  <div className="flex items-center gap-2.5">
+                    <span className="w-6 h-6 rounded-full bg-white/[0.08] border border-white/[0.1] text-white font-bold text-xs flex items-center justify-center shrink-0">
                       {sc.number}
                     </span>
                     <div>
-                      <h4 className="font-bold text-sm text-slate-900 tracking-tight">
+                      <h4 className="font-bold text-sm text-white tracking-tight">
                         {sc.title}
                       </h4>
-                      <div className="flex items-center gap-1.5 text-[11px] text-slate-500 mt-0.5">
-                        <span className="font-mono font-bold text-indigo-700">{sc.po.po_number}</span>
+                      <div className="flex items-center gap-1.5 text-[11px] text-neutral-400 mt-0.5">
+                        <span className="font-mono font-bold text-orange-400">{sc.po.po_number}</span>
                         <span>•</span>
-                        <span className="font-mono text-slate-700">{sc.product.sku}</span>
+                        <span className="font-mono text-neutral-300">{sc.product.sku}</span>
                       </div>
                     </div>
                   </div>
@@ -159,21 +159,21 @@ export default function DemoScenariosModal({
                 </div>
 
                 {/* Scenario Summary */}
-                <p className="text-slate-600 text-xs leading-relaxed line-clamp-2">
+                <p className="text-neutral-300 text-xs leading-relaxed line-clamp-2">
                   {sc.summary}
                 </p>
 
                 {/* Ambiguous Evidence Special Zero-Guessing Banner */}
                 {isAmbiguous && (
-                  <div className="p-2.5 bg-amber-100/70 border border-amber-300 rounded-lg text-amber-900 text-[11px] font-semibold space-y-1">
-                    <div className="flex items-center gap-1 text-amber-800 font-bold">
+                  <div className="p-2.5 bg-amber-500/10 border border-amber-500/30 rounded-xl text-amber-200 text-[11px] font-semibold space-y-1">
+                    <div className="flex items-center gap-1 text-amber-300 font-bold">
                       <HelpCircle className="w-3.5 h-3.5" />
                       <span>Zero-Guessing Benchmark:</span>
                     </div>
                     <p className="italic">
                       &ldquo;Insufficient visual evidence to determine the shipment quantity.&rdquo;
                     </p>
-                    <p className="text-[10px] text-amber-700 opacity-90 not-italic">
+                    <p className="text-[10px] text-amber-300/80 not-italic">
                       System prohibits forcing PASS/FAIL and enables <strong>[Upload More Evidence]</strong>.
                     </p>
                   </div>
@@ -185,25 +185,25 @@ export default function DemoScenariosModal({
                     <div
                       key={p.id || idx}
                       title={p.caption}
-                      className="w-12 h-10 rounded border border-slate-200 overflow-hidden shrink-0 bg-slate-100"
+                      className="w-12 h-10 rounded-lg border border-white/[0.08] overflow-hidden shrink-0 bg-black/40"
                     >
                       <img src={p.file_path} alt={p.file_name} className="w-full h-full object-cover" />
                     </div>
                   ))}
-                  <span className="text-[10px] text-slate-400 font-semibold pl-1">
+                  <span className="text-[10px] text-neutral-400 font-semibold pl-1">
                     {sc.evidencePhotos.length} photo{sc.evidencePhotos.length > 1 ? 's' : ''}
                   </span>
                 </div>
 
                 {/* Card Actions */}
-                <div className="flex items-center justify-between gap-2 pt-2 border-t border-slate-100">
+                <div className="flex items-center justify-between gap-2 pt-2 border-t border-white/[0.08]">
                   <button
                     type="button"
                     onClick={() => {
                       if (onSelectScenarioForWizard) onSelectScenarioForWizard(sc);
                       onClose();
                     }}
-                    className="px-3 py-1.5 border border-slate-300 hover:bg-slate-50 text-slate-700 rounded-lg text-xs font-semibold inline-flex items-center gap-1 transition-colors"
+                    className="px-3 py-1.5 border border-white/[0.1] hover:bg-white/[0.06] text-neutral-300 hover:text-white rounded-xl text-xs font-semibold inline-flex items-center gap-1 transition-all"
                   >
                     <span>Stage in Wizard</span>
                   </button>
@@ -214,7 +214,7 @@ export default function DemoScenariosModal({
                       if (onSelectScenarioForResults) onSelectScenarioForResults(sc);
                       onClose();
                     }}
-                    className="px-3.5 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-xs font-bold shadow-2xs inline-flex items-center gap-1.5 transition-colors"
+                    className="px-3.5 py-1.5 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white rounded-xl text-xs font-bold shadow-[0_0_12px_rgba(255,87,34,0.3)] inline-flex items-center gap-1.5 transition-all"
                   >
                     <Play className="w-3 h-3 fill-current" />
                     <span>Run & View Results</span>

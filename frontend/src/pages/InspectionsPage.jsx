@@ -115,10 +115,10 @@ export default function InspectionsPage({ selectedInspectionId, setSelectedInspe
             <button
               key={tab.value}
               onClick={() => setFilterStatus(tab.value)}
-              className={`px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-colors ${
+              className={`px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all ${
                 filterStatus === tab.value
-                  ? 'bg-indigo-600 text-white shadow-2xs'
-                  : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-50'
+                  ? 'bg-gradient-to-r from-orange-500 to-red-600 text-white shadow-[0_0_12px_rgba(255,87,34,0.35)]'
+                  : 'bg-white/[0.04] border border-white/[0.08] text-neutral-400 hover:text-white hover:bg-white/[0.08]'
               }`}
             >
               {tab.label}
@@ -128,13 +128,13 @@ export default function InspectionsPage({ selectedInspectionId, setSelectedInspe
 
         {/* Search Bar */}
         <div className="relative w-full sm:w-72">
-          <Search className="w-4 h-4 text-slate-400 absolute left-3 top-2.5" />
+          <Search className="w-4 h-4 text-neutral-500 absolute left-3 top-2.5" />
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search PO, inspection #, or vendor..."
-            className="w-full pl-9 pr-3 py-1.5 text-xs bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            className="w-full pl-9 pr-3 py-2 text-xs bg-[#121217] text-white border border-white/[0.1] rounded-xl placeholder-neutral-500 focus:outline-none focus:border-orange-500"
           />
         </div>
       </div>
@@ -143,7 +143,7 @@ export default function InspectionsPage({ selectedInspectionId, setSelectedInspe
       <Card noPadding>
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs">
-            <thead className="bg-slate-50 text-slate-500 font-semibold border-b border-slate-200">
+            <thead className="bg-white/[0.03] text-neutral-400 font-bold border-b border-white/[0.08]">
               <tr>
                 <th className="py-3 px-4">Inspection #</th>
                 <th className="py-3 px-4">PO & Supplier</th>
@@ -155,32 +155,32 @@ export default function InspectionsPage({ selectedInspectionId, setSelectedInspe
                 <th className="py-3 px-4 text-right">Details</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100 text-slate-700">
+            <tbody className="divide-y divide-white/[0.06] text-neutral-300">
               {loading ? (
                 <tr>
-                  <td colSpan="8" className="py-8 text-center text-slate-400 animate-pulse">
+                  <td colSpan="8" className="py-8 text-center text-neutral-500 animate-pulse">
                     Loading receiving inspections...
                   </td>
                 </tr>
               ) : filtered.length === 0 ? (
                 <tr>
-                  <td colSpan="8" className="py-8 text-center text-slate-400">
+                  <td colSpan="8" className="py-8 text-center text-neutral-500">
                     No inspections found matching your filter criteria.
                   </td>
                 </tr>
               ) : (
                 filtered.map((item) => (
-                  <tr key={item.id} className="hover:bg-slate-50/60 transition-colors">
-                    <td className="py-3.5 px-4 font-mono font-bold text-slate-900">
+                  <tr key={item.id} className="hover:bg-white/[0.02] transition-colors">
+                    <td className="py-3.5 px-4 font-mono font-bold text-white">
                       {item.inspection_number}
                     </td>
                     <td className="py-3.5 px-4">
-                      <div className="font-semibold text-slate-800">{item.po_number}</div>
-                      <div className="text-[11px] text-slate-500 truncate max-w-[200px]">{item.vendor_name}</div>
+                      <div className="font-semibold text-white">{item.po_number}</div>
+                      <div className="text-[11px] text-neutral-400 truncate max-w-[200px]">{item.vendor_name}</div>
                     </td>
                     <td className="py-3.5 px-4">
-                      <div className="text-slate-800 font-medium">{item.dock_door}</div>
-                      <div className="text-[11px] text-slate-500">{item.inspector_name?.split('-')[0]}</div>
+                      <div className="text-neutral-200 font-medium">{item.dock_door}</div>
+                      <div className="text-[11px] text-neutral-400">{item.inspector_name?.split('-')[0]}</div>
                     </td>
                     <td className="py-3.5 px-4">
                       <Badge status={item.status} size="xs" />
@@ -190,18 +190,18 @@ export default function InspectionsPage({ selectedInspectionId, setSelectedInspe
                     </td>
                     <td className="py-3.5 px-4">
                       {item.total_defects_found > 0 ? (
-                        <span className="font-bold text-rose-600 bg-rose-50 px-2 py-0.5 rounded text-[11px] border border-rose-200">
+                        <span className="font-bold text-rose-300 bg-rose-500/15 px-2 py-0.5 rounded-lg text-[11px] border border-rose-500/30">
                           {item.total_defects_found} defects
                         </span>
                       ) : (
-                        <span className="text-emerald-700 font-medium bg-emerald-50 px-2 py-0.5 rounded text-[11px] border border-emerald-200">
+                        <span className="text-emerald-300 font-medium bg-emerald-500/15 px-2 py-0.5 rounded-lg text-[11px] border border-emerald-500/30">
                           Clean
                         </span>
                       )}
                     </td>
-                    <td className="py-3.5 px-4 text-slate-500">
+                    <td className="py-3.5 px-4 text-neutral-400">
                       <span className="inline-flex items-center gap-1 text-[11px] font-medium">
-                        <Camera className="w-3.5 h-3.5 text-slate-400" />
+                        <Camera className="w-3.5 h-3.5 text-neutral-500" />
                         {item.evidence_count || 0}
                       </span>
                     </td>
@@ -213,7 +213,7 @@ export default function InspectionsPage({ selectedInspectionId, setSelectedInspe
                             if (setSelectedInspectionId) setSelectedInspectionId(item.id);
                             if (setActiveTab) setActiveTab('inspection-results');
                           }}
-                          className="px-2.5 py-1 text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 rounded-md transition-colors inline-flex items-center gap-1 shadow-2xs"
+                          className="px-2.5 py-1 text-xs font-bold text-white bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 rounded-lg transition-all inline-flex items-center gap-1 shadow-[0_0_10px_rgba(255,87,34,0.3)]"
                         >
                           <FileText className="w-3 h-3" />
                           <span>Results</span>
@@ -221,7 +221,7 @@ export default function InspectionsPage({ selectedInspectionId, setSelectedInspe
                         <button
                           type="button"
                           onClick={() => openDetailModal(item.id)}
-                          className="px-2.5 py-1 text-xs font-semibold text-slate-700 hover:bg-slate-100 border border-slate-200 rounded-md transition-colors"
+                          className="px-2.5 py-1 text-xs font-semibold text-neutral-300 hover:text-white hover:bg-white/[0.08] border border-white/[0.1] rounded-lg transition-all"
                         >
                           Inspect
                         </button>
@@ -247,12 +247,12 @@ export default function InspectionsPage({ selectedInspectionId, setSelectedInspe
         maxWidth="max-w-4xl"
       >
         {activeDetail && (
-          <div className="space-y-6 text-xs">
+          <div className="space-y-6 text-xs text-neutral-200">
             {/* Quick jump to dedicated Inspection Results page */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3 bg-indigo-50 border border-indigo-200 rounded-lg">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3 bg-orange-500/10 border border-orange-500/30 rounded-2xl backdrop-blur-xl">
               <div className="flex items-center gap-2">
-                <Sparkles className="w-4 h-4 text-indigo-600" />
-                <span className="font-bold text-indigo-950 text-xs">Official 6-Point Inspection Results & Evidence Viewer</span>
+                <Sparkles className="w-4 h-4 text-orange-400" />
+                <span className="font-bold text-orange-200 text-xs">Official 6-Point Inspection Results & Evidence Viewer</span>
               </div>
               <button
                 type="button"
@@ -261,7 +261,7 @@ export default function InspectionsPage({ selectedInspectionId, setSelectedInspe
                   if (setSelectedInspectionId) setSelectedInspectionId(activeDetail.id);
                   if (setActiveTab) setActiveTab('inspection-results');
                 }}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-xs font-bold shadow-2xs transition-colors shrink-0"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white rounded-xl text-xs font-bold shadow-[0_0_12px_rgba(255,87,34,0.3)] transition-all shrink-0"
               >
                 <ExternalLink className="w-3.5 h-3.5" />
                 <span>Open Full Inspection Results Page</span>
@@ -269,31 +269,31 @@ export default function InspectionsPage({ selectedInspectionId, setSelectedInspe
             </div>
 
             {/* Metadata Grid */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 p-3 bg-slate-50 border border-slate-200 rounded-lg">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 p-3 bg-white/[0.02] border border-white/[0.08] rounded-2xl">
               <div>
-                <span className="text-slate-500 block">Status</span>
+                <span className="text-neutral-400 block mb-1">Status</span>
                 <Badge status={activeDetail.status} size="xs" />
               </div>
               <div>
-                <span className="text-slate-500 block">Disposition</span>
+                <span className="text-neutral-400 block mb-1">Disposition</span>
                 <Badge status={activeDetail.overall_disposition} size="xs" />
               </div>
               <div>
-                <span className="text-slate-500 block">Dock Bay</span>
-                <span className="font-semibold text-slate-800">{activeDetail.dock_door}</span>
+                <span className="text-neutral-400 block mb-1">Dock Bay</span>
+                <span className="font-semibold text-white">{activeDetail.dock_door}</span>
               </div>
               <div>
-                <span className="text-slate-500 block">Cargo Temp</span>
-                <span className="font-semibold text-slate-800">{activeDetail.temperature_reading_c ?? 'N/A'} °C</span>
+                <span className="text-neutral-400 block mb-1">Cargo Temp</span>
+                <span className="font-semibold text-white">{activeDetail.temperature_reading_c ?? 'N/A'} °C</span>
               </div>
             </div>
 
             {/* Checklist findings */}
             <div>
-              <h4 className="font-bold uppercase tracking-wider text-slate-700 mb-2">Sampled Line Items Findings</h4>
-              <div className="border border-slate-200 rounded-lg overflow-hidden">
+              <h4 className="font-bold uppercase tracking-wider text-white mb-2">Sampled Line Items Findings</h4>
+              <div className="border border-white/[0.08] rounded-2xl overflow-hidden bg-[#0e0e13]/85 backdrop-blur-xl shadow-lg">
                 <table className="w-full text-left">
-                  <thead className="bg-slate-50 border-b border-slate-200 font-semibold text-slate-600">
+                  <thead className="bg-white/[0.03] border-b border-white/[0.08] font-bold text-neutral-400">
                     <tr>
                       <th className="p-2.5">SKU & Description</th>
                       <th className="p-2.5">Sampled</th>
@@ -303,23 +303,23 @@ export default function InspectionsPage({ selectedInspectionId, setSelectedInspe
                       <th className="p-2.5">Status</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-100">
+                  <tbody className="divide-y divide-white/[0.06]">
                     {activeDetail.items.map((it) => (
-                      <tr key={it.id}>
+                      <tr key={it.id} className="hover:bg-white/[0.02]">
                         <td className="p-2.5">
-                          <span className="font-mono font-bold text-slate-900 block">{it.sku}</span>
-                          <span className="text-slate-500 text-[11px]">{it.item_name}</span>
+                          <span className="font-mono font-bold text-white block">{it.sku}</span>
+                          <span className="text-neutral-400 text-[11px]">{it.item_name}</span>
                         </td>
-                        <td className="p-2.5 font-semibold text-slate-800">{it.sampled_quantity}</td>
-                        <td className="p-2.5 text-emerald-700 font-semibold">{it.passed_quantity}</td>
+                        <td className="p-2.5 font-semibold text-neutral-200">{it.sampled_quantity}</td>
+                        <td className="p-2.5 text-emerald-400 font-semibold">{it.passed_quantity}</td>
                         <td className="p-2.5">
                           {it.defective_quantity > 0 ? (
-                            <span className="text-rose-600 font-bold">{it.defective_quantity}</span>
+                            <span className="text-rose-400 font-bold">{it.defective_quantity}</span>
                           ) : (
-                            <span className="text-slate-400">0</span>
+                            <span className="text-neutral-500">0</span>
                           )}
                         </td>
-                        <td className="p-2.5 text-slate-600">{it.defect_category || 'Clean'}</td>
+                        <td className="p-2.5 text-neutral-300">{it.defect_category || 'Clean'}</td>
                         <td className="p-2.5"><Badge status={it.status} size="xs" /></td>
                       </tr>
                     ))}
@@ -331,18 +331,18 @@ export default function InspectionsPage({ selectedInspectionId, setSelectedInspe
             {/* Exceptions & Evidence Sections */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <h4 className="font-bold uppercase tracking-wider text-slate-700 mb-2">Discrepancies & Exceptions ({activeDetail.exceptions.length})</h4>
+                <h4 className="font-bold uppercase tracking-wider text-white mb-2">Discrepancies & Exceptions ({activeDetail.exceptions.length})</h4>
                 {activeDetail.exceptions.length === 0 ? (
-                  <p className="p-3 bg-slate-50 border border-slate-200 rounded-lg text-slate-400 italic">No exceptions logged.</p>
+                  <p className="p-3 bg-white/[0.02] border border-white/[0.06] rounded-xl text-neutral-400 italic">No exceptions logged.</p>
                 ) : (
                   <div className="space-y-2">
                     {activeDetail.exceptions.map(exc => (
-                      <div key={exc.id} className="p-3 bg-rose-50/50 border border-rose-200 rounded-lg">
+                      <div key={exc.id} className="p-3 bg-rose-500/10 border border-rose-500/30 rounded-xl">
                         <div className="flex justify-between items-center">
-                          <span className="font-mono font-bold text-rose-900">{exc.exception_number}</span>
+                          <span className="font-mono font-bold text-rose-300">{exc.exception_number}</span>
                           <Badge status={exc.severity} size="xs" />
                         </div>
-                        <p className="mt-1 text-slate-700 font-medium">{exc.discrepancy_details}</p>
+                        <p className="mt-1 text-neutral-200 font-medium">{exc.discrepancy_details}</p>
                       </div>
                     ))}
                   </div>
@@ -350,21 +350,21 @@ export default function InspectionsPage({ selectedInspectionId, setSelectedInspe
               </div>
 
               <div>
-                <h4 className="font-bold uppercase tracking-wider text-slate-700 mb-2">Attached Receiving Evidence ({activeDetail.evidence.length})</h4>
+                <h4 className="font-bold uppercase tracking-wider text-white mb-2">Attached Receiving Evidence ({activeDetail.evidence.length})</h4>
                 {activeDetail.evidence.length === 0 ? (
-                  <p className="p-3 bg-slate-50 border border-slate-200 rounded-lg text-slate-400 italic">No photo evidence uploaded.</p>
+                  <p className="p-3 bg-white/[0.02] border border-white/[0.06] rounded-xl text-neutral-400 italic">No photo evidence uploaded.</p>
                 ) : (
                   <div className="space-y-2">
                     {activeDetail.evidence.map(ev => (
-                      <div key={ev.id} className="p-2.5 bg-slate-50 border border-slate-200 rounded-lg flex items-center justify-between">
+                      <div key={ev.id} className="p-2.5 bg-white/[0.02] border border-white/[0.08] rounded-xl flex items-center justify-between">
                         <div className="flex items-center gap-2">
-                          <Camera className="w-4 h-4 text-indigo-600" />
+                          <Camera className="w-4 h-4 text-orange-400" />
                           <div>
-                            <p className="font-medium text-slate-800">{ev.file_name}</p>
-                            <p className="text-[10px] text-slate-500">{ev.caption || ev.file_type}</p>
+                            <p className="font-medium text-white">{ev.file_name}</p>
+                            <p className="text-[10px] text-neutral-400">{ev.caption || ev.file_type}</p>
                           </div>
                         </div>
-                        <span className="text-[10px] bg-indigo-50 text-indigo-700 font-bold px-2 py-0.5 rounded border border-indigo-100">
+                        <span className="text-[10px] bg-orange-500/15 text-orange-300 font-bold px-2 py-0.5 rounded-lg border border-orange-500/30">
                           {ev.file_type}
                         </span>
                       </div>
@@ -375,15 +375,15 @@ export default function InspectionsPage({ selectedInspectionId, setSelectedInspe
             </div>
 
             {/* AI Vision Inspection Audit Engine Section */}
-            <div className="p-4 border border-indigo-100 rounded-xl bg-gradient-to-r from-indigo-50/50 via-white to-blue-50/50 space-y-3">
+            <div className="p-4 border border-orange-500/20 rounded-2xl bg-white/[0.02] backdrop-blur-xl space-y-3">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                 <div className="flex items-center gap-2.5">
-                  <div className="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center text-white shrink-0">
+                  <div className="w-8 h-8 rounded-xl bg-gradient-to-r from-orange-500 to-red-600 flex items-center justify-center text-white shrink-0 shadow-lg">
                     <Sparkles className="w-4 h-4" />
                   </div>
                   <div>
-                    <h4 className="font-bold text-slate-900 text-xs">AI Receiving Inspection Engine</h4>
-                    <p className="text-[11px] text-slate-500">10-point PO vs Product Catalogue vs Evidence photographs evaluation</p>
+                    <h4 className="font-bold text-white text-xs">AI Receiving Inspection Engine</h4>
+                    <p className="text-[11px] text-neutral-400">10-point PO vs Product Catalogue vs Evidence photographs evaluation</p>
                   </div>
                 </div>
 
@@ -391,7 +391,7 @@ export default function InspectionsPage({ selectedInspectionId, setSelectedInspe
                   type="button"
                   onClick={() => handleRunAiAudit(activeDetail.id)}
                   disabled={aiLoading}
-                  className="inline-flex items-center gap-1.5 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-xs font-bold shadow-xs transition-colors disabled:opacity-50"
+                  className="inline-flex items-center gap-1.5 px-4 py-2 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white rounded-xl text-xs font-bold shadow-[0_0_12px_rgba(255,87,34,0.3)] transition-all disabled:opacity-50"
                 >
                   <Sparkles className={`w-3.5 h-3.5 ${aiLoading ? 'animate-spin' : ''}`} />
                   <span>{aiLoading ? 'Analyzing Evidence...' : (aiReport ? 'Re-run AI Inspection' : 'Run AI Inspection Audit')}</span>
@@ -407,9 +407,9 @@ export default function InspectionsPage({ selectedInspectionId, setSelectedInspe
 
             {/* Inspector Notes */}
             {activeDetail.notes && (
-              <div className="p-3 bg-slate-50 border border-slate-200 rounded-lg">
-                <span className="font-bold text-slate-700 block mb-1">Inspector Log & Observations:</span>
-                <p className="text-slate-600 whitespace-pre-wrap">{activeDetail.notes}</p>
+              <div className="p-3 bg-white/[0.02] border border-white/[0.08] rounded-xl">
+                <span className="font-bold text-white block mb-1">Inspector Log & Observations:</span>
+                <p className="text-neutral-300 whitespace-pre-wrap">{activeDetail.notes}</p>
               </div>
             )}
           </div>

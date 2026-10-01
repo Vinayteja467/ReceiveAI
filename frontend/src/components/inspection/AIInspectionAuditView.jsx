@@ -40,21 +40,21 @@ export default function AIInspectionAuditView({ report }) {
     switch (status) {
       case 'PASS':
         return (
-          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-300">
-            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" /> PASS
+          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">
+            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" /> PASS
           </span>
         );
       case 'FAIL':
         return (
-          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-bold bg-rose-100 text-rose-800 border border-rose-300">
-            <XCircle className="w-3.5 h-3.5 text-rose-600" /> FAIL
+          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-bold bg-rose-500/15 text-rose-300 border border-rose-500/30">
+            <XCircle className="w-3.5 h-3.5 text-rose-400" /> FAIL
           </span>
         );
       case 'UNCERTAIN':
       default:
         return (
-          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-100 text-amber-800 border border-amber-300">
-            <HelpCircle className="w-3.5 h-3.5 text-amber-600" /> UNCERTAIN
+          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-500/15 text-amber-300 border border-amber-500/30">
+            <HelpCircle className="w-3.5 h-3.5 text-amber-400" /> UNCERTAIN
           </span>
         );
     }
@@ -65,29 +65,29 @@ export default function AIInspectionAuditView({ report }) {
   const uncertainCount = Object.values(report.checks || {}).filter(c => c.status === 'UNCERTAIN').length;
 
   return (
-    <div className="space-y-5 text-xs">
+    <div className="space-y-5 text-xs text-neutral-200">
       {/* Engine & Mode Banner */}
-      <div className={`p-4 rounded-xl border flex flex-col sm:flex-row sm:items-center justify-between gap-3 ${
+      <div className={`p-4 rounded-2xl border flex flex-col sm:flex-row sm:items-center justify-between gap-3 backdrop-blur-xl ${
         isDemo 
-          ? 'bg-amber-50/70 border-amber-200 text-amber-900' 
-          : 'bg-indigo-50/70 border-indigo-200 text-indigo-950'
+          ? 'bg-amber-500/10 border-amber-500/30 text-amber-200' 
+          : 'bg-orange-500/10 border-orange-500/30 text-white'
       }`}>
         <div className="flex items-center gap-3">
-          <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${
-            isDemo ? 'bg-amber-500 text-white' : 'bg-indigo-600 text-white'
+          <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 shadow-lg ${
+            isDemo ? 'bg-amber-500 text-white shadow-amber-500/30' : 'bg-gradient-to-br from-orange-500 to-red-600 text-white shadow-orange-500/30'
           }`}>
             <Bot className="w-5 h-5" />
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <span className="font-bold text-sm">{report.engine_name}</span>
-              <span className={`px-2 py-0.2 rounded text-[10px] font-bold uppercase tracking-wider ${
-                isDemo ? 'bg-amber-200 text-amber-900' : 'bg-indigo-200 text-indigo-900'
+              <span className="font-bold text-sm text-white">{report.engine_name}</span>
+              <span className={`px-2 py-0.5 rounded-lg text-[10px] font-bold uppercase tracking-wider ${
+                isDemo ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40' : 'bg-orange-500/20 text-orange-300 border border-orange-500/40'
               }`}>
                 {isDemo ? 'Deterministic Demo Mode' : 'Live Vision Engine'}
               </span>
             </div>
-            <p className="text-[11px] opacity-80 mt-0.5">
+            <p className="text-[11px] text-neutral-400 mt-0.5">
               {isDemo 
                 ? 'Running rule-based deterministic evaluation (No GEMINI_API_KEY detected). Strict zero-guessing policy enforced.' 
                 : 'Multimodal vision model inference active with PO and SKU specifications.'}
@@ -95,62 +95,62 @@ export default function AIInspectionAuditView({ report }) {
           </div>
         </div>
 
-        <div className="flex items-center gap-4 text-xs font-semibold shrink-0">
-          <span className="text-emerald-700 bg-white/80 px-2.5 py-1 rounded border border-emerald-200">
+        <div className="flex items-center gap-3 text-xs font-semibold shrink-0">
+          <span className="text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-lg border border-emerald-500/30">
             {passCount} Pass
           </span>
-          <span className="text-rose-700 bg-white/80 px-2.5 py-1 rounded border border-rose-200">
+          <span className="text-rose-400 bg-rose-500/10 px-2.5 py-1 rounded-lg border border-rose-500/30">
             {failCount} Fail
           </span>
-          <span className="text-amber-800 bg-white/80 px-2.5 py-1 rounded border border-amber-200">
+          <span className="text-amber-400 bg-amber-500/10 px-2.5 py-1 rounded-lg border border-amber-500/30">
             {uncertainCount} Uncertain
           </span>
         </div>
       </div>
 
       {/* Overall Verdict & Recommendation Card */}
-      <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-xs grid grid-cols-1 sm:grid-cols-3 gap-4 items-center">
+      <div className="bg-[#0e0e13]/85 backdrop-blur-xl border border-white/[0.08] rounded-2xl p-5 shadow-2xl grid grid-cols-1 sm:grid-cols-3 gap-4 items-center">
         <div>
-          <span className="text-[11px] uppercase font-bold text-slate-500 block mb-1">
+          <span className="text-[11px] uppercase font-bold text-neutral-400 block mb-1">
             Overall AI Inspection Verdict
           </span>
           <div className="flex items-center gap-2">
-            <span className={`text-xl font-bold tracking-tight ${
+            <span className={`text-xl font-extrabold tracking-tight ${
               report.overall_verdict === 'PASS' 
-                ? 'text-emerald-600' 
+                ? 'text-emerald-400' 
                 : report.overall_verdict === 'FAIL' 
-                ? 'text-rose-600' 
-                : 'text-amber-600'
+                ? 'text-rose-400' 
+                : 'text-amber-400'
             }`}>
               {report.overall_verdict.replace(/_/g, ' ')}
             </span>
           </div>
-          <p className="text-slate-500 text-[11px] mt-1">{report.summary}</p>
+          <p className="text-neutral-400 text-[11px] mt-1">{report.summary}</p>
         </div>
 
         <div>
-          <span className="text-[11px] uppercase font-bold text-slate-500 block mb-1">
+          <span className="text-[11px] uppercase font-bold text-neutral-400 block mb-1">
             Recommended Action
           </span>
-          <span className="inline-block px-3 py-1 bg-slate-900 text-white rounded-lg text-xs font-bold uppercase tracking-wider">
+          <span className="inline-block px-3 py-1 bg-white/[0.08] border border-white/[0.1] text-white rounded-lg text-xs font-bold uppercase tracking-wider">
             {report.recommendation.replace(/_/g, ' ')}
           </span>
-          <p className="text-[11px] text-slate-500 mt-1">Suggested receiving disposition release</p>
+          <p className="text-[11px] text-neutral-400 mt-1">Suggested receiving disposition release</p>
         </div>
 
         <div>
-          <span className="text-[11px] uppercase font-bold text-slate-500 block mb-1">
+          <span className="text-[11px] uppercase font-bold text-neutral-400 block mb-1">
             Aggregate Confidence Score
           </span>
           <div className="flex items-baseline gap-2">
-            <span className="text-2xl font-bold text-slate-900">
+            <span className="text-2xl font-extrabold text-white">
               {Math.round(report.confidence_score * 100)}%
             </span>
-            <span className="text-[11px] text-slate-500">across 10 dimensions</span>
+            <span className="text-[11px] text-neutral-400">across 10 dimensions</span>
           </div>
-          <div className="w-full bg-slate-100 rounded-full h-1.5 overflow-hidden mt-1.5">
+          <div className="w-full bg-white/[0.08] rounded-full h-1.5 overflow-hidden mt-1.5">
             <div 
-              className="bg-indigo-600 h-1.5 rounded-full" 
+              className="bg-gradient-to-r from-orange-500 to-red-500 h-1.5 rounded-full" 
               style={{ width: `${Math.round(report.confidence_score * 100)}%` }}
             />
           </div>
@@ -158,55 +158,55 @@ export default function AIInspectionAuditView({ report }) {
       </div>
 
       {/* The 10 Checks Verification Table */}
-      <div className="border border-slate-200 rounded-xl bg-white shadow-xs overflow-hidden">
-        <div className="px-5 py-3.5 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
-          <h4 className="font-bold text-slate-800 text-xs uppercase tracking-wider flex items-center gap-1.5">
-            <ShieldCheck className="w-4 h-4 text-indigo-600" />
+      <div className="border border-white/[0.08] rounded-2xl bg-[#0e0e13]/85 backdrop-blur-xl shadow-2xl overflow-hidden">
+        <div className="px-5 py-3.5 bg-white/[0.03] border-b border-white/[0.08] flex items-center justify-between">
+          <h4 className="font-bold text-white text-xs uppercase tracking-wider flex items-center gap-1.5">
+            <ShieldCheck className="w-4 h-4 text-orange-400" />
             Standardized 10-Check Audit Matrix (Zero-Guessing Enforced)
           </h4>
-          <span className="text-[11px] text-slate-500">
+          <span className="text-[11px] text-neutral-400">
             UNCERTAIN returned whenever photo evidence is insufficient
           </span>
         </div>
 
-        <div className="divide-y divide-slate-100">
+        <div className="divide-y divide-white/[0.06]">
           {CHECK_DEFINITIONS.map(def => {
             const check = report.checks?.[def.key];
             if (!check) return null;
 
             return (
-              <div key={def.key} className="p-4 hover:bg-slate-50/50 transition-colors space-y-2">
+              <div key={def.key} className="p-4 hover:bg-white/[0.02] transition-colors space-y-2">
                 {/* Header row */}
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                   <div className="flex items-center gap-2.5">
-                    <span className="font-bold text-slate-900 text-xs">{def.label}</span>
-                    <span className="text-[10px] text-slate-400 uppercase font-medium bg-slate-100 px-1.5 py-0.2 rounded">
+                    <span className="font-bold text-white text-xs">{def.label}</span>
+                    <span className="text-[10px] text-neutral-400 uppercase font-medium bg-white/[0.06] border border-white/[0.08] px-1.5 py-0.5 rounded">
                       {def.category}
                     </span>
                   </div>
 
                   <div className="flex items-center gap-4">
-                    <span className="text-[11px] text-slate-500">
-                      Confidence: <strong className="text-slate-800">{Math.round(check.confidence * 100)}%</strong>
+                    <span className="text-[11px] text-neutral-400">
+                      Confidence: <strong className="text-white">{Math.round(check.confidence * 100)}%</strong>
                     </span>
                     {getStatusBadge(check.status)}
                   </div>
                 </div>
 
                 {/* Values comparison row */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 p-2.5 bg-slate-50 rounded-lg border border-slate-100 text-xs">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 p-3 bg-white/[0.02] rounded-xl border border-white/[0.06] text-xs">
                   <div>
-                    <span className="text-slate-500 block text-[11px]">Expected Manifest Value:</span>
-                    <span className="font-bold text-slate-900">{String(check.expected)}</span>
+                    <span className="text-neutral-400 block text-[11px]">Expected Manifest Value:</span>
+                    <span className="font-bold text-white">{String(check.expected)}</span>
                   </div>
                   <div>
-                    <span className="text-slate-500 block text-[11px]">Observed Physical Finding:</span>
+                    <span className="text-neutral-400 block text-[11px]">Observed Physical Finding:</span>
                     <span className={`font-semibold ${
                       check.status === 'FAIL' 
-                        ? 'text-rose-700 font-bold' 
+                        ? 'text-rose-400 font-bold' 
                         : check.status === 'UNCERTAIN'
-                        ? 'text-amber-800'
-                        : 'text-slate-900'
+                        ? 'text-amber-400'
+                        : 'text-emerald-400'
                     }`}>
                       {String(check.observed)}
                     </span>
@@ -214,22 +214,22 @@ export default function AIInspectionAuditView({ report }) {
                 </div>
 
                 {/* Explanation text */}
-                <p className="text-slate-600 text-xs leading-relaxed">
+                <p className="text-neutral-300 text-xs leading-relaxed">
                   {check.explanation}
                 </p>
 
                 {/* Evidence citations */}
                 {check.evidence && check.evidence.length > 0 && (
                   <div className="flex flex-wrap items-center gap-2 pt-1">
-                    <span className="text-[11px] text-slate-400 font-medium">Evidence Cited:</span>
+                    <span className="text-[11px] text-neutral-400 font-medium">Evidence Cited:</span>
                     {check.evidence.map((ev, idx) => (
                       <button
                         key={idx}
                         type="button"
                         onClick={() => setSelectedPhoto(ev.image)}
-                        className="inline-flex items-center gap-1.5 px-2 py-0.5 bg-white border border-slate-200 hover:border-indigo-300 rounded text-[11px] font-mono text-slate-700 shadow-2xs hover:text-indigo-600 transition-colors"
+                        className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-white/[0.04] border border-white/[0.08] hover:border-orange-500/50 hover:bg-white/[0.08] rounded-lg text-[11px] font-mono text-neutral-300 hover:text-white transition-all shadow-sm"
                       >
-                        <Camera className="w-3 h-3 text-slate-400" />
+                        <Camera className="w-3 h-3 text-orange-400" />
                         <span>{ev.image}</span>
                       </button>
                     ))}
@@ -248,14 +248,14 @@ export default function AIInspectionAuditView({ report }) {
         title="Evidence Photographic Proof"
         maxWidth="max-w-4xl"
       >
-        <div className="p-2 bg-slate-900 rounded-lg text-center overflow-hidden">
+        <div className="p-3 bg-black/60 border border-white/[0.08] rounded-xl text-center overflow-hidden">
           <p className="text-white text-xs font-mono mb-2">{selectedPhoto}</p>
           <img
             src={selectedPhoto?.startsWith('http') ? selectedPhoto : `/uploads/${selectedPhoto}`}
             alt="Cited evidence"
-            className="max-h-[70vh] mx-auto object-contain rounded"
+            className="max-h-[70vh] mx-auto object-contain rounded-lg"
             onError={(e) => {
-              e.target.parentElement.innerHTML = '<div class="p-8 text-white text-xs">Photo evidence visual preview</div>';
+              e.target.parentElement.innerHTML = '<div class="p-8 text-neutral-300 text-xs">Photo evidence visual preview</div>';
             }}
           />
         </div>

@@ -25,7 +25,6 @@ export default function Sidebar({ activeTab, setActiveTab, openExceptionsCount =
       label: 'Exceptions', 
       icon: AlertTriangle, 
       badge: openExceptionsCount > 0 ? openExceptionsCount : null,
-      badgeColor: 'bg-amber-100 text-amber-800' 
     },
     { id: 'evidence', label: 'Evidence', icon: FolderLock },
     { id: 'settings', label: 'Settings', icon: Settings2 },

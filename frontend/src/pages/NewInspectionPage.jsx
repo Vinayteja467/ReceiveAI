@@ -430,18 +430,18 @@ export default function NewInspectionPage({ setActiveTab, onInspectionCreated, i
     <div className="max-w-4xl mx-auto space-y-6">
       {/* Staged CUBE Demo Scenario Banner */}
       {scenarioData && (
-        <div className="p-3.5 bg-amber-50 border border-amber-300 rounded-xl flex items-center justify-between text-xs gap-3 shadow-2xs">
+        <div className="p-3.5 bg-amber-500/10 border border-amber-500/30 rounded-2xl flex items-center justify-between text-xs gap-3 shadow-[0_0_20px_rgba(245,158,11,0.15)] backdrop-blur-xl">
           <div className="flex items-center gap-2.5">
-            <span className="px-2 py-0.5 rounded font-black text-[10px] bg-amber-200 text-amber-900 border border-amber-300 uppercase">
+            <span className="px-2 py-0.5 rounded-lg font-black text-[10px] bg-amber-500/20 text-amber-300 border border-amber-500/40 uppercase tracking-wider">
               CUBE Scenario #{scenarioData.number}
             </span>
-            <span className="font-bold text-amber-950">{scenarioData.title}</span>
-            <span className="text-amber-800 hidden md:inline text-[11px]">— {scenarioData.summary}</span>
+            <span className="font-bold text-amber-200">{scenarioData.title}</span>
+            <span className="text-amber-300/70 hidden md:inline text-[11px]">— {scenarioData.summary}</span>
           </div>
           <button
             type="button"
             onClick={() => setStep(3)}
-            className="px-3 py-1 bg-amber-600 hover:bg-amber-700 text-white font-bold rounded-lg shrink-0 transition-colors"
+            className="px-3 py-1 bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white font-bold rounded-xl shrink-0 transition-all shadow-[0_0_12px_rgba(245,158,11,0.3)]"
           >
             Jump to Step 3 AI Check &rarr;
           </button>
@@ -449,7 +449,7 @@ export default function NewInspectionPage({ setActiveTab, onInspectionCreated, i
       )}
 
       {/* Wizard Progress Steps */}
-      <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-xs">
+      <div className="bg-[#0e0e13]/85 backdrop-blur-xl border border-white/[0.08] rounded-2xl p-4 shadow-2xl">
         <div className="flex items-center justify-between text-xs font-semibold">
           <button
             onClick={() => setStep(1)}
@@ -1061,11 +1061,11 @@ export default function NewInspectionPage({ setActiveTab, onInspectionCreated, i
         title="Receiving Evidence Photograph Zoom"
         maxWidth="max-w-4xl"
       >
-        <div className="flex items-center justify-center p-2 bg-slate-900 rounded-lg overflow-hidden">
+        <div className="flex items-center justify-center p-3 bg-black/60 border border-white/[0.08] rounded-xl overflow-hidden">
           <img
             src={previewImage}
             alt="Evidence preview"
-            className="max-h-[70vh] object-contain rounded"
+            className="max-h-[70vh] object-contain rounded-lg"
           />
         </div>
       </Modal>
