@@ -2,56 +2,56 @@ import React from 'react';
 
 const BADGE_STYLES = {
   // Positive / compliant
-  PASSED: 'bg-emerald-50 text-emerald-700 border-emerald-200 ring-emerald-600/10',
-  ACCEPTED: 'bg-emerald-50 text-emerald-700 border-emerald-200 ring-emerald-600/10',
-  RECEIVED: 'bg-emerald-50 text-emerald-700 border-emerald-200 ring-emerald-600/10',
-  RESOLVED: 'bg-emerald-50 text-emerald-700 border-emerald-200 ring-emerald-600/10',
-  AVAILABLE: 'bg-emerald-50 text-emerald-700 border-emerald-200 ring-emerald-600/10',
+  PASSED: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30 shadow-[0_0_8px_rgba(16,185,129,0.15)]',
+  ACCEPTED: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30 shadow-[0_0_8px_rgba(16,185,129,0.15)]',
+  RECEIVED: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30 shadow-[0_0_8px_rgba(16,185,129,0.15)]',
+  RESOLVED: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30 shadow-[0_0_8px_rgba(16,185,129,0.15)]',
+  AVAILABLE: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30 shadow-[0_0_8px_rgba(16,185,129,0.15)]',
 
   // Review / in progress / attention
-  IN_PROGRESS: 'bg-blue-50 text-blue-700 border-blue-200 ring-blue-600/10',
-  AT_DOCK: 'bg-indigo-50 text-indigo-700 border-indigo-200 ring-indigo-600/10',
-  INSPECTING: 'bg-indigo-50 text-indigo-700 border-indigo-200 ring-indigo-600/10',
-  OCCUPIED: 'bg-sky-50 text-sky-700 border-sky-200 ring-sky-600/10',
-  INVESTIGATING: 'bg-sky-50 text-sky-700 border-sky-200 ring-sky-600/10',
+  IN_PROGRESS: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/30 shadow-[0_0_8px_rgba(6,182,212,0.15)]',
+  AT_DOCK: 'bg-orange-500/10 text-orange-400 border-orange-500/30 shadow-[0_0_8px_rgba(249,115,22,0.15)]',
+  INSPECTING: 'bg-orange-500/10 text-orange-400 border-orange-500/30 shadow-[0_0_8px_rgba(249,115,22,0.15)]',
+  OCCUPIED: 'bg-sky-500/10 text-sky-400 border-sky-500/30 shadow-[0_0_8px_rgba(14,165,233,0.15)]',
+  INVESTIGATING: 'bg-sky-500/10 text-sky-400 border-sky-500/30 shadow-[0_0_8px_rgba(14,165,233,0.15)]',
 
   // Warning / hold / exceptions
-  FLAGGED: 'bg-amber-50 text-amber-700 border-amber-200 ring-amber-600/10',
-  PENDING_REVIEW: 'bg-amber-50 text-amber-700 border-amber-200 ring-amber-600/10',
-  ACCEPTED_WITH_EXCEPTIONS: 'bg-amber-50 text-amber-700 border-amber-200 ring-amber-600/10',
-  PARTIALLY_RECEIVED: 'bg-amber-50 text-amber-700 border-amber-200 ring-amber-600/10',
-  SUPPLIER_NOTIFIED: 'bg-amber-50 text-amber-700 border-amber-200 ring-amber-600/10',
-  SHORTAGE: 'bg-amber-50 text-amber-700 border-amber-200 ring-amber-600/10',
-  MEDIUM: 'bg-amber-50 text-amber-700 border-amber-200 ring-amber-600/10',
-  QUARANTINED: 'bg-orange-50 text-orange-700 border-orange-200 ring-orange-600/10',
+  FLAGGED: 'bg-amber-500/10 text-amber-400 border-amber-500/30 shadow-[0_0_8px_rgba(245,158,11,0.15)]',
+  PENDING_REVIEW: 'bg-amber-500/10 text-amber-400 border-amber-500/30 shadow-[0_0_8px_rgba(245,158,11,0.15)]',
+  ACCEPTED_WITH_EXCEPTIONS: 'bg-amber-500/10 text-amber-400 border-amber-500/30 shadow-[0_0_8px_rgba(245,158,11,0.15)]',
+  PARTIALLY_RECEIVED: 'bg-amber-500/10 text-amber-400 border-amber-500/30 shadow-[0_0_8px_rgba(245,158,11,0.15)]',
+  SUPPLIER_NOTIFIED: 'bg-amber-500/10 text-amber-400 border-amber-500/30 shadow-[0_0_8px_rgba(245,158,11,0.15)]',
+  SHORTAGE: 'bg-amber-500/10 text-amber-400 border-amber-500/30 shadow-[0_0_8px_rgba(245,158,11,0.15)]',
+  MEDIUM: 'bg-amber-500/10 text-amber-400 border-amber-500/30 shadow-[0_0_8px_rgba(245,158,11,0.15)]',
+  QUARANTINED: 'bg-orange-500/15 text-orange-400 border-orange-500/30 shadow-[0_0_10px_rgba(249,115,22,0.2)]',
 
   // Danger / critical / rejected
-  REJECTED: 'bg-rose-50 text-rose-700 border-rose-200 ring-rose-600/10',
-  FAILED: 'bg-rose-50 text-rose-700 border-rose-200 ring-rose-600/10',
-  HIGH: 'bg-rose-50 text-rose-700 border-rose-200 ring-rose-600/10',
-  CRITICAL: 'bg-red-100 text-red-800 border-red-300 ring-red-600/20 font-semibold',
-  PHYSICAL_DAMAGE: 'bg-rose-50 text-rose-700 border-rose-200 ring-rose-600/10',
+  REJECTED: 'bg-rose-500/15 text-rose-400 border-rose-500/30 shadow-[0_0_10px_rgba(244,63,94,0.2)]',
+  FAILED: 'bg-rose-500/15 text-rose-400 border-rose-500/30 shadow-[0_0_10px_rgba(244,63,94,0.2)]',
+  HIGH: 'bg-rose-500/15 text-rose-400 border-rose-500/30 shadow-[0_0_10px_rgba(244,63,94,0.2)]',
+  CRITICAL: 'bg-red-500/20 text-red-400 border-red-500/40 shadow-[0_0_12px_rgba(239,68,68,0.3)] font-bold',
+  PHYSICAL_DAMAGE: 'bg-rose-500/15 text-rose-400 border-rose-500/30 shadow-[0_0_10px_rgba(244,63,94,0.2)]',
 
   // Neutral / default
-  PENDING: 'bg-slate-100 text-slate-700 border-slate-200 ring-slate-600/10',
-  LOW: 'bg-slate-100 text-slate-600 border-slate-200 ring-slate-600/10',
-  OPEN: 'bg-slate-100 text-slate-700 border-slate-200 ring-slate-600/10',
+  PENDING: 'bg-white/[0.05] text-neutral-300 border-white/[0.1]',
+  LOW: 'bg-white/[0.05] text-neutral-400 border-white/[0.1]',
+  OPEN: 'bg-white/[0.05] text-neutral-300 border-white/[0.1]',
 };
 
 export default function Badge({ status, label, size = 'sm', className = '' }) {
   const normalizedStatus = String(status || '').toUpperCase().trim();
-  const style = BADGE_STYLES[normalizedStatus] || 'bg-slate-100 text-slate-700 border-slate-200 ring-slate-600/10';
+  const style = BADGE_STYLES[normalizedStatus] || 'bg-white/[0.05] text-neutral-300 border-white/[0.1]';
   const displayLabel = label || status?.replace(/_/g, ' ') || 'Unknown';
 
   const sizeClasses = size === 'xs' 
-    ? 'px-1.5 py-0.5 text-[10px]' 
+    ? 'px-2 py-0.5 text-[10px]' 
     : 'px-2.5 py-0.5 text-xs';
 
   return (
     <span
-      className={`inline-flex items-center font-medium border rounded-md uppercase tracking-wider ${sizeClasses} ${style} ${className}`}
+      className={`inline-flex items-center font-bold border rounded-full uppercase tracking-wider ${sizeClasses} ${style} ${className}`}
     >
-      <span className="w-1.5 h-1.5 rounded-full mr-1.5 fill-current opacity-70 bg-current"></span>
+      <span className="w-1.5 h-1.5 rounded-full mr-1.5 fill-current opacity-80 bg-current"></span>
       {displayLabel}
     </span>
   );

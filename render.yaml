@@ -1,4 +1,4 @@
-﻿services:
+services:
   # Backend: FastAPI Web Service
   - type: web
     name: receiveai-backend

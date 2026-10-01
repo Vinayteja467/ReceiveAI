@@ -453,34 +453,34 @@ export default function NewInspectionPage({ setActiveTab, onInspectionCreated, i
         <div className="flex items-center justify-between text-xs font-semibold">
           <button
             onClick={() => setStep(1)}
-            className={`flex items-center gap-2 transition-colors ${step >= 1 ? 'text-indigo-600' : 'text-slate-400'}`}
+            className={`flex items-center gap-2 transition-all ${step >= 1 ? 'text-white font-bold' : 'text-neutral-400'}`}
           >
-            <span className={`w-6 h-6 rounded-full flex items-center justify-center text-xs ${
-              step >= 1 ? 'bg-indigo-600 text-white' : 'bg-slate-100 text-slate-500'
+            <span className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-black ${
+              step === 1 ? 'bg-gradient-to-r from-orange-500 to-red-600 text-white shadow-[0_0_12px_rgba(255,87,34,0.4)]' : 'bg-white/[0.08] text-neutral-300 border border-white/[0.1]'
             }`}>1</span>
             <span>PO & Shipment Manifest</span>
           </button>
 
-          <div className={`w-12 h-px ${step >= 2 ? 'bg-indigo-300' : 'bg-slate-200'}`}></div>
+          <div className={`w-12 h-px ${step >= 2 ? 'bg-orange-500/50' : 'bg-white/[0.08]'}`}></div>
 
           <button
             onClick={() => setStep(2)}
-            className={`flex items-center gap-2 transition-colors ${step >= 2 ? 'text-indigo-600' : 'text-slate-400'}`}
+            className={`flex items-center gap-2 transition-all ${step >= 2 ? 'text-white font-bold' : 'text-neutral-400'}`}
           >
-            <span className={`w-6 h-6 rounded-full flex items-center justify-center text-xs ${
-              step >= 2 ? 'bg-indigo-600 text-white' : 'bg-slate-100 text-slate-500'
+            <span className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-black ${
+              step === 2 ? 'bg-gradient-to-r from-orange-500 to-red-600 text-white shadow-[0_0_12px_rgba(255,87,34,0.4)]' : 'bg-white/[0.08] text-neutral-300 border border-white/[0.1]'
             }`}>2</span>
             <span>Receiving Evidence ({uploadedEvidence.length})</span>
           </button>
 
-          <div className={`w-12 h-px ${step >= 3 ? 'bg-indigo-300' : 'bg-slate-200'}`}></div>
+          <div className={`w-12 h-px ${step >= 3 ? 'bg-orange-500/50' : 'bg-white/[0.08]'}`}></div>
 
           <button
             onClick={() => setStep(3)}
-            className={`flex items-center gap-2 transition-colors ${step >= 3 ? 'text-indigo-600' : 'text-slate-400'}`}
+            className={`flex items-center gap-2 transition-all ${step >= 3 ? 'text-white font-bold' : 'text-neutral-400'}`}
           >
-            <span className={`w-6 h-6 rounded-full flex items-center justify-center text-xs ${
-              step >= 3 ? 'bg-indigo-600 text-white' : 'bg-slate-100 text-slate-500'
+            <span className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-black ${
+              step === 3 ? 'bg-gradient-to-r from-orange-500 to-red-600 text-white shadow-[0_0_12px_rgba(255,87,34,0.4)]' : 'bg-white/[0.08] text-neutral-300 border border-white/[0.1]'
             }`}>3</span>
             <span>Verification & AI Inspection</span>
           </button>
@@ -488,8 +488,8 @@ export default function NewInspectionPage({ setActiveTab, onInspectionCreated, i
       </div>
 
       {error && (
-        <div className="p-4 bg-rose-50 border border-rose-200 rounded-lg text-rose-700 text-xs font-medium flex items-center gap-2">
-          <AlertTriangle className="w-4 h-4 shrink-0" />
+        <div className="p-4 bg-rose-500/10 border border-rose-500/30 rounded-xl text-rose-300 text-xs font-semibold flex items-center gap-2 shadow-[0_0_15px_rgba(244,63,94,0.2)]">
+          <AlertTriangle className="w-4 h-4 shrink-0 text-rose-400" />
           <span>{error}</span>
         </div>
       )}
@@ -500,7 +500,7 @@ export default function NewInspectionPage({ setActiveTab, onInspectionCreated, i
           <Card title="Step 1: Select Purchase Order" subtitle="Select inbound delivery and verify trailer details">
             <div className="space-y-4 text-xs">
               <div>
-                <label className="font-semibold text-slate-700 block mb-1.5">
+                <label className="font-bold text-neutral-300 block mb-1.5">
                   Inbound Purchase Order Manifest
                 </label>
                 <select
@@ -509,10 +509,10 @@ export default function NewInspectionPage({ setActiveTab, onInspectionCreated, i
                     const found = pos.find(p => p.id === parseInt(e.target.value, 10));
                     if (found) handleSelectPO(found);
                   }}
-                  className="w-full text-xs font-medium border border-slate-300 rounded-lg px-3 py-2.5 bg-white text-slate-800"
+                  className="w-full text-xs font-bold border border-white/[0.1] rounded-xl px-3.5 py-2.5 bg-[#121217] text-white focus:border-orange-500 focus:outline-none"
                 >
                   {pos.map(po => (
-                    <option key={po.id} value={po.id}>
+                    <option key={po.id} value={po.id} className="bg-[#121217] text-white">
                       {po.po_number} — {po.vendor_name} ({po.total_expected_units} units) [{po.status}]
                     </option>
                   ))}
@@ -521,58 +521,58 @@ export default function NewInspectionPage({ setActiveTab, onInspectionCreated, i
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="font-semibold text-slate-700 block mb-1">Dock Door Assignment</label>
+                  <label className="font-bold text-neutral-300 block mb-1.5">Dock Door Assignment</label>
                   <select
                     value={dockDoor}
                     onChange={(e) => setDockDoor(e.target.value)}
-                    className="w-full border border-slate-300 rounded-lg p-2 bg-white"
+                    className="w-full border border-white/[0.1] rounded-xl p-2.5 bg-[#121217] text-white focus:border-orange-500 focus:outline-none font-medium"
                   >
-                    <option>Dock Door 01 (Cold Dock)</option>
-                    <option>Dock Door 02</option>
-                    <option>Dock Door 03</option>
-                    <option>Dock Door 04</option>
-                    <option>Dock Door 05</option>
-                    <option>Dock Door 06</option>
-                    <option>Dock Door 07</option>
-                    <option>Dock Door 08 (HazMat)</option>
+                    <option className="bg-[#121217]">Dock Door 01 (Cold Dock)</option>
+                    <option className="bg-[#121217]">Dock Door 02</option>
+                    <option className="bg-[#121217]">Dock Door 03</option>
+                    <option className="bg-[#121217]">Dock Door 04</option>
+                    <option className="bg-[#121217]">Dock Door 05</option>
+                    <option className="bg-[#121217]">Dock Door 06</option>
+                    <option className="bg-[#121217]">Dock Door 07</option>
+                    <option className="bg-[#121217]">Dock Door 08 (HazMat)</option>
                   </select>
                 </div>
 
                 <div>
-                  <label className="font-semibold text-slate-700 block mb-1">Inspector Name & Badge</label>
+                  <label className="font-bold text-neutral-300 block mb-1.5">Inspector Name & Badge</label>
                   <input
                     value={inspectorName}
                     onChange={(e) => setInspectorName(e.target.value)}
-                    className="w-full border border-slate-300 rounded-lg p-2 bg-white"
+                    className="w-full border border-white/[0.1] rounded-xl p-2.5 bg-[#121217] text-white focus:border-orange-500 focus:outline-none font-medium"
                   />
                 </div>
               </div>
 
               {/* Security seal checks */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-                <label className="flex items-center gap-3 p-3 border rounded-lg cursor-pointer bg-white hover:bg-slate-50">
+                <label className="flex items-center gap-3 p-3.5 border border-white/[0.08] rounded-xl cursor-pointer bg-white/[0.02] hover:bg-white/[0.04] hover:border-orange-500/30 transition-all">
                   <input
                     type="checkbox"
                     checked={sealIntact}
                     onChange={(e) => setSealIntact(e.target.checked)}
-                    className="w-4 h-4 rounded text-indigo-600"
+                    className="w-4 h-4 rounded accent-orange-500 cursor-pointer"
                   />
                   <div>
-                    <span className="font-semibold text-slate-800 block">Trailer Bolt Seal Intact</span>
-                    <span className="text-[11px] text-slate-500">Seal verified before trailer door opening</span>
+                    <span className="font-bold text-white block">Trailer Bolt Seal Intact</span>
+                    <span className="text-[11px] text-neutral-400">Seal verified before trailer door opening</span>
                   </div>
                 </label>
 
-                <label className="flex items-center gap-3 p-3 border rounded-lg cursor-pointer bg-white hover:bg-slate-50">
+                <label className="flex items-center gap-3 p-3.5 border border-white/[0.08] rounded-xl cursor-pointer bg-white/[0.02] hover:bg-white/[0.04] hover:border-orange-500/30 transition-all">
                   <input
                     type="checkbox"
                     checked={bolMatch}
                     onChange={(e) => setBolMatch(e.target.checked)}
-                    className="w-4 h-4 rounded text-indigo-600"
+                    className="w-4 h-4 rounded accent-orange-500 cursor-pointer"
                   />
                   <div>
-                    <span className="font-semibold text-slate-800 block">BOL Packing Slip Matches Digital PO</span>
-                    <span className="text-[11px] text-slate-500">Bill of Lading manifest verified</span>
+                    <span className="font-bold text-white block">BOL Packing Slip Matches Digital PO</span>
+                    <span className="text-[11px] text-neutral-400">Bill of Lading manifest verified</span>
                   </div>
                 </label>
               </div>
@@ -586,56 +586,56 @@ export default function NewInspectionPage({ setActiveTab, onInspectionCreated, i
               subtitle={`Supplier: ${selectedPo.vendor_name} • Carrier: ${selectedPo.carrier}`}
               noPadding
             >
-              <div className="p-4 bg-slate-50/70 border-b border-slate-200/80 grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+              <div className="p-4 bg-white/[0.03] border-b border-white/[0.08] grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
                 <div>
-                  <span className="text-slate-500 block text-[11px]">PO Number</span>
-                  <span className="font-mono font-bold text-slate-900">{selectedPo.po_number}</span>
+                  <span className="text-neutral-400 block text-[11px]">PO Number</span>
+                  <span className="font-mono font-bold text-white">{selectedPo.po_number}</span>
                 </div>
                 <div>
-                  <span className="text-slate-500 block text-[11px]">Carrier & Tracking</span>
-                  <span className="font-semibold text-slate-800">{selectedPo.carrier}</span>
-                  <span className="text-[10px] font-mono text-slate-500 block">{selectedPo.tracking_number || 'N/A'}</span>
+                  <span className="text-neutral-400 block text-[11px]">Carrier & Tracking</span>
+                  <span className="font-bold text-white">{selectedPo.carrier}</span>
+                  <span className="text-[10px] font-mono text-neutral-400 block">{selectedPo.tracking_number || 'N/A'}</span>
                 </div>
                 <div>
-                  <span className="text-slate-500 block text-[11px]">Total Expected Cartons</span>
-                  <span className="font-bold text-indigo-700 text-sm">
+                  <span className="text-neutral-400 block text-[11px]">Total Expected Cartons</span>
+                  <span className="font-black text-orange-400 text-sm">
                     {(selectedPo.line_items || []).reduce((acc, li) => acc + (li.expected_carton_count || 1), 0)} cartons
                   </span>
                 </div>
                 <div>
-                  <span className="text-slate-500 block text-[11px]">Total Units</span>
-                  <span className="font-bold text-slate-900 text-sm">{selectedPo.total_expected_units} units</span>
+                  <span className="text-neutral-400 block text-[11px]">Total Units</span>
+                  <span className="font-black text-white text-sm">{selectedPo.total_expected_units} units</span>
                 </div>
               </div>
 
               {/* Line Items Table */}
               <div className="overflow-x-auto">
                 <table className="w-full text-left text-xs">
-                  <thead className="bg-slate-50 text-slate-500 font-semibold border-b border-slate-200">
+                  <thead className="bg-white/[0.03] text-neutral-400 font-bold border-b border-white/[0.08]">
                     <tr>
-                      <th className="py-2.5 px-4">SKU</th>
-                      <th className="py-2.5 px-4">Product Name</th>
-                      <th className="py-2.5 px-4">Expected Variant</th>
-                      <th className="py-2.5 px-4 text-center">Units / Carton</th>
-                      <th className="py-2.5 px-4 text-center">Expected Cartons</th>
-                      <th className="py-2.5 px-4 text-right">Expected Units</th>
+                      <th className="py-3 px-4">SKU</th>
+                      <th className="py-3 px-4">Product Name</th>
+                      <th className="py-3 px-4">Expected Variant</th>
+                      <th className="py-3 px-4 text-center">Units / Carton</th>
+                      <th className="py-3 px-4 text-center">Expected Cartons</th>
+                      <th className="py-3 px-4 text-right">Expected Units</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-100 text-slate-700">
+                  <tbody className="divide-y divide-white/[0.06] text-neutral-300">
                     {selectedPo.line_items?.map((li) => (
-                      <tr key={li.id}>
-                        <td className="py-2.5 px-4 font-mono font-bold text-slate-900">{li.sku}</td>
-                        <td className="py-2.5 px-4 font-medium text-slate-800">{li.item_name}</td>
-                        <td className="py-2.5 px-4">
-                          <span className="font-semibold text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-200 text-[11px]">
+                      <tr key={li.id} className="hover:bg-white/[0.02]">
+                        <td className="py-3 px-4 font-mono font-bold text-white">{li.sku}</td>
+                        <td className="py-3 px-4 font-medium text-white">{li.item_name}</td>
+                        <td className="py-3 px-4">
+                          <span className="font-bold text-orange-300 bg-orange-500/15 px-2.5 py-0.5 rounded-full border border-orange-500/30 text-[11px]">
                             {li.expected_variant || 'Standard'}
                           </span>
                         </td>
-                        <td className="py-2.5 px-4 text-center font-semibold text-slate-800">{li.expected_units_per_carton || 12}</td>
-                        <td className="py-2.5 px-4 text-center font-bold text-indigo-700 bg-indigo-50/40">
+                        <td className="py-3 px-4 text-center font-bold text-white">{li.expected_units_per_carton || 12}</td>
+                        <td className="py-3 px-4 text-center font-bold text-orange-400">
                           {li.expected_carton_count || 1} ctns
                         </td>
-                        <td className="py-2.5 px-4 text-right font-bold text-slate-900">{li.expected_qty} units</td>
+                        <td className="py-3 px-4 text-right font-black text-white">{li.expected_qty} units</td>
                       </tr>
                     ))}
                   </tbody>
@@ -648,7 +648,7 @@ export default function NewInspectionPage({ setActiveTab, onInspectionCreated, i
             <button
               type="button"
               onClick={() => setStep(2)}
-              className="inline-flex items-center gap-1.5 px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-xs font-bold shadow-xs transition-colors"
+              className="inline-flex items-center gap-2 px-6 py-2.5 bg-gradient-to-r from-orange-500 via-rose-500 to-red-600 hover:from-orange-400 hover:to-red-500 text-white rounded-full text-xs font-extrabold shadow-[0_0_20px_rgba(255,87,34,0.4)] transition-all hover:scale-[1.02]"
             >
               <span>Proceed to Evidence Photography</span>
               <ArrowRight className="w-4 h-4" />
@@ -667,9 +667,9 @@ export default function NewInspectionPage({ setActiveTab, onInspectionCreated, i
               <button
                 type="button"
                 onClick={loadDemoReceivingPhotos}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 rounded-lg text-xs font-bold border border-indigo-200 transition-colors shadow-2xs"
+                className="inline-flex items-center gap-1.5 px-4 py-1.5 bg-gradient-to-r from-orange-500 via-rose-500 to-red-600 hover:from-orange-400 hover:to-red-500 text-white rounded-full text-xs font-bold shadow-[0_0_15px_rgba(255,87,34,0.35)] transition-all hover:scale-[1.02]"
               >
-                <Sparkles className="w-3.5 h-3.5 text-indigo-600" />
+                <Sparkles className="w-3.5 h-3.5 fill-current" />
                 <span>Load Demo Receiving Photos</span>
               </button>
             }
@@ -677,7 +677,7 @@ export default function NewInspectionPage({ setActiveTab, onInspectionCreated, i
             <div className="space-y-5 text-xs">
               {/* Category Selector Tabs */}
               <div>
-                <label className="font-bold text-slate-700 block mb-2 uppercase tracking-wider text-[11px]">
+                <label className="font-bold text-neutral-300 block mb-2 uppercase tracking-wider text-[11px]">
                   Select Evidence Category
                 </label>
                 <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
@@ -686,14 +686,14 @@ export default function NewInspectionPage({ setActiveTab, onInspectionCreated, i
                       key={cat.id}
                       type="button"
                       onClick={() => setSelectedCategory(cat.id)}
-                      className={`p-2.5 rounded-lg border text-left transition-all ${
+                      className={`p-3 rounded-xl border text-left transition-all ${
                         selectedCategory === cat.id
-                          ? 'border-indigo-600 bg-indigo-50/80 text-indigo-950 font-bold ring-1 ring-indigo-600'
-                          : 'border-slate-200 bg-white hover:bg-slate-50 text-slate-700'
+                          ? 'border-orange-500 bg-orange-500/15 text-white font-bold shadow-[0_0_12px_rgba(255,87,34,0.25)]'
+                          : 'border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.06] text-neutral-300'
                       }`}
                     >
-                      <span className="block text-xs">{cat.label}</span>
-                      <span className="text-[10px] text-slate-500 font-normal line-clamp-1">{cat.desc}</span>
+                      <span className="block text-xs font-bold">{cat.label}</span>
+                      <span className="text-[10px] text-neutral-400 font-normal line-clamp-1 mt-0.5">{cat.desc}</span>
                     </button>
                   ))}
                 </div>
@@ -707,7 +707,7 @@ export default function NewInspectionPage({ setActiveTab, onInspectionCreated, i
                   e.preventDefault();
                   handleFilesSelected(e.dataTransfer.files);
                 }}
-                className="border-2 border-dashed border-slate-300 hover:border-indigo-500 rounded-xl p-6 text-center bg-slate-50/50 hover:bg-indigo-50/30 transition-all cursor-pointer group"
+                className="border-2 border-dashed border-white/[0.12] hover:border-orange-500/50 rounded-2xl p-7 text-center bg-white/[0.02] hover:bg-white/[0.04] transition-all cursor-pointer group"
               >
                 <input
                   type="file"
@@ -718,39 +718,39 @@ export default function NewInspectionPage({ setActiveTab, onInspectionCreated, i
                   className="hidden"
                 />
 
-                <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center mx-auto mb-2 text-indigo-600 border border-slate-200 shadow-2xs group-hover:scale-105 transition-transform">
+                <div className="w-12 h-12 bg-white/[0.06] rounded-full flex items-center justify-center mx-auto mb-2.5 text-orange-400 border border-white/[0.1] shadow-inner group-hover:scale-105 transition-transform">
                   <Upload className="w-6 h-6" />
                 </div>
 
-                <p className="font-bold text-slate-800 text-sm">
+                <p className="font-extrabold text-white text-sm">
                   Click to browse or drag and drop photographs here
                 </p>
-                <p className="text-slate-500 text-xs mt-1">
-                  Tagging under: <strong className="text-indigo-700">{selectedCategory}</strong> • Supports JPG, PNG, WEBP (max 15MB each)
+                <p className="text-neutral-400 text-xs mt-1">
+                  Tagging under: <strong className="text-orange-400">{selectedCategory}</strong> • Supports JPG, PNG, WEBP (max 15MB each)
                 </p>
               </div>
 
               {/* Uploaded Photographs Gallery */}
               <div>
-                <div className="flex items-center justify-between mb-3 border-b border-slate-100 pb-2">
+                <div className="flex items-center justify-between mb-3 border-b border-white/[0.08] pb-2">
                   <div className="flex items-center gap-2">
-                    <Camera className="w-4 h-4 text-indigo-600" />
-                    <h4 className="font-bold text-slate-900 text-xs">
+                    <Camera className="w-4 h-4 text-orange-400" />
+                    <h4 className="font-bold text-white text-xs">
                       Attached Receiving Evidence ({uploadedEvidence.length} photographs)
                     </h4>
                   </div>
                   {uploadedEvidence.length > 0 && (
-                    <span className="text-[11px] text-emerald-700 font-semibold bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+                    <span className="text-[11px] text-emerald-400 font-bold bg-emerald-500/10 px-2.5 py-0.5 rounded-full border border-emerald-500/30">
                       ✓ Ready for Inspection
                     </span>
                   )}
                 </div>
 
                 {uploadedEvidence.length === 0 ? (
-                  <div className="p-8 text-center bg-slate-50 border border-slate-200 rounded-xl text-slate-400">
-                    <Camera className="w-8 h-8 mx-auto mb-2 text-slate-300" />
+                  <div className="p-8 text-center bg-white/[0.02] border border-white/[0.08] rounded-2xl text-neutral-400">
+                    <Camera className="w-8 h-8 mx-auto mb-2 text-neutral-500" />
                     <p className="font-medium">No receiving photographs attached yet.</p>
-                    <p className="text-[11px] text-slate-400 mt-0.5">
+                    <p className="text-[11px] text-neutral-500 mt-0.5">
                       Upload packaging/product photos or click "Load Demo Receiving Photos" above.
                     </p>
                   </div>
@@ -759,11 +759,11 @@ export default function NewInspectionPage({ setActiveTab, onInspectionCreated, i
                     {uploadedEvidence.map((ev, index) => (
                       <div
                         key={ev.id || index}
-                        className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-2xs group hover:border-slate-300 transition-all flex flex-col justify-between"
+                        className="bg-[#121217] border border-white/[0.08] rounded-xl overflow-hidden shadow-lg group hover:border-orange-500/40 transition-all flex flex-col justify-between"
                       >
                         {/* Thumbnail Container */}
                         <div 
-                          className="h-32 bg-slate-100 relative overflow-hidden cursor-pointer"
+                          className="h-32 bg-black/40 relative overflow-hidden cursor-pointer"
                           onClick={() => setPreviewImage(ev.url || ev.file_path)}
                         >
                           <img
@@ -772,39 +772,39 @@ export default function NewInspectionPage({ setActiveTab, onInspectionCreated, i
                             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
                             onError={(e) => {
                               e.target.style.display = 'none';
-                              e.target.parentElement.innerHTML = '<div class="h-full flex items-center justify-center text-slate-400 text-xs">Image Preview</div>';
+                              e.target.parentElement.innerHTML = '<div class="h-full flex items-center justify-center text-neutral-500 text-xs">Image Preview</div>';
                             }}
                           />
 
                           {/* Category Tag */}
                           <div className="absolute top-2 left-2">
-                            <span className="bg-slate-900/80 backdrop-blur-xs text-white text-[10px] font-bold px-2 py-0.5 rounded shadow-xs">
+                            <span className="bg-black/80 backdrop-blur-xs text-white text-[10px] font-bold px-2 py-0.5 rounded-full border border-white/10 shadow-xs">
                               {ev.category}
                             </span>
                           </div>
 
                           {/* Quick Zoom Overlay */}
-                          <div className="absolute inset-0 bg-slate-900/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white">
+                          <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white">
                             <Eye className="w-5 h-5 drop-shadow" />
                           </div>
                         </div>
 
                         {/* File details & Remove */}
                         <div className="p-3 space-y-1.5">
-                          <p className="font-medium text-slate-800 text-xs truncate" title={ev.file_name}>
+                          <p className="font-bold text-white text-xs truncate" title={ev.file_name}>
                             {ev.file_name}
                           </p>
 
-                          <div className="flex items-center justify-between text-[11px] text-slate-500">
+                          <div className="flex items-center justify-between text-[11px] text-neutral-400">
                             <span>{(ev.file_size_bytes / 1024 / 1024).toFixed(2)} MB</span>
-                            <span className="text-emerald-700 font-semibold">Stored</span>
+                            <span className="text-emerald-400 font-bold">Stored</span>
                           </div>
 
-                          <div className="pt-2 border-t border-slate-100 flex items-center justify-between">
+                          <div className="pt-2 border-t border-white/[0.06] flex items-center justify-between">
                             <button
                               type="button"
                               onClick={() => setPreviewImage(ev.url || ev.file_path)}
-                              className="text-[11px] font-semibold text-indigo-600 hover:text-indigo-800"
+                              className="text-[11px] font-bold text-orange-400 hover:text-orange-300"
                             >
                               Zoom In
                             </button>
@@ -812,7 +812,7 @@ export default function NewInspectionPage({ setActiveTab, onInspectionCreated, i
                             <button
                               type="button"
                               onClick={(e) => handleRemoveEvidence(ev.id, e)}
-                              className="text-rose-500 hover:text-rose-700 p-1 hover:bg-rose-50 rounded transition-colors"
+                              className="text-rose-400 hover:text-rose-300 p-1 hover:bg-rose-500/10 rounded transition-colors"
                               title="Remove photograph"
                             >
                               <Trash2 className="w-3.5 h-3.5" />
@@ -827,11 +827,11 @@ export default function NewInspectionPage({ setActiveTab, onInspectionCreated, i
             </div>
 
             {/* Navigation buttons */}
-            <div className="flex items-center justify-between pt-4 mt-4 border-t border-slate-100">
+            <div className="flex items-center justify-between pt-4 mt-4 border-t border-white/[0.08]">
               <button
                 type="button"
                 onClick={() => setStep(1)}
-                className="inline-flex items-center gap-1.5 px-4 py-2 border border-slate-300 text-slate-700 hover:bg-slate-50 rounded-lg text-xs font-semibold"
+                className="inline-flex items-center gap-1.5 px-5 py-2.5 border border-white/[0.1] text-neutral-300 hover:text-white hover:bg-white/[0.05] rounded-full text-xs font-bold transition-all"
               >
                 <ArrowLeft className="w-4 h-4" /> Back to Shipment
               </button>
@@ -839,7 +839,7 @@ export default function NewInspectionPage({ setActiveTab, onInspectionCreated, i
               <button
                 type="button"
                 onClick={() => setStep(3)}
-                className="inline-flex items-center gap-1.5 px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-xs font-bold shadow-xs transition-colors"
+                className="inline-flex items-center gap-2 px-6 py-2.5 bg-gradient-to-r from-orange-500 via-rose-500 to-red-600 hover:from-orange-400 hover:to-red-500 text-white rounded-full text-xs font-extrabold shadow-[0_0_20px_rgba(255,87,34,0.4)] transition-all hover:scale-[1.02]"
               >
                 <span>Proceed to Inspection & AI Check</span>
                 <ArrowRight className="w-4 h-4" />
@@ -857,15 +857,15 @@ export default function NewInspectionPage({ setActiveTab, onInspectionCreated, i
             title="AI-Powered Receiving Inspection Service"
             subtitle="Trigger vision model pipeline to verify evidence photos against purchase order specifications"
           >
-            <div className="p-4 bg-gradient-to-r from-indigo-50/70 via-white to-blue-50/70 border border-indigo-100 rounded-xl space-y-4">
+            <div className="p-5 bg-gradient-to-r from-orange-500/10 via-neutral-900 to-rose-500/10 border border-orange-500/25 rounded-2xl space-y-4 shadow-xl">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center text-white shadow-xs shrink-0">
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-orange-500 to-red-600 flex items-center justify-center text-white shadow-[0_0_15px_rgba(255,87,34,0.4)] shrink-0">
                     <Bot className="w-5 h-5" />
                   </div>
                   <div>
-                    <h4 className="font-bold text-slate-900 text-sm">Computer Vision Inspection Pipeline</h4>
-                    <p className="text-xs text-slate-500">
+                    <h4 className="font-extrabold text-white text-sm">Computer Vision Inspection Pipeline</h4>
+                    <p className="text-xs text-neutral-400">
                       Staged for: {uploadedEvidence.length} evidence photographs across {new Set(uploadedEvidence.map(e => e.category)).size} categories
                     </p>
                   </div>
@@ -877,7 +877,7 @@ export default function NewInspectionPage({ setActiveTab, onInspectionCreated, i
                     type="button"
                     onClick={handleRunAiInspection}
                     disabled={aiRunning || uploadedEvidence.length === 0}
-                    className="inline-flex items-center gap-2 px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-xs font-bold shadow-xs transition-colors disabled:opacity-50"
+                    className="inline-flex items-center gap-2 px-6 py-2.5 bg-gradient-to-r from-orange-500 via-rose-500 to-red-600 hover:from-orange-400 hover:to-red-500 text-white rounded-full text-xs font-extrabold shadow-[0_0_20px_rgba(255,87,34,0.45)] transition-all disabled:opacity-50"
                   >
                     <Sparkles className={`w-4 h-4 ${aiRunning ? 'animate-spin' : ''}`} />
                     <span>{aiRunning ? 'Connecting AI Pipeline...' : 'Run AI Inspection'}</span>
@@ -891,9 +891,9 @@ export default function NewInspectionPage({ setActiveTab, onInspectionCreated, i
                         if (setSelectedInspectionId) setSelectedInspectionId(aiResult.inspection_id || activeInspectionId);
                         if (setActiveTab) setActiveTab('inspection-results');
                       }}
-                      className="inline-flex items-center gap-2 px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-xs font-bold shadow-xs transition-colors"
+                      className="inline-flex items-center gap-2 px-5 py-2.5 bg-white/[0.08] hover:bg-white/[0.15] border border-white/[0.15] text-white rounded-full text-xs font-bold transition-all shadow-sm"
                     >
-                      <FileText className="w-4 h-4" />
+                      <FileText className="w-4 h-4 text-orange-400" />
                       <span>View Full Inspection Results Page</span>
                     </button>
                   )}
@@ -916,12 +916,12 @@ export default function NewInspectionPage({ setActiveTab, onInspectionCreated, i
           >
             <div className="space-y-4 text-xs">
               {inspectionItems.map((item, index) => (
-                <div key={item.sku} className="p-4 border border-slate-200 rounded-xl bg-white shadow-2xs space-y-3">
-                  <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 pb-2">
+                <div key={item.sku} className="p-4 border border-white/[0.08] rounded-xl bg-white/[0.02] space-y-3">
+                  <div className="flex flex-wrap items-center justify-between gap-2 border-b border-white/[0.06] pb-2">
                     <div>
-                      <span className="font-mono text-xs font-bold text-indigo-700 mr-2">{item.sku}</span>
-                      <span className="font-semibold text-slate-800 text-xs">{item.item_name}</span>
-                      <span className="ml-2 px-2 py-0.2 rounded text-[11px] font-medium bg-blue-50 text-blue-700 border border-blue-200">
+                      <span className="font-mono text-xs font-bold text-orange-400 mr-2">{item.sku}</span>
+                      <span className="font-bold text-white text-xs">{item.item_name}</span>
+                      <span className="ml-2 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-orange-500/15 text-orange-300 border border-orange-500/30">
                         Variant: {item.expected_variant || 'Standard'}
                       </span>
                     </div>
@@ -930,12 +930,12 @@ export default function NewInspectionPage({ setActiveTab, onInspectionCreated, i
 
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
                     <div>
-                      <span className="text-slate-500 block mb-1">Expected PO Qty</span>
-                      <span className="font-semibold text-slate-800">{item.expected_qty} units ({item.expected_carton_count} ctns)</span>
+                      <span className="text-neutral-400 block mb-1">Expected PO Qty</span>
+                      <span className="font-bold text-white">{item.expected_qty} units ({item.expected_carton_count} ctns)</span>
                     </div>
 
                     <div>
-                      <label className="text-slate-500 block mb-1">Sample Count</label>
+                      <label className="text-neutral-400 block mb-1">Sample Count</label>
                       <input
                         type="number"
                         min="1"
@@ -946,12 +946,12 @@ export default function NewInspectionPage({ setActiveTab, onInspectionCreated, i
                           copy[index].passed_quantity = Math.max(0, copy[index].sampled_quantity - copy[index].defective_quantity);
                           setInspectionItems(copy);
                         }}
-                        className="w-full border border-slate-300 rounded px-2 py-1 text-xs"
+                        className="w-full border border-white/[0.1] bg-[#121217] text-white rounded-lg px-2.5 py-1.5 text-xs focus:border-orange-500 focus:outline-none"
                       />
                     </div>
 
                     <div>
-                      <label className="text-slate-500 block mb-1">Defects Found</label>
+                      <label className="text-neutral-400 block mb-1">Defects Found</label>
                       <input
                         type="number"
                         min="0"
@@ -964,12 +964,12 @@ export default function NewInspectionPage({ setActiveTab, onInspectionCreated, i
                           copy[index].status = def > 0 ? 'FLAGGED' : 'PASSED';
                           setInspectionItems(copy);
                         }}
-                        className="w-full border border-slate-300 rounded px-2 py-1 text-xs font-bold text-rose-600"
+                        className="w-full border border-white/[0.1] bg-[#121217] text-rose-400 rounded-lg px-2.5 py-1.5 text-xs font-bold focus:border-orange-500 focus:outline-none"
                       />
                     </div>
 
                     <div>
-                      <label className="text-slate-500 block mb-1">Defect Reason</label>
+                      <label className="text-neutral-400 block mb-1">Defect Reason</label>
                       <select
                         value={item.defect_category}
                         onChange={(e) => {
@@ -977,14 +977,14 @@ export default function NewInspectionPage({ setActiveTab, onInspectionCreated, i
                           copy[index].defect_category = e.target.value;
                           setInspectionItems(copy);
                         }}
-                        className="w-full border border-slate-300 rounded px-2 py-1 text-xs bg-white"
+                        className="w-full border border-white/[0.1] bg-[#121217] text-white rounded-lg px-2.5 py-1.5 text-xs focus:border-orange-500 focus:outline-none"
                       >
-                        <option value="">None / Clean</option>
-                        <option value="CRUSHED_BOX">Crushed / Torn Carton</option>
-                        <option value="WATER_DAMAGE">Moisture / Water Stain</option>
-                        <option value="LABEL_MISMATCH">Barcode Unreadable</option>
-                        <option value="EXPIRY_PASSED">Expired Date Code</option>
-                        <option value="BROKEN_SEAL">Broken Tamper Tape</option>
+                        <option value="" className="bg-[#121217]">None / Clean</option>
+                        <option value="CRUSHED_BOX" className="bg-[#121217]">Crushed / Torn Carton</option>
+                        <option value="WATER_DAMAGE" className="bg-[#121217]">Moisture / Water Stain</option>
+                        <option value="LABEL_MISMATCH" className="bg-[#121217]">Barcode Unreadable</option>
+                        <option value="EXPIRY_PASSED" className="bg-[#121217]">Expired Date Code</option>
+                        <option value="BROKEN_SEAL" className="bg-[#121217]">Broken Tamper Tape</option>
                       </select>
                     </div>
                   </div>
@@ -994,48 +994,48 @@ export default function NewInspectionPage({ setActiveTab, onInspectionCreated, i
               {/* Disposition & Notes */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
                 <div>
-                  <label className="font-semibold text-slate-700 block mb-1">Cargo Temp Reading (°C)</label>
+                  <label className="font-bold text-neutral-300 block mb-1.5">Cargo Temp Reading (°C)</label>
                   <input
                     type="number"
                     step="0.1"
                     value={temperatureReading}
                     onChange={(e) => setTemperatureReading(e.target.value)}
-                    className="w-full border border-slate-300 rounded-lg p-2 bg-white"
+                    className="w-full border border-white/[0.1] rounded-xl p-2.5 bg-[#121217] text-white focus:border-orange-500 focus:outline-none"
                   />
                 </div>
 
                 <div>
-                  <label className="font-semibold text-slate-700 block mb-1">Final Quality Disposition</label>
+                  <label className="font-bold text-neutral-300 block mb-1.5">Final Quality Disposition</label>
                   <select
                     value={disposition}
                     onChange={(e) => setDisposition(e.target.value)}
-                    className="w-full border border-slate-300 rounded-lg p-2 bg-white font-bold text-slate-900"
+                    className="w-full border border-white/[0.1] rounded-xl p-2.5 bg-[#121217] font-bold text-white focus:border-orange-500 focus:outline-none"
                   >
-                    <option value="ACCEPTED">ACCEPTED (Clear for Putaway)</option>
-                    <option value="ACCEPTED_WITH_EXCEPTIONS">ACCEPTED WITH EXCEPTIONS</option>
-                    <option value="QUARANTINED">QUARANTINED (Hold in QA Bay)</option>
-                    <option value="REJECTED">REJECTED (Refuse Delivery)</option>
+                    <option value="ACCEPTED" className="bg-[#121217]">ACCEPTED (Clear for Putaway)</option>
+                    <option value="ACCEPTED_WITH_EXCEPTIONS" className="bg-[#121217]">ACCEPTED WITH EXCEPTIONS</option>
+                    <option value="QUARANTINED" className="bg-[#121217]">QUARANTINED (Hold in QA Bay)</option>
+                    <option value="REJECTED" className="bg-[#121217]">REJECTED (Refuse Delivery)</option>
                   </select>
                 </div>
               </div>
 
               <div>
-                <label className="font-semibold text-slate-700 block mb-1">Inspector Log & Observation Notes</label>
+                <label className="font-bold text-neutral-300 block mb-1.5">Inspector Log & Observation Notes</label>
                 <textarea
                   rows="2"
                   value={inspectorNotes}
                   onChange={(e) => setInspectorNotes(e.target.value)}
                   placeholder="Receiving findings, trailer condition, packaging remarks..."
-                  className="w-full border border-slate-300 rounded-lg p-2.5 bg-white"
+                  className="w-full border border-white/[0.1] rounded-xl p-3 bg-[#121217] text-white placeholder-neutral-500 focus:border-orange-500 focus:outline-none"
                 />
               </div>
             </div>
 
-            <div className="flex items-center justify-between pt-4 mt-4 border-t border-slate-100">
+            <div className="flex items-center justify-between pt-4 mt-4 border-t border-white/[0.08]">
               <button
                 type="button"
                 onClick={() => setStep(2)}
-                className="inline-flex items-center gap-1.5 px-4 py-2 border border-slate-300 text-slate-700 hover:bg-slate-50 rounded-lg text-xs font-semibold"
+                className="inline-flex items-center gap-1.5 px-5 py-2.5 border border-white/[0.1] text-neutral-300 hover:text-white hover:bg-white/[0.05] rounded-full text-xs font-bold transition-all"
               >
                 <ArrowLeft className="w-4 h-4" /> Back to Evidence
               </button>
@@ -1044,7 +1044,7 @@ export default function NewInspectionPage({ setActiveTab, onInspectionCreated, i
                 type="button"
                 onClick={handleFinalize}
                 disabled={submittingFinal}
-                className="inline-flex items-center gap-1.5 px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-xs font-bold shadow-xs transition-colors disabled:opacity-50"
+                className="inline-flex items-center gap-2 px-6 py-2.5 bg-gradient-to-r from-orange-500 via-rose-500 to-red-600 hover:from-orange-400 hover:to-red-500 text-white rounded-full text-xs font-extrabold shadow-[0_0_20px_rgba(255,87,34,0.4)] transition-all disabled:opacity-50 hover:scale-[1.02]"
               >
                 <CheckCircle2 className="w-4 h-4" />
                 <span>{submittingFinal ? 'Finalizing Inspection...' : 'Finalize & Record Inspection'}</span>

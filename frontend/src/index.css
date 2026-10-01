@@ -4,25 +4,57 @@
 
 @layer base {
   body {
-    @apply bg-slate-50 text-slate-900;
+    @apply bg-[#040406] text-neutral-100 antialiased;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
 }
 
-/* Custom subtle scrollbars */
+/* Custom sleek dark scrollbars */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f5f9;
+  background: #09090c;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-  border-radius: 3px;
+  background: #23232b;
+  border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+  background: #ff5722;
+}
+
+/* Radiant background ambient effects matching MyAdSphere */
+.myadsphere-bg {
+  background-color: #040406;
+  background-image: 
+    radial-gradient(circle 900px at 50% -100px, rgba(235, 68, 30, 0.22), transparent 70%),
+    radial-gradient(circle 700px at 90% 80%, rgba(220, 50, 15, 0.15), transparent 65%),
+    radial-gradient(circle 500px at 10% 40%, rgba(255, 100, 40, 0.08), transparent 60%);
+  background-attachment: fixed;
+}
+
+/* Glassmorphism surfaces */
+.glass-panel {
+  background: rgba(14, 14, 18, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-panel-hover:hover {
+  border-color: rgba(255, 255, 255, 0.16);
+  box-shadow: 0 0 25px rgba(255, 87, 34, 0.1);
+}
+
+.glow-orange {
+  box-shadow: 0 0 25px rgba(255, 87, 34, 0.45);
+}
+
+.glow-orange-sm {
+  box-shadow: 0 0 12px rgba(255, 87, 34, 0.35);
 }

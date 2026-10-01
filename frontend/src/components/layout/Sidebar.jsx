@@ -32,38 +32,38 @@ export default function Sidebar({ activeTab, setActiveTab, openExceptionsCount =
   ];
 
   return (
-    <aside className="w-64 bg-white border-r border-slate-200/90 flex flex-col h-screen select-none shrink-0">
+    <aside className="w-64 bg-[#070709]/95 backdrop-blur-xl border-r border-white/[0.08] flex flex-col h-screen select-none shrink-0 z-20">
       {/* Brand Header */}
-      <div className="h-16 px-5 border-b border-slate-100 flex items-center justify-between">
+      <div className="h-16 px-5 border-b border-white/[0.08] flex items-center justify-between">
         <div className="flex items-center gap-2.5">
-          <div className="w-9 h-9 rounded-lg bg-indigo-600 flex items-center justify-center text-white shadow-xs">
+          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-orange-500 via-rose-500 to-red-600 flex items-center justify-center text-white shadow-[0_0_15px_rgba(255,87,34,0.45)]">
             <Box className="w-5 h-5 stroke-[2.2]" />
           </div>
           <div>
             <div className="flex items-center gap-1.5">
-              <span className="font-bold text-slate-900 tracking-tight text-base">ReceiveAI</span>
-              <span className="text-[10px] uppercase font-semibold tracking-wider px-1.5 py-0.5 rounded bg-indigo-50 text-indigo-700 border border-indigo-100">RCV</span>
+              <span className="font-extrabold text-white tracking-tight text-base">ReceiveAI</span>
+              <span className="text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded-full bg-orange-500/15 text-orange-400 border border-orange-500/30">RCV</span>
             </div>
-            <p className="text-[11px] text-slate-500 font-medium">Inspection Manager</p>
+            <p className="text-[11px] text-neutral-400 font-medium">Inspection Manager</p>
           </div>
         </div>
       </div>
 
       {/* Facility & Shift Widget */}
-      <div className="p-3 mx-3 my-3 bg-slate-50 border border-slate-200/70 rounded-lg">
+      <div className="p-3 mx-3 my-3 bg-white/[0.03] border border-white/[0.08] rounded-xl">
         <div className="flex items-center justify-between">
-          <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Warehouse Dock</span>
-          <span className="inline-flex items-center gap-1 text-[10px] font-medium text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Live
+          <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-400">Warehouse Dock</span>
+          <span className="inline-flex items-center gap-1.5 text-[10px] font-semibold text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded-full">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_6px_#34d399] animate-pulse"></span> Live
           </span>
         </div>
-        <p className="text-xs font-semibold text-slate-800 mt-1">DFW Inbound Hub 04</p>
-        <p className="text-[11px] text-slate-500">Bays 01-08 Operational</p>
+        <p className="text-xs font-bold text-white mt-1">DFW Inbound Hub 04</p>
+        <p className="text-[11px] text-neutral-400">Bays 01-08 Operational</p>
       </div>
 
       {/* Navigation List */}
       <div className="px-3 py-2 flex-1 overflow-y-auto space-y-1">
-        <div className="px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider text-slate-400">
+        <div className="px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-neutral-400">
           Receiving Operations
         </div>
 
@@ -75,29 +75,27 @@ export default function Sidebar({ activeTab, setActiveTab, openExceptionsCount =
             <button
               key={item.id}
               onClick={() => setActiveTab(item.id)}
-              className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs font-medium transition-all ${
+              className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-medium transition-all ${
                 isActive
-                  ? 'bg-indigo-50/80 text-indigo-700 font-semibold border border-indigo-100/80 shadow-2xs'
-                  : item.highlight
-                  ? 'text-slate-800 hover:bg-slate-100/80 hover:text-slate-900'
-                  : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
+                  ? 'bg-gradient-to-r from-orange-500/20 via-orange-500/10 to-transparent text-white font-bold border-l-2 border-orange-500 shadow-[inset_0_0_15px_rgba(255,87,34,0.12)]'
+                  : 'text-neutral-400 hover:bg-white/[0.05] hover:text-white'
               }`}
             >
               <div className="flex items-center gap-2.5">
                 <Icon
                   className={`w-4 h-4 transition-colors ${
-                    isActive ? 'text-indigo-600' : 'text-slate-400 group-hover:text-slate-600'
+                    isActive ? 'text-orange-400 drop-shadow-[0_0_6px_rgba(249,115,22,0.5)]' : 'text-neutral-500 group-hover:text-neutral-300'
                   }`}
                 />
                 <span>{item.label}</span>
               </div>
 
               {item.badge !== undefined && item.badge !== null ? (
-                <span className={`px-1.5 py-0.2 rounded-full text-[10px] font-bold ${item.badgeColor}`}>
+                <span className="px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-orange-500/20 text-orange-300 border border-orange-500/30 shadow-[0_0_8px_rgba(249,115,22,0.3)]">
                   {item.badge}
                 </span>
               ) : (
-                isActive && <ChevronRight className="w-3.5 h-3.5 text-indigo-400" />
+                isActive && <span className="w-1.5 h-1.5 rounded-full bg-orange-500 shadow-[0_0_8px_#f97316]"></span>
               )}
             </button>
           );
@@ -105,14 +103,14 @@ export default function Sidebar({ activeTab, setActiveTab, openExceptionsCount =
       </div>
 
       {/* Footer Inspector Profile */}
-      <div className="p-3 border-t border-slate-100 flex items-center justify-between bg-slate-50/50">
+      <div className="p-3 border-t border-white/[0.08] flex items-center justify-between bg-black/40">
         <div className="flex items-center gap-2.5 overflow-hidden">
-          <div className="w-8 h-8 rounded-full bg-slate-200 text-slate-700 flex items-center justify-center font-bold text-xs shrink-0">
+          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-neutral-800 to-neutral-900 border border-white/[0.1] text-orange-400 flex items-center justify-center font-bold text-xs shrink-0 shadow-inner">
             MV
           </div>
           <div className="overflow-hidden">
-            <p className="text-xs font-semibold text-slate-800 truncate">Marcus Vance</p>
-            <p className="text-[10px] text-slate-500 truncate">Lead QA Specialist #402</p>
+            <p className="text-xs font-bold text-white truncate">Marcus Vance</p>
+            <p className="text-[10px] text-neutral-400 truncate">Lead QA Specialist #402</p>
           </div>
         </div>
       </div>
