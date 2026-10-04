@@ -1,0 +1,452 @@
+[
+  {
+    "case_id": "UNIT-001",
+    "description": "Standard Inbound: HydroVessel Blue Bottle (Clean Pass)",
+    "sku": "BLUE-BOTTLE-001",
+    "item_name": "Premium Water Bottle",
+    "expected_variant": "Blue",
+    "expected_units": 24,
+    "units_per_carton": 12,
+    "expected_cartons": 2,
+    "expected_barcode": "0810024810924",
+    "required_components": [
+      "Insulated Cap",
+      "Silicone Seal Ring"
+    ],
+    "evidence_markers": [
+      "clean_pallet_cartons",
+      "label_0810024810924",
+      "sample_blue_bottle",
+      "seal_intact"
+    ],
+    "expected_disposition": "ACCEPTED",
+    "expected_violations_count": 0
+  },
+  {
+    "case_id": "UNIT-002",
+    "description": "Variant Mismatch: Supplier Shipped Matte Black instead of Blue",
+    "sku": "BLUE-BOTTLE-001",
+    "item_name": "Premium Water Bottle",
+    "expected_variant": "Blue",
+    "expected_units": 24,
+    "units_per_carton": 12,
+    "expected_cartons": 2,
+    "expected_barcode": "0810024810924",
+    "required_components": [
+      "Insulated Cap",
+      "Silicone Seal Ring"
+    ],
+    "evidence_markers": [
+      "clean_cartons",
+      "label_0810024810924",
+      "sample_matte_black_bottle",
+      "seal_intact"
+    ],
+    "expected_disposition": "EXCEPTION",
+    "expected_violations_count": 1
+  },
+  {
+    "case_id": "UNIT-003",
+    "description": "Packaging Damage: Master Carton Corner Crushed in Transit",
+    "sku": "BLUE-BOTTLE-001",
+    "item_name": "Premium Water Bottle",
+    "expected_variant": "Blue",
+    "expected_units": 24,
+    "units_per_carton": 12,
+    "expected_cartons": 2,
+    "expected_barcode": "0810024810924",
+    "required_components": [
+      "Insulated Cap",
+      "Silicone Seal Ring"
+    ],
+    "evidence_markers": [
+      "damaged_crushed_carton",
+      "label_0810024810924",
+      "sample_blue_bottle",
+      "seal_intact"
+    ],
+    "expected_disposition": "EXCEPTION",
+    "expected_violations_count": 1
+  },
+  {
+    "case_id": "UNIT-004",
+    "description": "Industrial Smart Relay: Clean Delivery (Pass)",
+    "sku": "RELAY-IND-24V",
+    "item_name": "Industrial Smart Control Relay 24V",
+    "expected_variant": "24V Industrial",
+    "expected_units": 50,
+    "units_per_carton": 25,
+    "expected_cartons": 2,
+    "expected_barcode": "0745239102481",
+    "required_components": [
+      "DIN Rail Clip",
+      "Manual"
+    ],
+    "evidence_markers": [
+      "cartons_intact",
+      "label_0745239102481",
+      "relay_sample",
+      "seal_intact"
+    ],
+    "expected_disposition": "ACCEPTED",
+    "expected_violations_count": 0
+  },
+  {
+    "case_id": "UNIT-005",
+    "description": "Barcode Discrepancy: Scanned Barcode Does Not Match PO",
+    "sku": "RELAY-IND-24V",
+    "item_name": "Industrial Smart Control Relay 24V",
+    "expected_variant": "24V Industrial",
+    "expected_units": 50,
+    "units_per_carton": 25,
+    "expected_cartons": 2,
+    "expected_barcode": "0745239102481",
+    "required_components": [
+      "DIN Rail Clip",
+      "Manual"
+    ],
+    "evidence_markers": [
+      "cartons_intact",
+      "wrong_barcode_label",
+      "relay_sample",
+      "seal_intact"
+    ],
+    "expected_disposition": "EXCEPTION",
+    "expected_violations_count": 1
+  },
+  {
+    "case_id": "UNIT-006",
+    "description": "Biomedical Cryo-Cooler: Temperature Validated (Pass)",
+    "sku": "CRYO-BOX-PRO",
+    "item_name": "Ultra-Low Temperature Shipper Box",
+    "expected_variant": "Standard",
+    "expected_units": 10,
+    "units_per_carton": 5,
+    "expected_cartons": 2,
+    "expected_barcode": "0693821049214",
+    "required_components": [
+      "VIP Insulator",
+      "Gel Packs"
+    ],
+    "evidence_markers": [
+      "cartons_intact",
+      "label_0693821049214",
+      "cryo_sample",
+      "seal_intact"
+    ],
+    "expected_disposition": "ACCEPTED",
+    "expected_violations_count": 0
+  },
+  {
+    "case_id": "UNIT-007",
+    "description": "Trailer Seal Breach: Bolt Seal Cut Prior to Receiving",
+    "sku": "CRYO-BOX-PRO",
+    "item_name": "Ultra-Low Temperature Shipper Box",
+    "expected_variant": "Standard",
+    "expected_units": 10,
+    "units_per_carton": 5,
+    "expected_cartons": 2,
+    "expected_barcode": "0693821049214",
+    "required_components": [
+      "VIP Insulator",
+      "Gel Packs"
+    ],
+    "evidence_markers": [
+      "cartons_intact",
+      "label_0693821049214",
+      "cryo_sample",
+      "seal_cut_tampered"
+    ],
+    "expected_disposition": "EXCEPTION",
+    "expected_violations_count": 1
+  },
+  {
+    "case_id": "UNIT-008",
+    "description": "Automotive Strut: Heavy Crating Clean (Pass)",
+    "sku": "STRUT-AUTO-F150",
+    "item_name": "Heavy Duty Suspension Strut",
+    "expected_variant": "Standard",
+    "expected_units": 8,
+    "units_per_carton": 2,
+    "expected_cartons": 4,
+    "expected_barcode": "0819203940129",
+    "required_components": [
+      "Mounting Bolts",
+      "Bushing Kit"
+    ],
+    "evidence_markers": [
+      "cartons_intact",
+      "label_0819203940129",
+      "strut_sample",
+      "seal_intact"
+    ],
+    "expected_disposition": "ACCEPTED",
+    "expected_violations_count": 0
+  },
+  {
+    "case_id": "UNIT-009",
+    "description": "Missing Components: Bushing Kit Absent from Packaging",
+    "sku": "STRUT-AUTO-F150",
+    "item_name": "Heavy Duty Suspension Strut",
+    "expected_variant": "Standard",
+    "expected_units": 8,
+    "units_per_carton": 2,
+    "expected_cartons": 4,
+    "expected_barcode": "0819203940129",
+    "required_components": [
+      "Mounting Bolts",
+      "Bushing Kit"
+    ],
+    "evidence_markers": [
+      "cartons_intact",
+      "label_0819203940129",
+      "strut_sample",
+      "missing_components_bushing",
+      "seal_intact"
+    ],
+    "expected_disposition": "EXCEPTION",
+    "expected_violations_count": 1
+  },
+  {
+    "case_id": "UNIT-010",
+    "description": "Carton Shortage: Only 3 of 4 Master Cartons Offloaded",
+    "sku": "STRUT-AUTO-F150",
+    "item_name": "Heavy Duty Suspension Strut",
+    "expected_variant": "Standard",
+    "expected_units": 8,
+    "units_per_carton": 2,
+    "expected_cartons": 4,
+    "expected_barcode": "0819203940129",
+    "required_components": [
+      "Mounting Bolts",
+      "Bushing Kit"
+    ],
+    "evidence_markers": [
+      "shortage_carton_missing",
+      "label_0819203940129",
+      "strut_sample",
+      "seal_intact"
+    ],
+    "expected_disposition": "EXCEPTION",
+    "expected_violations_count": 1
+  },
+  {
+    "case_id": "UNIT-011",
+    "description": "Ambiguous Visuals: Blurry Dock Camera Photo (Zero-Guessing Fail-Open)",
+    "sku": "BLUE-BOTTLE-001",
+    "item_name": "Premium Water Bottle",
+    "expected_variant": "Blue",
+    "expected_units": 24,
+    "units_per_carton": 12,
+    "expected_cartons": 2,
+    "expected_barcode": "0810024810924",
+    "required_components": [
+      "Insulated Cap"
+    ],
+    "evidence_markers": [
+      "blurry_camera_motion_glare"
+    ],
+    "expected_disposition": "HOLD_FOR_MANUAL_REVIEW",
+    "expected_violations_count": 1
+  },
+  {
+    "case_id": "UNIT-012",
+    "description": "Liquid Damage: Water-Saturated Carton Base",
+    "sku": "RELAY-IND-24V",
+    "item_name": "Industrial Smart Control Relay 24V",
+    "expected_variant": "24V Industrial",
+    "expected_units": 50,
+    "units_per_carton": 25,
+    "expected_cartons": 2,
+    "expected_barcode": "0745239102481",
+    "required_components": [
+      "DIN Rail Clip",
+      "Manual"
+    ],
+    "evidence_markers": [
+      "damaged_water_stained_carton",
+      "label_0745239102481",
+      "relay_sample",
+      "seal_intact"
+    ],
+    "expected_disposition": "EXCEPTION",
+    "expected_violations_count": 1
+  },
+  {
+    "case_id": "UNIT-013",
+    "description": "Cryo-Cooler Re-order Batch A: Validated (Pass)",
+    "sku": "CRYO-BOX-PRO",
+    "item_name": "Ultra-Low Temperature Shipper Box",
+    "expected_variant": "Standard",
+    "expected_units": 20,
+    "units_per_carton": 10,
+    "expected_cartons": 2,
+    "expected_barcode": "0693821049214",
+    "required_components": [
+      "VIP Insulator"
+    ],
+    "evidence_markers": [
+      "cartons_intact",
+      "label_0693821049214",
+      "cryo_sample",
+      "seal_intact"
+    ],
+    "expected_disposition": "ACCEPTED",
+    "expected_violations_count": 0
+  },
+  {
+    "case_id": "UNIT-014",
+    "description": "Automotive Strut Batch B: Validated (Pass)",
+    "sku": "STRUT-AUTO-F150",
+    "item_name": "Heavy Duty Suspension Strut",
+    "expected_variant": "Standard",
+    "expected_units": 4,
+    "units_per_carton": 2,
+    "expected_cartons": 2,
+    "expected_barcode": "0819203940129",
+    "required_components": [
+      "Mounting Bolts",
+      "Bushing Kit"
+    ],
+    "evidence_markers": [
+      "cartons_intact",
+      "label_0819203940129",
+      "strut_sample",
+      "seal_intact"
+    ],
+    "expected_disposition": "ACCEPTED",
+    "expected_violations_count": 0
+  },
+  {
+    "case_id": "UNIT-015",
+    "description": "HydroVessel Blue Bottle Pallet 2: Validated (Pass)",
+    "sku": "BLUE-BOTTLE-001",
+    "item_name": "Premium Water Bottle",
+    "expected_variant": "Blue",
+    "expected_units": 48,
+    "units_per_carton": 12,
+    "expected_cartons": 4,
+    "expected_barcode": "0810024810924",
+    "required_components": [
+      "Insulated Cap",
+      "Silicone Seal Ring"
+    ],
+    "evidence_markers": [
+      "cartons_intact",
+      "label_0810024810924",
+      "sample_blue_bottle",
+      "seal_intact"
+    ],
+    "expected_disposition": "ACCEPTED",
+    "expected_violations_count": 0
+  },
+  {
+    "case_id": "UNIT-016",
+    "description": "Smart Relay Distribution Batch: Validated (Pass)",
+    "sku": "RELAY-IND-24V",
+    "item_name": "Industrial Smart Control Relay 24V",
+    "expected_variant": "24V Industrial",
+    "expected_units": 100,
+    "units_per_carton": 25,
+    "expected_cartons": 4,
+    "expected_barcode": "0745239102481",
+    "required_components": [
+      "DIN Rail Clip",
+      "Manual"
+    ],
+    "evidence_markers": [
+      "cartons_intact",
+      "label_0745239102481",
+      "relay_sample",
+      "seal_intact"
+    ],
+    "expected_disposition": "ACCEPTED",
+    "expected_violations_count": 0
+  },
+  {
+    "case_id": "UNIT-017",
+    "description": "Low-Light Occlusion: Camera Lens Fingerprint / Dark Lighting",
+    "sku": "CRYO-BOX-PRO",
+    "item_name": "Ultra-Low Temperature Shipper Box",
+    "expected_variant": "Standard",
+    "expected_units": 10,
+    "units_per_carton": 5,
+    "expected_cartons": 2,
+    "expected_barcode": "0693821049214",
+    "required_components": [
+      "VIP Insulator"
+    ],
+    "evidence_markers": [
+      "dark_occluded_unclear_view"
+    ],
+    "expected_disposition": "HOLD_FOR_MANUAL_REVIEW",
+    "expected_violations_count": 1
+  },
+  {
+    "case_id": "UNIT-018",
+    "description": "Variant Mismatch: Supplier Shipped Ruby Red instead of Blue",
+    "sku": "BLUE-BOTTLE-001",
+    "item_name": "Premium Water Bottle",
+    "expected_variant": "Blue",
+    "expected_units": 24,
+    "units_per_carton": 12,
+    "expected_cartons": 2,
+    "expected_barcode": "0810024810924",
+    "required_components": [
+      "Insulated Cap"
+    ],
+    "evidence_markers": [
+      "cartons_intact",
+      "label_0810024810924",
+      "sample_ruby_red_bottle",
+      "seal_intact"
+    ],
+    "expected_disposition": "EXCEPTION",
+    "expected_violations_count": 1
+  },
+  {
+    "case_id": "UNIT-019",
+    "description": "Punctured Packaging: Forklift Fork Puncture in Side Panel",
+    "sku": "RELAY-IND-24V",
+    "item_name": "Industrial Smart Control Relay 24V",
+    "expected_variant": "24V Industrial",
+    "expected_units": 50,
+    "units_per_carton": 25,
+    "expected_cartons": 2,
+    "expected_barcode": "0745239102481",
+    "required_components": [
+      "DIN Rail Clip"
+    ],
+    "evidence_markers": [
+      "damaged_puncture_carton",
+      "label_0745239102481",
+      "relay_sample",
+      "seal_intact"
+    ],
+    "expected_disposition": "EXCEPTION",
+    "expected_violations_count": 1
+  },
+  {
+    "case_id": "UNIT-020",
+    "description": "HydroVessel Blue Bottle Final Intake Batch: Validated (Pass)",
+    "sku": "BLUE-BOTTLE-001",
+    "item_name": "Premium Water Bottle",
+    "expected_variant": "Blue",
+    "expected_units": 24,
+    "units_per_carton": 12,
+    "expected_cartons": 2,
+    "expected_barcode": "0810024810924",
+    "required_components": [
+      "Insulated Cap",
+      "Silicone Seal Ring"
+    ],
+    "evidence_markers": [
+      "cartons_intact",
+      "label_0810024810924",
+      "sample_blue_bottle",
+      "seal_intact"
+    ],
+    "expected_disposition": "ACCEPTED",
+    "expected_violations_count": 0
+  }
+]
