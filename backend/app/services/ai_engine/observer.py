@@ -15,7 +15,14 @@ class ReceivingObserver:
     """
 
     def __init__(self, api_key: Optional[str] = None):
-        self.api_key = api_key or os.getenv("GEMINI_API_KEY", "").strip()
+        if not api_key:
+            try:
+                from app.core.config import settings
+                self.api_key = (os.getenv("GEMINI_API_KEY") or settings.GEMINI_API_KEY or "").strip()
+            except Exception:
+                self.api_key = os.getenv("GEMINI_API_KEY", "").strip()
+        else:
+            self.api_key = api_key.strip()
 
     def observe(
         self,
@@ -37,10 +44,9 @@ class ReceivingObserver:
         expected: A2ALineItemContract,
         evidence_images: List[str]
     ) -> Tuple_Observed:
-        import google.generativeai as genai
+        from google import genai
 
-        genai.configure(api_key=self.api_key)
-        model = genai.GenerativeModel("gemini-1.5-flash")
+        client = genai.Client(api_key=self.api_key)
 
         system_instruction = (
             "You are an expert Receiving Quality Inspection Vision Observer.\n"
@@ -85,7 +91,10 @@ class ReceivingObserver:
             except Exception as img_err:
                 logger.debug(f"Could not load image reference {img_ref}: {img_err}")
 
-        response = model.generate_content(prompt_parts)
+        response = client.models.generate_content(
+            model="gemini-2.5-flash",
+            contents=prompt_parts
+        )
         raw_text = response.text.strip()
         # Clean markdown codeblocks if present
         if raw_text.startswith("```"):
@@ -98,7 +107,7 @@ class ReceivingObserver:
 
         data = json.loads(raw_text)
         facts = ObservedFacts(**data)
-        return facts, "Google Gemini 1.5 Flash (Vision Observer)"
+        return facts, "Google Gemini 2.5 Flash (Vision Observer)"
 
     def _observe_deterministic(
         self,
