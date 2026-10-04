@@ -179,7 +179,35 @@ def seed_database(db: Session):
         inspection_notes="Check anti-corrosion grease seal and confirm rotor surface is free of gouges or pitting."
     )
 
-    db.add_all([p_bottle, p_elec, p_cold, p_auto])
+    p_scanner = Product(
+        sku="SKU-SCAN-9020",
+        name="Honeywell Granit Ultra-Rugged 2D Industrial Scanner",
+        description="IP67 rated wireless long-range industrial 2D barcode scanner with drop resistance up to 3 meters, vibration feedback, Bluetooth 5.2, and hot-swappable 4500mAh lithium-ion battery pack.",
+        category="Warehouse Equipment & Barcode Hardware",
+        variant="High-Vis Yellow / Matte Black",
+        units_per_carton=6,
+        required_components=json.dumps([
+            "Granit Wireless 2D Scanner Gun",
+            "Weighted Charging & Comm Base Cradle",
+            "USB-C Shielded Industrial 3M Interface Cable",
+            "Quick-Release 4500mAh Lithium Battery",
+            "Calibration & Pairing Reference Card"
+        ]),
+        reference_image="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80",
+        barcode="0745239841029",
+        weight_kg=0.75,
+        dimensions_cm="19x13x8",
+        unit_of_measure="EA",
+        packaging_type="ESD Shielded Inner Packaging + Master Shipper Carton",
+        is_temperature_controlled=False,
+        is_fragile=True,
+        is_hazardous=False,
+        sampling_rate_pct=15.0,
+        acceptable_defect_tolerance_pct=0.5,
+        inspection_notes="Inspect outer shipper carton tamper tape; ensure optical scanner exit window is unblemished and free of scratches; verify charging cradle connector pins are aligned and unbent."
+    )
+
+    db.add_all([p_bottle, p_elec, p_cold, p_auto, p_scanner])
     db.commit()
 
     # 3. Purchase Orders
