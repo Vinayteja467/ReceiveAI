@@ -33,7 +33,7 @@ class TestReceivingA2AContract(unittest.TestCase):
             image_quality_adequate=True,
             observation_confidence=0.98
         )
-        disposition, violations, rationale = ReceivingDispositionPolicy.evaluate(contract, observed)
+        disposition, violations, rationale, checks = ReceivingDispositionPolicy.evaluate(contract, observed)
         self.assertEqual(disposition, "ACCEPTED")
         self.assertEqual(len(violations), 0)
 
@@ -49,7 +49,7 @@ class TestReceivingA2AContract(unittest.TestCase):
             image_quality_adequate=True,
             observation_confidence=0.95
         )
-        disposition, violations, rationale = ReceivingDispositionPolicy.evaluate(contract, observed)
+        disposition, violations, rationale, checks = ReceivingDispositionPolicy.evaluate(contract, observed)
         self.assertEqual(disposition, "EXCEPTION")
         self.assertTrue(any("VARIANT_MISMATCH" in v for v in violations))
 
@@ -67,7 +67,7 @@ class TestReceivingA2AContract(unittest.TestCase):
             image_quality_adequate=True,
             observation_confidence=0.92
         )
-        disposition, violations, rationale = ReceivingDispositionPolicy.evaluate(contract, observed)
+        disposition, violations, rationale, checks = ReceivingDispositionPolicy.evaluate(contract, observed)
         self.assertEqual(disposition, "EXCEPTION")
         self.assertTrue(any("PACKAGING_DAMAGE" in v for v in violations))
 
@@ -81,7 +81,7 @@ class TestReceivingA2AContract(unittest.TestCase):
             image_quality_adequate=False,
             observation_confidence=0.40
         )
-        disposition, violations, rationale = ReceivingDispositionPolicy.evaluate(contract, observed)
+        disposition, violations, rationale, checks = ReceivingDispositionPolicy.evaluate(contract, observed)
         self.assertEqual(disposition, "HOLD_FOR_MANUAL_REVIEW")
         self.assertTrue(any("IMAGE_QUALITY_INADEQUATE" in v for v in violations))
 
@@ -95,7 +95,7 @@ class TestReceivingA2AContract(unittest.TestCase):
             image_quality_adequate=True,
             observation_confidence=0.95
         )
-        disposition, violations, rationale = ReceivingDispositionPolicy.evaluate(contract, observed)
+        disposition, violations, rationale, checks = ReceivingDispositionPolicy.evaluate(contract, observed)
         self.assertEqual(disposition, "EXCEPTION")
         self.assertTrue(any("SEAL_BREACH" in v for v in violations))
 

@@ -2,6 +2,14 @@ from pydantic import BaseModel, Field
 from typing import List, Optional, Dict, Any, Literal
 from datetime import datetime
 
+class CUBECheck(BaseModel):
+    check_name: str
+    status: Literal["PASS", "FAIL", "UNCERTAIN"]
+    expected: Any
+    observed: Any
+    confidence: float
+    explanation: str
+
 class ObservedFacts(BaseModel):
     detected_sku: Optional[str] = None
     detected_variant: Optional[str] = None
@@ -43,6 +51,14 @@ class A2AInspectResponse(BaseModel):
     sku: str
     disposition: Literal["ACCEPTED", "EXCEPTION", "HOLD_FOR_MANUAL_REVIEW"]
     confidence_score: float
+    checks: List[CUBECheck] = Field(
+        default_factory=list,
+        description="CUBE standardized checks[] array with PASS, FAIL, UNCERTAIN status"
+    )
+    cube_evidence_record: Dict[str, Any] = Field(
+        default_factory=dict,
+        description="Standardized CUBE evidence record payload for the orchestrator"
+    )
     observed_facts: ObservedFacts
     policy_violations: List[str] = Field(default_factory=list)
     disposition_rationale: str

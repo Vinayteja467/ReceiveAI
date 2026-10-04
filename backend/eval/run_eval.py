@@ -42,7 +42,7 @@ def run_evaluation():
         # Stage 1: Observe
         facts, engine_used = observer.observe(contract, c["evidence_markers"])
         # Stage 2: Decide
-        disposition, violations, rationale = ReceivingDispositionPolicy.evaluate(contract, facts)
+        disposition, violations, rationale, checks = ReceivingDispositionPolicy.evaluate(contract, facts)
         elapsed_ms = (time.time() - t0) * 1000
         total_time += elapsed_ms
 

@@ -57,7 +57,7 @@ class GeminiVisionEngine(BaseReceivingVisionEngine):
         observed_facts, engine_name = self.observer.observe(contract, evidence_paths)
 
         # Stage 2: Decide (Deterministic Policy)
-        disposition, violations, rationale = ReceivingDispositionPolicy.evaluate(contract, observed_facts)
+        disposition, violations, rationale, checks = ReceivingDispositionPolicy.evaluate(contract, observed_facts)
 
         # Check if fallback demo engine should construct full 10-check UI schema
         fallback = DeterministicDemoEngine()
