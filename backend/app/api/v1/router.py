@@ -8,7 +8,8 @@ from app.api.v1.endpoints import (
     evidence,
     settings,
     suppliers,
-    a2a
+    a2a,
+    agent
 )
 
 api_router = APIRouter()
@@ -22,3 +23,4 @@ api_router.include_router(exceptions.router, prefix="/exceptions", tags=["Except
 api_router.include_router(evidence.router, prefix="/evidence", tags=["Inspection Evidence"])
 api_router.include_router(settings.router, prefix="/settings", tags=["Settings & Tolerances"])
 api_router.include_router(a2a.router, prefix="/a2a", tags=["A2A Receiving Agent Contract"])
+api_router.include_router(agent.router, prefix="/agent", tags=["Autonomous Receiving Agent"])
